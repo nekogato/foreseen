@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'OT Brut';
+    src: url('OTBrut-Italic.woff2') format('woff2'),
+        url('OTBrut-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'OT Brut';
+    src: url('OTBrut-Regular.woff2') format('woff2'),
+        url('OTBrut-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

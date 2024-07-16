@@ -1,0 +1,169 @@
+html, body {
+    /* font-family: "Arial", "Noto-sans"; */
+    font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+    margin: 0; padding: 0;
+    background-color: #bbbfc0;
+    height: 100%;
+    /* background-color: #7abbb8; */
+}
+.header {
+    position: fixed;
+    z-index: 1;
+    font-family: "ot_brutregular";
+    box-sizing: border-box;
+    padding: 24px 40px;
+    color: #FFFFFF;
+    font-size: 42px;
+    width: 50%;
+}
+.header-row {
+    display: flex;
+    justify-content: space-between;
+}
+.header-row-black {
+    margin-top: -30px;
+    color: #414141;
+}
+.header-right {
+    font-family: "ot_brutitalic";
+    align-self: right;
+}
+.tc-font {
+    font-family: "Noto Sung TC";
+    letter-spacing: 8px;
+    position: relative;
+    top: -4px;
+    /* font-family: "hanwangmingmediumpoin3regular"; */
+}
+.nav-menu {
+    position: fixed;
+    right: 0;
+    width: 80px;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    /* border: 1px solid #FFFFFF; */
+    box-shadow: -10px 0px 20px 0px rgba(255, 255,255,0.5);
+    height: 100%;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 48px;
+    padding-left: 24px;
+    padding-top: 6px;
+    z-index: 2;
+    background-color: #bbbfc0;
+}
+#threejs-canvas {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    z-index: 0;
+}
+.wrapper-fold-2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 100%;
+}
+.fold-2 {
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    box-sizing: border-box;
+    /* border: 1px solid #FF0000; */
+    box-shadow: -10px 0px 20px 0px rgba(255, 255,255,0.5);
+    background-color: #bbbfc0;
+    position: relative;
+}
+.fold-2-right {
+    width: calc(50% - 55px);
+    z-index: 1;
+}
+.inside-menu {
+    position: fixed;
+  right: 55px;
+  width: calc(50% - 55px);
+}
+
+.inside-menu-item-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.inside-menu-item {
+    font-size: 12px;
+    font-family: 'ot_brutitalic';
+    padding: 6px;
+    margin: 10px;
+    width: 100px;
+    height: 14px;
+    line-height: 14px;
+    border-radius: 28px;
+    text-align: center;
+    /* background-color: #FFFFFF; */
+    box-shadow: 0px 0px 10px 1px #FFFFFF;
+    background-color: #bbbfc0;
+    text-transform: uppercase;
+}
+.inside-menu-item.selected {
+    box-shadow: 0px 0px 10px 1px #CCFF00;
+    background-color: #FFFFFF;
+}
+.content-heading {
+    font-size: 24px;
+    margin-bottom: 50px;
+}
+.content {
+    color: #FFFFFF;
+    margin: 30px 120px;
+    line-height: 28px;
+    font-size: 16px;
+    overflow: auto;
+    padding-top: 100px;
+}
+.debug {
+    display: none;
+    margin: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #FFFFFF;
+}
+
+@font-face {
+    font-family: 'ot_brutitalic';
+    src: url('../assets/fonts/otbrut-italic-webfont.woff2') format('woff2'),
+        url('.//assets/fonts/otbrut-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ot_brutregular';
+    src: url('../assets/fonts/otbrut-regular-webfont.woff2') format('woff2'),
+        url('../assets/fonts/otbrut-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* @font-face {
+    font-family: 'hanwangmingmediumpoin3regular';
+    src: url('assets/fonts/wp310-05.woff2') format('woff2'),
+        url('assets/fonts/wp310-05.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+} */
+
+@font-face {
+    font-family: 'hanwangmingmediumpoin3regular';
+    src: url('../assets/fonts/wp310-05-webfont.woff2') format('woff2'),
+        url('../assets/fonts/wp310-05-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

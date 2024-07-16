@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Foreseen</title>
+
+    <!--------------------------- plugin start here ------------------------->
+
+    <!-- <script src="js/lib/jquery-3.6.0.min.js"></script>
+    <script src="js/lib/jquery-migrate-3.3.2.min.js"></script>
+    <script src="js/lib/jquery.history.js"></script>
+    <script src="js/lib/velocity.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/lib/swiper/css/swiper.min.css">
+    <script src="js/lib/swiper/js/swiper.min.js"></script>
+    <script src="js/lib/gsap.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="js/lib/fancybox/jquery.fancybox.min.css">
+    <script src="js/lib/fancybox/jquery.fancybox.min.js"></script> -->
+
+    <!--------------------------- plugin end here ------------------------->
+
+    <!--------------------------- css & script start here ------------------------->
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="c_css/main.css" rel="stylesheet" type="text/css" />
+    <link href="c_css/color.css" rel="stylesheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="js/index.js"></script> -->
+    <!-- <link href="css/module.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/stylesheet.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <script src="js/script.js"></script> -->
+    <script src="c_script/common.js"></script>
+
+    <!--------------------------- css & script end here ------------------------->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./c_script/three.module.js",
+                "three/addons/": "./jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="js/script.js"></script>
+    <script type="module">
+        window.openObject = openIFrame
+        
+        //// rewrite your iframe here?
+        function openIFrame( index ) {
+            console.log("openIFrame", index)
+        }
+    </script>
+    </head>
+	<body class="body_shopdetail body_shopdetail_color_1">
+        <img src="c_images/top_left_logo1.svg" class="top_left_logo1">
+        <img src="c_images/top_left_logo2.svg" class="top_left_logo2">
+        <img src="c_images/top_right_logo1.svg" class="top_right_logo1">
+        <img src="c_images/top_right_logo2.svg" class="top_right_logo2">
+
+		<div class="right_menu">
+
+		</div>
+
+		<a class="menu_line_wrapper dropdown_btn">
+            <div class="menu_line ">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </a>
+
+        <div class="dropdown_wrapper">
+            <div class="dropdown text4">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div>主頁</div>
+                            <div>Home</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <div>簡介</div>
+                            <div>About</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="shop.html">
+                            <div>店舖</div>
+                            <div>Shop</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="team.html">
+                            <div>項目團隊</div>
+                            <div>Team</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="wrapper-fold-2">
+            <div class="fold-2">
+                <div id="threejs-canvas">
+                    <div class="debug">
+                        <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
+                        <br><br>
+                        <div>
+                            <label>
+                                <input type="radio" id="debug-center" name="placement_radiobtn" value="center">center
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-series" name="placement_radiobtn" value="series">series
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-shifted" name="placement_radiobtn" value="shifted" checked>shifted
+                            </label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fold-2 fold-2-right">
+                <div class="inside-menu">
+                    <div class="inside-menu-item-wrapper">
+                        <div class="inside-menu-item selected">Article</div>
+                        <div class="inside-menu-item">Shop</div>
+                        <div class="inside-menu-item">Video</div>
+                        <div class="inside-menu-item">Sketch</div>
+                        <div class="inside-menu-item">Archive</div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="content-heading">在愛民邨 - 愛民邨衫之山㝫</div>
+                    <div>
+                        <p>曾經有客人在飛機上倒瀉紅酒在手袋，緊張得要用衛星電話致電查詢該怎樣處理手袋，張先生教她不要摔紅酒漬，落機後立即把手袋帶到洗衣舖。
+                        <p>走進愛民邨美麗華機器洗衣，感覺像進入一個衫的山窿，上下左右都掛滿了衫，只能側身穿過。這裏是愛民邨的大衣櫃，邨民在冬天後會把冬季衣服和厚被寄存在這裏;這裏也是名牌時裝的洗衣專門店，名店客人試衫時弄髒了一點點的當季時裝，會被帶到這裏做局部去漬，去除粉底、睫毛液、口紅，甚至鞋印。</p>
+                        <p>老闆張先生是洗衣老行尊，八十年代中在理工學院修讀紡織畢業，第一份工作是洗衣中間人，把製衣店的成衣送到洗衣廠清洗，從中抽佣。之後他到連鎖乾洗公司打工，負責管理。這間連鎖店的服務對象是豪宅住客，除了在康樂園、錦繡花園開舖，亦提供上門收衫服務，有專車前往山頂、半山和淺水灣。</p>
+                        <p>愛民邨美麗華機器洗衣始於1974年，張先生在1994年接手。除了屋邨日常磅洗乾洗客人，也接時裝名店生意，曾清理超過十萬元的衣服，也曾乾洗郭富城演唱會服裝。</p>
+                        <p>聽張先生分享去漬過程，生動得如教育電視。要去漬，就要逐步斬斷他所說的「污漬鏈」。以紅酒漬為例子，先要分析紅酒的成份，包括果汁、酒精、單寧酸、糖分等，再去使用相應的物質去除。衫的山窿中間，有一張小桌子，放着噴槍、棉花棒、顏色筆，這裏是他的去漬工作枱，拿起衣物便細心處理。說起洗衣新產品和新科技他都很雀躍，說要用AI協助洗衣，現正參與研究「纖維識別」科技，希望能幫助洗衣業。他希望洗衣業有多些年輕人，想專業知識能延續下去，我問他這行有多少年輕人呢?答案是:沒有。「只要試過成 功去漬，就會有滿足感!」他鼓勵人入行。</p>
+                        <p>客人說一句:「在其他地方洗唔到!多謝你幫我洗到!」張先生就最開心。而最感動的一件事，發生在去年八月，一個颱風天，他因擔心翌日會掛八號不能開舖，所以整天趕工，突然，他暈倒在門口那部古老的「人像蒸衣機」，連人帶機倒在地上，被送進醫院。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
