@@ -139,6 +139,35 @@
     position: relative;
 }
 
+.box_object_group{
+    height: 100%;
+    display: flex;
+    align-items: end;
+    position: relative;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 120px;
+}
+
+.box_object_group + .box_object_group::before{
+    content:"";
+    position: absolute;
+    left: 0px;
+    top:0px;
+    bottom: 0px;
+    border-left:1px dashed #fff;
+}
+
+.box_year{
+    position: absolute;
+    left: 50%;
+    bottom:50px;
+    margin-left: -50px;
+    text-align: center;
+    width:100px;
+    color:#fff;
+}
 
 .box_object{
     height: 100%;
