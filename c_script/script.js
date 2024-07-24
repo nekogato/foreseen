@@ -321,6 +321,7 @@ function init_event(){
   
 	$(".all_item_btn").click(function(){
         if($(".box_section_list").hasClass("active")){
+            $(".box_section_object").addClass("active");
             $(".box_section_list").removeClass("active");
             setTimeout(function(){
                 doscroll()
@@ -332,6 +333,7 @@ function init_event(){
             },1200)
         }else{
             $(".box_section_list").addClass("active");
+            $(".box_section_object").removeClass("active");
             $(".box_section_list").scrollTop(0);
             setTimeout(function(){
                 doscroll2()
@@ -393,12 +395,25 @@ function floatanim(){
     var newx = mousearr.mousex;
     var newy = mousearr.mousey;
 
+	
 
+	if($(".mobile_show").is(":hidden")){
+		var ww = $(window).outerWidth()-$(".right_menu").outerWidth();
+	
+		var mouse_to_ww_ratio = newx/ww;
 
+		var pwidth = $(".box_object_wrapper").outerWidth() - ww;
 
-	gsap.to($(".box_object_wrapper"), {
-		x: -(newx-$(window).width()/2)/2, 
-		duration: 1});
+		gsap.to($(".box_object_wrapper"), {
+			x: -pwidth*mouse_to_ww_ratio, 
+			duration: 1}
+		);
+	}else{
+		gsap.to($(".box_object_wrapper"), {
+			x: 0, 
+			duration: 0}
+		);
+	}
 
 	// gsap.to($(".content_area"), {
 	// 	rotation: -1*(newy-$(window).height()/2)/10, 
