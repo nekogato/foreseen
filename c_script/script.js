@@ -399,15 +399,23 @@ function floatanim(){
 
 	if($(".mobile_show").is(":hidden")){
 		var ww = $(window).outerWidth()-$(".right_menu").outerWidth();
-	
-		var mouse_to_ww_ratio = newx/ww;
 
-		var pwidth = $(".box_object_wrapper").outerWidth() - ww;
+		if(newx>(ww/2)){
+		
+			var mouse_to_ww_ratio = (newx-(ww/2))/(ww/2);
 
-		gsap.to($(".box_object_wrapper"), {
-			x: -pwidth*mouse_to_ww_ratio, 
-			duration: 1}
-		);
+			var pwidth = $(".box_object_wrapper").outerWidth() - ww;
+
+			var dis = -pwidth*mouse_to_ww_ratio
+		}else{
+			var dis = 0;
+		}
+
+
+			gsap.to($(".box_object_wrapper"), {
+				x: dis , 
+				duration: 1}
+			);
 	}else{
 		gsap.to($(".box_object_wrapper"), {
 			x: 0, 
