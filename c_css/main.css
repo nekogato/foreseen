@@ -1,9 +1,7 @@
 @import url("reset.css");
 
 body {
-    font-family: 'OT Brut';
-	font-size: 13px;
-	line-height: 24px;
+    font-family: 'OT Brut', "Noto Serif TC", serif;
 	/* overscroll-behavior: none; */
 	background-color: #A9E300;
 }
@@ -259,20 +257,24 @@ body {
 	opacity:1;
 }
 
+body {
+	font-size: 16px;
+	line-height:1.5em;
+}
 
 .text1, h1{
 	font-size: calc(12px + 1.6vw);
-	line-height:1.2em;
+	line-height:1.3em;
 	}	
 	
 .text2, h2{
 	font-size: calc(12px + 1.2vw);
-	line-height:1.2em;
+	line-height:1.3em;
 	}	
 	
 .text3, h3{
 	font-size: calc(12px + 0.6vw);
-	line-height:1.3em;
+	line-height:1.5em;
 	}	
 	
 .text4, h4{
@@ -282,12 +284,12 @@ body {
 	
 .text5, h5{
 	font-size: calc(12px + 0.3vw);
-	line-height:1.6em;
+	line-height:1.5em;
 	}	
 	
 .text6, h6{
 	font-size: calc(12px + 0.1vw);
-	line-height:1.6em;
+	line-height:1.5em;
 	}	
 
 /* mobile */
