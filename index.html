@@ -5,67 +5,18 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="c_css/fonts/stylesheet.css">
+		<link type="text/css" rel="stylesheet" href="c_css/home.css">
 		<link type="text/css" rel="stylesheet" href="c_css/main.css">
 		<link type="text/css" rel="stylesheet" href="c_css/module.css">
 		<link type="text/css" rel="stylesheet" href="c_css/color.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="c_script/lib/gsap.min.js"></script>
         <script src="c_script/script.js"></script>
         <script src="c_script/common.js"></script>
-		<style>
-			body,html{
-				width: 100%;
-				height: 100%;
-				overflow: hidden;
-			}
-
-			.window{
-				position: fixed;
-				width: 600px;
-				height: 400px;
-				left: 20%;
-				top:20%;
-                z-index: 99;
-			}
-
-			.window .handle{
-				position: absolute;
-				top:-25px;
-				width: 100%;
-				bottom: 0%;
-				left: 0px;
-				right: 0px;
-				margin: auto;
-			}
-
-			.window .handle::before{
-				content:"";
-				position: absolute;
-				left: 0px;
-				right: 0px;
-				margin: auto;
-				top:25px;
-			}
-
-			.window .iframe_wrapper{
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				background-color: #fff;
-            	clip-path: url(#clip-shape);
-			}
-
-			.window iframe{
-				position: absolute;
-				width: 100%;
-				height: 100%;
-			}
-
-			.dragging iframe{
-				pointer-events: none;
-			}
-
-		</style>
 	</head>
 	<body>
         <!-- SVG Shape Definition -->
@@ -81,18 +32,20 @@
 			</defs>
 		</svg>
 
-        <img src="c_images/top_left_logo1.svg" class="top_left_logo1">
-        <img src="c_images/top_left_logo2.svg" class="top_left_logo2">
-        <img src="c_images/top_right_logo1.svg" class="top_right_logo1">
-        <img src="c_images/top_right_logo2.svg" class="top_right_logo2">
+		<img src="c_images/top_left_logo1.svg" class="top_left_logo1">
+		<img src="c_images/top_left_logo2.svg" class="top_left_logo2">
+		
+		<img src="c_images/top_right_logo1.svg" class="top_right_logo1">
+		<img src="c_images/top_right_logo2.svg" class="top_right_logo2">
+
 		<div class="bottom_left_logo">
-        <img src="c_images/bottom_left_logo1.svg" class="bottom_left_logo1">
-        <img src="c_images/bottom_left_logo2.svg" class="bottom_left_logo2">
+			<img src="c_images/bottom_left_logo1.svg" class="bottom_left_logo1">
+			<img src="c_images/bottom_left_logo2.svg" class="bottom_left_logo2">
 		</div>
 
 		<div id="blocker"></div>
 
-		<div class="right_menu">
+		<div class="right_menu mobile_hide">
 
 		</div>
 
@@ -110,7 +63,7 @@
         </a>
 
         <div class="dropdown_wrapper">
-            <div class="dropdown text4">
+            <div class="dropdown text2">
                 <ul>
                     <li>
                         <a href="index.html">
@@ -139,6 +92,9 @@
                 </ul>
             </div>
         </div>
+
+		<div class="mobile_show"></div>
+		<div class="mobile_hide"></div>
 
 		<script type="importmap">
 			{
@@ -173,7 +129,7 @@
 				['c_model/Asset12-v1/Asset12.gltf',13,4,8, 30,30,30, 30,70,0,"style1",5,"[12] Drinks","model11"]
 			];
 
-			var camera, scene, renderer,composer, group,biggroup,gridgroup,gridHelper,gridHelper2,yearlinegroup, mouseX, mouseY, windowHalfX, windowHalfY;
+			var camera, scene, renderer,composer, smallgroup,biggroup,gridgroup,gridHelper,gridHelper2,yearlinegroup, mouseX, mouseY, windowHalfX, windowHalfY;
 			var loader, controls, dragcontrols, pointer;
 			const mouse = new THREE.Vector2(), raycaster = new THREE.Raycaster();
 			var sphereMesh, sphereMesh2, sphereBody, sphereBody2;
@@ -329,7 +285,7 @@
                             modelgroup.rotateZ(Math.PI / 180 * rotate_z)
                             GLTFArr[order]=modelgroup;
 							modelArr[order]=modelgroup;
-						    group.add( modelgroup );
+						    smallgroup.add( modelgroup );
 
 
 							const boxGeometry = new THREE.BoxGeometry(0.01, 0.01, 0.01);
@@ -379,7 +335,8 @@
                             modelgroup.rotateX(Math.PI / 180 * rotate_x)
                             modelgroup.rotateY(Math.PI / 180 * rotate_y)
                             modelgroup.rotateZ(Math.PI / 180 * rotate_z)
-						    scene.add( modelgroup );
+						    biggroup.add( modelgroup );
+						    //scene.add( modelgroup );
                         }
 
 
@@ -505,11 +462,13 @@
 				sphereMesh2 = new THREE.Mesh(sphereGeometry, sphereMaterial)
 				//scene.add(sphereMesh2)
 
-                group = new THREE.Group();
+                smallgroup = new THREE.Group();
                 biggroup = new THREE.Group();
 
-                biggroup.add(group);
+                biggroup.add(smallgroup);
                 scene.add(biggroup)
+
+
 
 
                 const size = 150;
@@ -769,6 +728,12 @@
                     //GLTFArr[i].rotation.y -= 0.005;
 				} 
 
+				if($(window).width()<1024){
+					biggroup.scale.set(0.5,0.5)
+				}else{
+					biggroup.scale.set(1,1)
+				}
+
 
                 biggroup.position.x = -targetGroupPosition.x;
                 biggroup.position.y = -targetGroupPosition.y;
@@ -835,7 +800,7 @@
 					gridHelper2.visible = false;
 					yearlinegroup.visible=false;
 
-                	group.rotation.x -= 0.005;
+                	smallgroup.rotation.x -= 0.005;
 					
                 }
 
@@ -862,7 +827,7 @@
 					gridHelper2.visible = false;
 					yearlinegroup.visible=false;
 
-                	group.rotation.x -= 0.005;
+                	smallgroup.rotation.x -= 0.005;
 					
                 }
 
@@ -887,7 +852,7 @@
 					yearlinegroup.visible=true;
 
 
-                	group.rotation.x = 0;
+                	smallgroup.rotation.x = 0;
                     
                 }
 
