@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Foreseen</title>
+
+    <!--------------------------- plugin start here ------------------------->
+
+    <!-- <script src="js/lib/jquery-3.6.0.min.js"></script>
+    <script src="js/lib/jquery-migrate-3.3.2.min.js"></script>
+    <script src="js/lib/jquery.history.js"></script>
+    <script src="js/lib/velocity.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/lib/swiper/css/swiper.min.css">
+    <script src="js/lib/swiper/js/swiper.min.js"></script>
+    <script src="js/lib/gsap.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="js/lib/fancybox/jquery.fancybox.min.css">
+    <script src="js/lib/fancybox/jquery.fancybox.min.js"></script> -->
+
+    <!--------------------------- plugin end here ------------------------->
+
+    <!--------------------------- css & script start here ------------------------->
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="c_css/main.css" rel="stylesheet" type="text/css" />
+    <link href="c_css/color.css" rel="stylesheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="js/index.js"></script> -->
+    <!-- <link href="css/module.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/stylesheet.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <script src="js/script.js"></script> -->
+    <script src="c_script/common.js"></script>
+
+    <!--------------------------- css & script end here ------------------------->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./c_script/three.module.js",
+                "three/addons/": "./jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="js/script.js"></script>
+    <script type="module">
+        window.openObject = openIFrame
+        
+        //// rewrite your iframe here?
+        function openIFrame( index ) {
+            console.log("openIFrame", index)
+        }
+    </script>
+    </head>
+	<body class="body_shopdetail body_shopdetail_color_1">
+        <img src="c_images/top_left_logo1.svg" class="top_left_logo1">
+        <img src="c_images/top_left_logo2.svg" class="top_left_logo2">
+        <img src="c_images/top_right_logo1.svg" class="top_right_logo1">
+        <img src="c_images/top_right_logo2.svg" class="top_right_logo2">
+
+		<div class="right_menu">
+
+		</div>
+
+		<a class="menu_line_wrapper dropdown_btn">
+            <div class="menu_line ">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </a>
+
+        <div class="dropdown_wrapper">
+            <div class="dropdown text4">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div>主頁</div>
+                            <div>Home</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <div>簡介</div>
+                            <div>About</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="shop.html">
+                            <div>店舖</div>
+                            <div>Shop</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="team.html">
+                            <div>項目團隊</div>
+                            <div>Team</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="wrapper-fold-2" data-shop="2">
+            <div class="fold-2">
+                <div id="threejs-canvas">
+                    <div class="debug">
+                        <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
+                        <br><br>
+                        <div>
+                            <label>
+                                <input type="radio" id="debug-center" name="placement_radiobtn" value="center">center
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-series" name="placement_radiobtn" value="series">series
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-shifted" name="placement_radiobtn" value="shifted" checked>shifted
+                            </label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fold-2 fold-2-right">
+                <div class="inside-menu">
+                    <div class="inside-menu-item-wrapper">
+                        <div class="inside-menu-item selected" data-detail="article">Article</div>
+                        <div class="inside-menu-item" data-detail="shop">Shop</div>
+                        <div class="inside-menu-item" data-detail="video">Video</div>
+                        <div class="inside-menu-item" data-detail="sketch">Sketch</div>
+                        <div class="inside-menu-item" data-detail="archive">Archive</div>
+                    </div>
+                </div>
+
+                <!-- SHOP 2 -->
+
+                <!-- ARTICLE -->
+                <div class="content for-article active">
+                    <div class="content-heading">誠信補鞋配匙
+                        <!-- <div class="content-shop-info">
+                            <p>1997年至現今</p>
+                            <p>新蒲崗康景商場27號D鋪</p>
+                            <p>受訪者：羅沛朝先生</p>
+                            <p>業務性質：修鞋 配鎖匙</p>
+                        </div> -->
+                    </div>
+
+                    <div class="content-article article-tc">
+                        <p>誠信最特別的，是它座落在康景樓裡。康景樓是香港iconic的一批「怪獸大廈」的表表者。</p>
+                        <p>雖然大家都叫「怪獸大廈」，但它們「怪獸」之處各異其趣，新蒲崗的康景樓，在於它像由多件不同大塊積木般的組件、拼合成龐然巨廈。遠處望去甚有「霸氣」，難望清其全貌。</p>
+                        <p>1972年落成的康景樓，在這座城市流行有大型「基座」的多層多棟私人住宅之前，就已經有特大的基座，多層停車場、壁畫和商場一應俱全。特別是，這樣的「舊私樓商場」，許多都「死」了，十室九空的多，唯獨是康景商場經營有道，成了住宅老商場的典範。大家想也沒想過，有天，康景大廈竟在「票選百大奇建築」的活動中名列前茅，被保存下來成為新蒲崗的地標。</p>
+                        <p>在它被視作新地標時，康景已不再有人居住，但康景商場連同在其之上的所有樓層，被打造成全新的「垂直老派購物路線」。許多外面找不到的行業，全港碩果僅存的一間，都在此開業，誠信於是成了這兒的重點商號。幾百間這樣的「老派經典小店」，就只有誠信補鞋配匙是「原裝」的，在旁邊開業的店家都難以置信，經常來誠信聽老闆講往昔的新蒲崗故事。老闆最喜歡講的是：補鞋還補鞋，配匙還配匙。它們是幾時連在一起的呢？說著說著，就會講到康強街的街口曾有一檔補鞋、有一檔配匙，在街上日夕相對，就決定合併了。</p>
+                        <p>老闆喜歡說，但凡有兩種技能不知何故拼在一起的，都有這種街頭上的因緣：生存艱難，後來經常見到的雪糕撈麵店、找換修甲店，都是這樣來的。在康景裡面，盡是這種文化研究者喜歡研究的「合併鋪」，看似自古已連在一起，但只有補鞋和配匙，才是最classic的。誠信補鞋配匙，竟因此成了無數大學生來做功課做訪問的研究對象。畢竟，實體鎖匙近年已無人再用，誠信幾乎被視作一間博物館，撐起了康景大廈的新文化經濟。</p>
+                    </div>
+
+                    <div class="article-ppl-name content-block text-tc">黃宇軒</div>
+                    <div class="article-ppl-desc">
+                        <p class="text-tc">黃宇軒主要研究城市化問題。他在曼徹斯特大學獲得地理學博士學位，現為香港中文大學通識教育基礎課程講師。最近，他與其他香港藝術家共同創辦了錄影項目 當有疑問時，就去散步，以探討有關城市散步和城市福祉的問題。</p>
+                    </div>                
+
+                    <div class="content-heading">Shing Shun Shoes and Keys
+                        <!-- <div class="content-shop-info">
+                            <p>1997 to present</p>
+                            <p>Shop 27D, Hong King Building shopping centre, 86 Tseuk Luk St, San Po Kong</p>
+                            <p>Business: Shoe Repair, Key Duplication</p>
+                            <p>Interviewee: Mr. Brian Law</p>
+                        </div> -->
+                    </div>
+
+                    <div class="content-article article-en">
+                        <p>The most special thing about Cheng Shun is that it is located inside the Kwong King Building. The Kwong King Building is a representative of the iconic "monster buildings" in Hong Kong.</p>
+                        <p>Although everyone calls them "monster buildings", they each have their own unique "monstrous" charm. For the Kwong King Building in San Po Kong, it is that it looks like a massive building assembled from different large blocks of components. Viewed from a distance, it has an imposing "domineering" presence, making it difficult to take in the entire structure.</p>
+                        <p>The Kwong King Building, completed in 1972, was ahead of the trend of large-scale "podium" multi-story and multi-block private residential complexes in the city. It already had a massive podium with multi-story parking, murals, and a shopping mall. Interestingly, many of these "old private building shopping malls" have since "died", with most of them empty. But the Kwong King Mall has been well-operated, becoming a model for old residential building malls. No one ever imagined that one day, the Kwong King Building would be ranked among the top in a "100 Most Extraordinary Buildings" poll, and be preserved as a landmark in San Po Kong.</p>
+                        <p>When it was seen as a new landmark, the Kwong King Building no longer had any residential tenants. But the Kwong King Mall, along with all the floors above it, have been transformed into a brand-new "vertical retro shopping route". Many industries that cannot be found elsewhere in the city, the sole survivors in Hong Kong, have set up shop here. Cheng Shun, a shoe repair and key duplication shop, has become a highlight of this mall. Among the hundreds of these "old-school classic small shops", Cheng Shun is the only one that is the "original" shoe repair and key duplication store. The neighboring shops find it hard to believe, and often come to Cheng Shun to listen to the owner tell stories of the old San Po Kong. The owner's favorite stories are about how they continue to do shoe repairs and key duplication, and how the two businesses came to be combined.</p>
+                        <p>He would say that whenever there are two skills that are somehow combined together, it often has its origins on the street - the struggle for survival. The ice cream and noodle shops, the nail salons, they all emerged this way. Inside the Kwong King Building, there are many of these "combined shops" that cultural researchers love to study - they appear to have been together since ancient times, but only the shoe repair and key duplication shop, Cheng Shun, is the most classic example. Cheng Shun has become a research subject for countless university students, as physical keys have become almost obsolete in recent years, making Cheng Shun almost like a museum, supporting the new cultural economy of the Kwong King Building</p>
+                            
+                    </div>
+
+                    <div class="article-ppl-name content-block">Sampson Wong</div>
+                    <div class="article-ppl-desc">
+                        <p>Sampson Wong researches urbanization issues. He holds a PhD in Geography from the University of Manchester and is currently a lecturer in the General Education Foundation Course at the Chinese University of Hong Kong. Most recently, he co-founded the video project When in Doubt, Go for a Walk with other Hong Kong artists, to explore questions about urban walking and urban well-being.</p>
+                    </div>
+                </div>
+
+                <!-- SHOP -->
+                <div class="content for-shop">
+                    <div class="content-heading">誠信補鞋配匙
+                        <div class="content-shop-info">
+                            <p>1997年至現今</p>
+                            <p>新蒲崗康景商場27號D鋪</p>
+                            <p>受訪者：羅沛朝先生</p>
+                            <p>業務性質：修鞋 配鎖匙</p>
+                        </div>
+                    </div>
+
+                    <div class="content-article article-tc">
+                        <p>誠信補鞋配匙是位於香港新蒲崗的一間具有歷史特色的小店。它坐落在著名的「怪獸大廈」-康景樓內,是這座建築物內少數仍在營業的老字號商店之一。</p>
+                        <p>這間店最初是一間獨立的補鞋和配鑰匙服務的小店,店主堅持傳統手工藝,即使實體鑰匙使用逐漸減少,仍然保持著這項獨特的服務。多年來,店主不僅能在短時間內判斷出修理價格,還樂於與顧客分享新蒲崗的街頭故事,成為當地有特色的文化地標。</p>
+                    </div>            
+
+                    <div class="content-heading">Shing Shun Shoes and Keys
+                        <div class="content-shop-info">
+                            <p>1997 to present</p>
+                            <p>Shop 27D, Hong King Building shopping centre, 86 Tseuk Luk St, San Po Kong</p>
+                            <p>Business: Shoe Repair, Key Duplication</p>
+                            <p>Interviewee: Mr. Brian Law</p>
+                        </div>
+                    </div>
+
+                    <div class="content-article article-en">
+                        <p>Shing Shun Shoes and Keys is a historically significant small shop located in San Po Kong, Hong Kong. It is situated within the famous "Monster Building" - Hong Kong Mansion, and is one of the few longstanding shops still in operation in this building.</p>
+                        <p>This shop was originally an independent shoe repair and key duplication service, and the owner has insisted on maintaining traditional craftsmanship, even as the use of physical keys has gradually declined. Over the years, the owner not only can quickly assess the repair price, but also enjoys sharing stories about the streets of San Po Kong with customers, becoming a unique cultural landmark in the local area.</p>                            
+                    </div>
+                </div>
+
+            </div>
+        </div>
+	</body>
+</html>

@@ -82,19 +82,20 @@ html, body {
 }
 .inside-menu {
     position: fixed;
-  right: 55px;
-  width: calc(50% - 55px);
+    right: 55px;
+    width: calc(50% - 55px);
 }
 
 .inside-menu-item-wrapper{
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   padding: 20px;
 }
 
 .inside-menu-item {
     font-size: 12px;
     font-family: 'ot_brutitalic';
+    /* padding: 6px 24px; */
     padding: 6px;
     margin: 10px;
     width: 100px;
@@ -106,14 +107,23 @@ html, body {
     box-shadow: 0px 0px 10px 1px #FFFFFF;
     background-color: #bbbfc0;
     text-transform: uppercase;
+    cursor: pointer;
 }
 .inside-menu-item.selected {
     box-shadow: 0px 0px 10px 1px #CCFF00;
     background-color: #FFFFFF;
 }
 .content-heading {
-    font-size: 24px;
-    margin-bottom: 50px;
+    /* font-size: 24px; */
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+.content-heading:not(:first-of-type) {
+    margin-top: 90px;
+}
+.article-heading-en {
+    margin-top: 50px;
+    border-top: 1px solid #FFF;
 }
 .content {
     color: #FFFFFF;
@@ -122,6 +132,105 @@ html, body {
     font-size: 16px;
     overflow: auto;
     padding-top: 100px;
+    padding-bottom: 60px;
+
+    font-family: "OT Brut", "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+}
+
+.content {
+    display:none;
+}
+.content.for-article.active,
+.content.for-shop.active {
+    display: block;
+}
+
+.content-end-block {
+    margin-bottom: 90px;
+}
+
+.content-shop-info {
+    margin-top: 0.5em;
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.content-article p:not(:last-of-type) {
+    margin-bottom: 1.5em;
+}
+.content-article-tc {
+    letter-spacing: 0.05em;
+}
+.article-ppl-name {
+    /* font-size: 1.5em; */
+    font-size: 1em;
+    font-weight: bold;
+    /* color: #666666; */
+}
+.article-ppl-name .text-tc {
+    font-size: 0.95em;
+}
+.article-ppl-title {
+    font-size: 1.2em;
+}
+.article-ppl-title .text-tc {
+    font-size: 0.8em;
+}
+.article-ppl-desc {
+    /* margin-bottom: 60px; */
+    font-size: 0.9em;
+    /* color: #666666; */
+}
+.contact-ig {
+    display: inline-block;
+}
+.contact-ig::before {
+    display: inline-block;
+    content: "";
+    width: 1.25em;
+    height: 1.25em;
+    background-color: #FFFFFF;
+    mask-image: url(../assets/contact-ig.svg);
+    mask-repeat: no-repeat;
+    top: 0.3em;
+    position: relative;
+    margin-right: 0.3em;
+}
+.svg-color{
+    fill: #FFFFFF;
+}
+.content-block::before {
+    content: "";
+    display: block;
+    width: 5em;
+    /* border-top: 1px dashed #FFF; */
+    border-top: 1px solid #FFF;
+    margin: 2em 0 1em;
+}
+.article-extra {
+    margin-top: 2em;
+    /* color: #666; */
+    /* border: 1px solid #FFFFFF; */
+    /* padding: 1em; */
+    /* background-color: rgba(0,0,0,0.1) */
+}
+
+.text-en {
+    letter-spacing: 0em;
+}
+.text-tc {
+    letter-spacing: 0.05em;
+}
+a, a:visited {
+    color: inherit;
+}
+a:hover {
+    text-decoration: underline;
+    color: #000000;
+    /* border-bottom: 1px solid #FFFFFF; */
+}
+a:hover > .contact-ig::before {
+    background-color: #000000;
 }
 .debug {
     display: none;
@@ -130,6 +239,56 @@ html, body {
     top: 0;
     right: 0;
     color: #FFFFFF;
+}
+.hidden {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .wrapper-fold-2 {
+        /* display:block; */
+    }
+    .fold-2 {
+        width: calc(100% - 55px);
+        height: 70%;
+    }
+    .fold-2-right {
+        height: initial;
+        min-height: 30%;
+    }
+    #threejs-canvas {
+        position: fixed;
+        height: 70%;
+        width: calc(100% - 55px);
+    }
+    .inside-menu {
+        position: sticky;
+        width: 100%;
+        right: inherit;
+        top: 0;
+
+        /* position: fixed;
+        width: calc(100% - 55px);
+        right: inherit;
+        bottom: 0; */
+    }
+    .inside-menu-item-wrapper {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+    .content {
+        margin: 30px 30px;
+        padding-top: 0px;
+    }
+    .body_shopdetail .top_right_logo2,
+    .body_shopdetail .top_right_logo1 {
+        right: 55px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    
+   
 }
 
 @font-face {

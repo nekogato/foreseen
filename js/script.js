@@ -14,11 +14,20 @@ let objects = [];
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let setIndex = Math.floor(Number(urlParams.get("set")))
+// console.log(setIndex)
+
+if (setIndex == 0) {
+    console.log(document.querySelector(".wrapper-fold-2").dataset.shop)
+    setIndex = document.querySelector(".wrapper-fold-2").dataset.shop
+}
+
+// if (window.seqIndex !== undefined && setIndex == 0) setIndex = window.seqIndex
+// console.log(window.seqIndex, setIndex) 
 
 if (setIndex == undefined || setIndex > 5 || setIndex < 1) setIndex = 1
 
 let isShadeSet = urlParams.get("isShaded") == "false" ? false : true
-console.log(isShadeSet)
+// console.log(isShadeSet)
 
 const colorArrayIndex = setIndex-1
 const showSeqIndex = setIndex-1
@@ -55,9 +64,9 @@ const posArray = [
 ]
 
 const showSeqArray = [
-    [0,1,6],
+    [9,2,0],       // [0,1,6],
     [3,10,9],
-    [2,4,5],
+    [5, 10, 2],    // [2,4,5],
     [8,7,0],
     [3,7,5],
 ]
@@ -88,14 +97,42 @@ let placementState = 0;
 const isProjectedMaterialUsed = false
 const isShadeEnabled = isShadeSet
 
-// document.addEventListener("DOMContentLoaded", DOMContentLoaded)
+document.addEventListener("DOMContentLoaded", DOMContentLoaded)
 
-// function DOMContentLoaded() {
-    
+function DOMContentLoaded() {
+    setupInsideMenu()
     init();
     animate();
-// }
+}
+function setupInsideMenu() {
+    const menuItems = document.querySelectorAll(".inside-menu-item")
+    console.log(menuItems)
+    menuItems.forEach( obj => {
+        obj.addEventListener("click", changeDetailView)
+    })
+}
+function changeDetailView( e ) {
+    const selectedMenuItems = document.querySelectorAll(".inside-menu-item.selected")
+    selectedMenuItems.forEach( obj => {
+        obj.classList.remove("selected")
+    })
+    e.target.classList.add("selected")
 
+    const activeDetailContent = document.querySelectorAll(".content.active")
+    activeDetailContent.forEach( obj => {
+        obj.classList.remove("active")
+    })
+    const activeContent = document.querySelector(".content.for-" + e.target.dataset.detail)
+    if (activeContent !== undefined) {
+        activeContent.classList.add("active")
+    }
+    // document.getElementsByClassName(activeContent)[0].classList.add("active")
+    
+    // window.scrollTo({
+    //     top: 0, 
+    //     // behavior:"smooth"
+    // })
+}
 function animate() {
     if (object) object.rotation.z += 0.01 * 1;
     if (object2) object2.rotation.z += -0.01 * 1;
@@ -428,6 +465,8 @@ function init() {
 
     document.addEventListener("pointermove", onPointerMove)
     document.addEventListener("click", onPointerClick)
+
+    onWindowResize()
 }
 
 function onPointerMove( event ) {
@@ -594,19 +633,24 @@ function inputChange(e) {
 }
 
 function onWindowResize() {
+    let ratio = 1
+    if (window.innerWidth < 480) {
+        ratio = 0.7
+    }
 
     if (camera.isOrthographicCamera) {
         camera.left = targetDom.getBoundingClientRect().width / - 2
         camera.right = targetDom.getBoundingClientRect().width / 2
-        camera.top = window.innerHeight / 2
-        camera.bottom = window.innerHeight / - 2
+        camera.top = window.innerHeight / 2 * ratio
+        camera.bottom = window.innerHeight / - 2 * ratio
+
         camera.updateProjectionMatrix();
     } else {
-        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.aspect = window.innerWidth / ( window.innerHeight * ratio );
         camera.updateProjectionMatrix();
     }
 
-    renderer.setSize(targetDom.getBoundingClientRect().width, window.innerHeight);
+    renderer.setSize(targetDom.getBoundingClientRect().width, window.innerHeight * ratio);
 
     render()
 }
