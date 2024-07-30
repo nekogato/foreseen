@@ -25,6 +25,28 @@ function doscroll(){
 	var scrolltop = $(window).scrollTop();
 	var hh = $(window).height();
 	
+
+	if($(".team_sub_section_menu").length>0){
+		var offsettop = 80;
+		if($(".mobile_show").is(":visible")){
+			offsettop = 40;
+		}
+
+		$(".tab_item").each(function(){
+			var mytop = $(this).offset().top -  scrolltop - $(".tab_top").outerHeight() - offsettop;
+			$(this).attr("data-top",$(this).offset().top -  scrolltop - $(".tab_top").outerHeight() - offsettop)
+			if(mytop < (hh/2)){
+				$(this).addClass("active")
+			}else{
+				$(this).removeClass("active")
+			}
+		})
+
+		var myid = $(".tab_item.active:last").attr("data-id");
+		$(".team_sub_section_menu a.active").removeClass("active");
+		$(".team_sub_section_menu a[data-target='"+myid+"']").addClass("active");
+	}
+
 	if(scrolltop>0){
 		$("body").addClass("nottop")
 	}else{
@@ -344,6 +366,19 @@ function init_event(){
             },1200)
         }
 		return false;
+	})
+
+	$(".team_sub_section_menu a").click(function(){
+
+		var mytarget = $(this).attr("data-target");
+		var offsettop = 80;
+		if($(".mobile_show").is(":visible")){
+			offsettop = 40;
+		}
+		var targety = $(".tab_item[data-id='"+mytarget+"']").offset().top -  ($(".tab_top").outerHeight() + offsettop);
+		var body = $("html, body");
+		body.stop().animate({scrollTop:targety}, 500, 'swing', function() { 
+		});
 	})
 
     
