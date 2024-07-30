@@ -1,6 +1,6 @@
 html, body {
     /* font-family: "Arial", "Noto-sans"; */
-    font-family: "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+    font-family: 'OT Brut', "Noto Serif TC", serif;
     margin: 0; padding: 0;
     background-color: #bbbfc0;
     height: 100%;
@@ -29,7 +29,7 @@ html, body {
     align-self: right;
 }
 .tc-font {
-    font-family: "Noto Sung TC";
+    font-family: 'OT Brut', "Noto Serif TC", serif;
     letter-spacing: 8px;
     position: relative;
     top: -4px;
@@ -133,8 +133,7 @@ html, body {
     overflow: auto;
     padding-top: 100px;
     padding-bottom: 60px;
-
-    font-family: "OT Brut", "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+    font-family: 'OT Brut', "Noto Serif TC", serif;
 }
 
 .content {
@@ -142,7 +141,12 @@ html, body {
 }
 .content.for-article.active,
 .content.for-shop.active {
-    display: block;
+    display: block !important;
+}
+
+.fancybox-slide .content.for-article.active,
+.fancybox-slide .content.for-shop.active {
+    display: inline-block !important;
 }
 
 .content-end-block {
@@ -244,13 +248,27 @@ a:hover > .contact-ig::before {
     display: none;
 }
 
+.mobile_inside-menu_wrapper{
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+}
+
+.fancybox-slide .content{
+    color:#000;
+    border-radius: 20px;
+    background-color: #bbbfc0;
+    box-shadow: 0px 0px 20px #fff;
+}
+
 @media (max-width: 1024px) {
     .wrapper-fold-2 {
         /* display:block; */
     }
     .fold-2 {
         width: calc(100%);
-        height: 70%;
+        height: 100%;
     }
     .fold-2-right {
         height: initial;
@@ -258,7 +276,7 @@ a:hover > .contact-ig::before {
     }
     #threejs-canvas {
         position: fixed;
-        height: 70%;
+        height: 100%;
         width: calc(100%);
     }
     .inside-menu {
@@ -276,9 +294,12 @@ a:hover > .contact-ig::before {
         flex-wrap: nowrap;
         overflow-x: auto;
     }
-    .content {
-        margin: 30px 30px;
-        padding-top: 0px;
+    .fancybox-slide .content {
+        padding: 20px;
+        margin: 20px;  
+        border-radius: 20px;
+        background-color: #bbbfc0;
+        box-shadow: 0px 0px 20px #fff;
     }
     .body_shopdetail .top_right_logo2,
     .body_shopdetail .top_right_logo1 {

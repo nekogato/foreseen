@@ -15,8 +15,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="c_script/lib/gsap.min.js"></script>
         <script src="c_script/lib/jquery.mousewheel.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="js/lib/fancybox/jquery.fancybox.min.css">
-        <script src="js/lib/fancybox/jquery.fancybox.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="c_script/lib/fancybox/jquery.fancybox.min.css">
+        <script src="c_script/lib/fancybox/jquery.fancybox.min.js"></script>
 
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
         <script src="c_script/common.js"></script>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            <div class="fold-2 fold-2-right">
+            <div class="fold-2 fold-2-right mobile_hide">
                 <div class="inside-menu">
                     <div class="inside-menu-item-wrapper">
                         <div class="inside-menu-item selected" data-detail="article">Article</div>
@@ -124,7 +124,7 @@
                 <!-- SHOP 1 -->
 
                 <!-- ARTICLE -->
-                <div class="content for-article active">
+                <div class="content for-article active" id="article">
                     <div class="content-heading">良記排檔百貨
                         
                     </div>
@@ -156,7 +156,7 @@
                 </div>
 
                 <!-- SHOP -->
-                 <div class="content for-shop">
+                 <div class="content for-shop" id="shop">
                     <div class="content-heading">良記排檔
                         <div class="content-shop-info">
                             <p>1982年至現今</p>
@@ -183,6 +183,19 @@
                     </div>
                  </div>
 
+            </div>
+            <div class="mobile_show">
+                <div class="mobile_inside-menu_wrapper">
+                    <div class="inside-menu">
+                        <div class="inside-menu-item-wrapper">
+                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">Article</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">Shop</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="video">Video</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="sketch">Sketch</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="archive">Archive</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 	</body>

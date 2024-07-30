@@ -105,14 +105,22 @@ function DOMContentLoaded() {
     animate();
 }
 function setupInsideMenu() {
-    const menuItems = document.querySelectorAll(".inside-menu-item")
+    const menuItems = document.querySelectorAll(".fold-2-right .inside-menu-item")
     console.log(menuItems)
     menuItems.forEach( obj => {
         obj.addEventListener("click", changeDetailView)
     })
+
+    /* for mobile */
+
+    const mobileMenuItems = document.querySelectorAll(".mobile_inside-menu_wrapper .inside-menu-item")
+    mobileMenuItems.forEach( obj => {
+        obj.addEventListener("click", mobileChangeDetailView)
+    })
 }
+
 function changeDetailView( e ) {
-    const selectedMenuItems = document.querySelectorAll(".inside-menu-item.selected")
+    const selectedMenuItems = document.querySelectorAll(".fold-2-right .inside-menu-item.selected")
     selectedMenuItems.forEach( obj => {
         obj.classList.remove("selected")
     })
@@ -133,6 +141,16 @@ function changeDetailView( e ) {
     //     // behavior:"smooth"
     // })
 }
+
+function mobileChangeDetailView( e ) {
+    const selectedMenuItems = document.querySelectorAll(".mobile_inside-menu_wrapper .inside-menu-item.selected")
+    selectedMenuItems.forEach( obj => {
+        obj.classList.remove("selected")
+    })
+    e.target.classList.add("selected")
+
+}
+
 function animate() {
     if (object) object.rotation.z += 0.01 * 1;
     if (object2) object2.rotation.z += -0.01 * 1;
@@ -635,7 +653,7 @@ function inputChange(e) {
 function onWindowResize() {
     let ratio = 1
     if (window.innerWidth < 480) {
-        ratio = 0.7
+        ratio = 1
     }
 
     if (camera.isOrthographicCamera) {
