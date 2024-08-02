@@ -84,6 +84,7 @@ html, body {
     position: fixed;
     right: 55px;
     width: calc(50% - 55px);
+    z-index: 1;
 }
 
 .inside-menu-item-wrapper{
@@ -108,10 +109,13 @@ html, body {
     background-color: #bbbfc0;
     text-transform: uppercase;
     cursor: pointer;
+    transition: background-color 200ms ease-out, box-shadow 200ms ease-out;
 }
-.inside-menu-item.selected {
+.inside-menu-item.selected,
+.inside-menu-item:hover {
     box-shadow: 0px 0px 10px 1px #CCFF00;
     background-color: #FFFFFF;
+    text-decoration: none;
 }
 .content-heading {
     /* font-size: 24px; */
@@ -130,7 +134,7 @@ html, body {
     margin: 30px 120px;
     line-height: 28px;
     font-size: 16px;
-    overflow: auto;
+    /* overflow: auto; */
     padding-top: 100px;
     padding-bottom: 60px;
     font-family: 'OT Brut', "Noto Serif TC", serif;
@@ -138,10 +142,13 @@ html, body {
 
 .content {
     display:none;
+    margin-top: 200px;
+    transition: opacity 1s ease-out, margin-top 1s ease-in-out;
 }
 .content.for-article.active,
 .content.for-shop.active {
-    display: block !important;
+    display: block;
+    margin-top: 0px;
 }
 
 .fancybox-slide .content.for-article.active,
@@ -155,8 +162,13 @@ html, body {
 
 .content-shop-info {
     margin-top: 0.5em;
+    margin-bottom: 30px;
     font-size: 16px;
     line-height: 1.5em;
+}
+
+.td-title {
+    padding-right: 0.5em;
 }
 
 .content-article p:not(:last-of-type) {
@@ -226,13 +238,13 @@ html, body {
     letter-spacing: 0.05em;
 }
 a, a:visited {
-    color: inherit;
+    color: initial;
 }
-a:hover {
+/* a:hover {
     text-decoration: underline;
-    color: #000000;
+    color: #000000; */
     /* border-bottom: 1px solid #FFFFFF; */
-}
+/* } */
 a:hover > .contact-ig::before {
     background-color: #000000;
 }
@@ -262,7 +274,7 @@ a:hover > .contact-ig::before {
     box-shadow: 0px 0px 20px #fff;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
     .wrapper-fold-2 {
         /* display:block; */
     }
@@ -303,7 +315,8 @@ a:hover > .contact-ig::before {
     }
     .body_shopdetail .top_right_logo2,
     .body_shopdetail .top_right_logo1 {
-        right: 55px !important;
+        /* right: 55px !important; */
+        right: 24px;
     }
 }
 

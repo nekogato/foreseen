@@ -15,11 +15,13 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="c_script/lib/gsap.min.js"></script>
         <script src="c_script/lib/jquery.mousewheel.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="js/lib/fancybox/jquery.fancybox.min.css">
-        <script src="js/lib/fancybox/jquery.fancybox.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="c_script/lib/fancybox/jquery.fancybox.min.css">
+        <script src="c_script/lib/fancybox/jquery.fancybox.min.js"></script>
 
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
         <script src="c_script/common.js"></script>
+        <script src="c_script/script.js"></script>
+
 
     <!--------------------------- css & script end here ------------------------->
     <script type="importmap">
@@ -108,31 +110,24 @@
                     </div>
                 </div>
             </div>
-            <div class="fold-2 fold-2-right">
+            <div class="fold-2 fold-2-right mobile_hide">
                 <div class="inside-menu">
                     <div class="inside-menu-item-wrapper">
                         <div class="inside-menu-item selected" data-detail="article">Article</div>
                         <div class="inside-menu-item" data-detail="shop">Shop</div>
-                        <div class="inside-menu-item" data-detail="video">Video</div>
-                        <div class="inside-menu-item" data-detail="sketch">Sketch</div>
-                        <div class="inside-menu-item" data-detail="archive">Archive</div>
+                        <!-- <div class="inside-menu-item" data-detail="video">Video</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="sketch">Sketch</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="archive">Archive</div> -->
                     </div>
                 </div>
 
                 <!-- SHOP 4 -->
 
                 <!-- ARTICLE -->
-                <div class="content for-article active">
-                    <div class="content-heading">寶貝改衣專門店
-                        <!-- <div class="content-shop-info">
-                            <p>2010年至現今</p>
-                            <p>荃灣福來邨香車街街市地下32-42號</p>
-                            <p>受訪者：邱師傅 (Gigi)</p>
-                            <p>業務性質: 改衣</p>
-                        </div> -->
-                    </div>
+                <div class="content for-article active" id="article">
+                    <div class="content-heading scrollin scrollin1">寶貝改衣專門店</div>
                     
-                    <div class="content-article article-tc">
+                    <div class="content-article article-tc scrollin scrollin1">
                         <p>成長的不同階段，我們都經歷過「 not fit in」的時刻：S、M、L碼都不是太合身，卻沒有其他選擇。拉鍊壞了，該買新的會比找人縫補化算？有紀念價值的衣物，可是尺碼已不合，是否應該丟掉？</p>
                         <p>在服裝的層面上，我們或許暫時遵循標準化的「大眾」尺寸，但總會有一段「邊緣化」的時期，我們對衣服有獨特而重要的需求，卻又感到無助。</p>
                         <p>在「寶貝改衣專門店」，我們可以看到「獨特性」的專注和「修補咩都得」的技藝精神。店長Gigi最喜歡的工作之一就是修改婚紗。她說「只有合身的婚紗才能展現出美感，否則看起來會顯得臃腫。」，見到一個個待嫁的新娘子因穿上合身的婚紗，展現光芒和自信， Gigi都感到無限滿足。這證明服裝的一點改變，它所帶來稱心如意的影響是具大的。 </p>
@@ -144,23 +139,16 @@
                         <p>在服裝的美學設計和生產過程中，實際上關心著人與人之間所珍視的價值。每個參與其中的人都能在其中彰顯自己的聲音。單單看「寶貝改衣專門店」和「縫補寶」這種社會實踐已是一種價值的倡議，提出了「我們可以透過這種方式經營生意，建立一個多元的社會」的想像。</p>
                     </div>
 
-                    <div class="content-block">
-                        <div class="article-ppl-name text-tc">嚴瑞芳</div>
-                        <div class="article-ppl-desc">
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name text-tc scrollin scrollin1">嚴瑞芳</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
                             <p class="text-tc">嚴瑞芳，跨媒介藝術家, 香港中文大學藝術系助理教授，天台塾聯合創辦人。</p>
                         </div>
                     </div>
 
-                    <div class="content-heading">Baby Professional Tailor and Curtain Shop
-                        <!-- <div class="content-shop-info">
-                            <p>2010 to present</p>
-                            <p>Shop 32-42, Heung Che Street Market and Cooked Food Centre, 8 Tso Kung St, Tsuen Wan</p>
-                            <p>Interviewee: Master Yau (Gigi)</p>
-                            <p>Business: Sewing and Alterations</p>
-                        </div> -->
-                    </div>
+                    <div class="content-heading scrollin scrollin1">Baby Professional Tailor and Curtain Shop</div>
 
-                    <div class="content-article article-en">
+                    <div class="content-article article-en scrollin scrollin1">
                         <p>Growing up, we all experience moments of not fitting in: when sizes S, M, or L don’t quite match, yet there are no other options. A broken zipper—should you buy new or have it repaired? And what about cherished clothing with sizes that no longer fit? Should they be discarded?</p>
                         <p>On the clothing front, we may temporarily adhere to standardized “one-size-fits-all” measurements, but there’s always a period of feeling marginalized. We have unique and important clothing needs, yet often feel helpless.</p>
                         <p>Enter the “Baby Alteration Boutique,” where a focus on uniqueness and the art of repair prevails. Store owner Gigi’s favorite task is altering wedding gowns. She believes that only a well-fitting wedding dress truly showcases beauty; otherwise, it can appear bulky. Seeing each bride glow with confidence in a perfectly fitted gown brings immense satisfaction to Gigi. It proves that even small clothing changes can have a significant “gratifying” impact.</p>
@@ -171,9 +159,9 @@
                         <p>In the aesthetics and production of clothing, they genuinely care about the values cherished between people. Each participants during the process can express their voice. Just observing the “Baby Alteration Boutique” and “Sewing Home adaptive clothing” exemplifies a valuable initiative—one that envisions a diverse society through business practices.</p>
                     </div>
 
-                    <div class="content-block">
-                        <div class="article-ppl-name">Yim Siu Fong</div>
-                        <div class="article-ppl-desc">
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name scrollin scrollin1">Yim Siu Fong</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
                             <p>YIM Sui Fong is an artist who specializes in video, sound and social practice art. She is a co-founder of Rooftop Institute and an assistant professor in the Fine Arts Department at The Chinese University of Hong Kong.</p>
                         </div>
                     </div>
@@ -181,37 +169,66 @@
                 </div>
 
                 <!-- SHOP -->
-                <div class="content for-shop">
-                    <div class="content-heading">寶貝改衣專門店
-                        <div class="content-shop-info">
-                            <p>2010年至現今</p>
-                            <p>荃灣福來邨香車街街市地下32-42號</p>
-                            <p>受訪者：邱師傅 (Gigi)</p>
-                            <p>業務性質: 改衣</p>
+                <div class="content for-shop" id="shop">
+                    <div class="content-heading scrollin scrollin1">寶貝改衣專門店
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td colspan="2">2010年至現今</td></tr>
+                                    <tr><td colspan="2">荃灣福來邨香車街街市地下32-42號</td></tr>
+                                    <tr>
+                                        <td class="td-title">受訪者：</td><td>邱師傅 (Gigi)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-title">業務性質：</td><td>改衣</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     
-                    <div class="content-article article-tc">
+                    <div class="content-article article-tc scrollin scrollin1">
                         <p>寶貝改衣專門店是一家由Gigi女士經營的溫馨小店,坐落於荃灣社區內。這裡不僅提供服裝修改和修補服務,更像是一個充滿歡樂和友誼的聚集地。</p>
                         <p>Gigi女士擁有非常親和的性格,一見到客人就會熱情地誇讚他們的外表和能力。這樣溫馨友善的經營方式,使寶貝改衣專門店成為當地居民的一處重要聚集地。不論是常客還是初次造訪的顧客,都能在這裡感受到家的氛圍,享受一份舒適安適的服務體驗。這家小店不僅滿足了服裝修改的需求,也為社區營造了一份和諧友愛的氛圍。</p>                            
                     </div>
 
-                    <div class="content-heading">Baby Professional Tailor and Curtain Shop
-                        <div class="content-shop-info">
-                            <p>2010 to present</p>
-                            <p>Shop 32-42, Heung Che Street Market and Cooked Food Centre, 8 Tso Kung St, Tsuen Wan</p>
-                            <p>Interviewee: Master Yau (Gigi)</p>
-                            <p>Business: Sewing and Alterations</p>
+                    <div class="content-heading scrollin scrollin1">Baby Professional Tailor and Curtain Shop
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td colspan="2">2010 to present</td></tr>
+                                    <tr><td colspan="2">Shop 32-42, Heung Che Street Market and Cooked Food Centre, 8 Tso Kung St, Tsuen Wan</td></tr>
+                                    <tr>
+                                        <td class="td-title">Interviewee: </td><td>Master Yau (Gigi)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-title">Business:</td><td>Sewing and Alterations</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    <div class="content-article article-en">
+                    <div class="content-article article-en scrollin scrollin1">
                         <p>Baby Professional Tailor and Curtain Shop is a cozy little store operated by Ms. Gigi, located in the Tsuen Wan community. It not only provides clothing alteration and repair services, but also serves as a joyful and friendly gathering place.</p>
                         <p>Ms. Gigi has a very amiable personality and enthusiastically compliments her customers on their appearance and abilities. This warm and friendly business approach has made the Baby Professional Tailor Shop an important gathering place for local residents. Whether they are regular customers or first-time visitors, everyone can feel the homely atmosphere and enjoy a comfortable service experience here. This small shop not only meets the needs of clothing alterations, but also creates a harmonious and loving atmosphere for the community.</p>                            
                     </div>
 
                 </div>
 
+            </div>
+            <div class="mobile_show">
+                <div class="mobile_inside-menu_wrapper">
+                    <div class="inside-menu">
+                        <div class="inside-menu-item-wrapper">
+                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">Article</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">Shop</a>
+                            <!-- <a class="inside-menu-item" href="#video" data-fancybox data-detail="video">Video</a> -->
+                            <!-- <a class="inside-menu-item" href="#sketch" data-fancybox data-detail="sketch">Sketch</a> -->
+                            <!-- <a class="inside-menu-item" href="#archive" data-fancybox data-detail="archive">Archive</a> -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 	</body>

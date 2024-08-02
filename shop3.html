@@ -15,12 +15,14 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="c_script/lib/gsap.min.js"></script>
         <script src="c_script/lib/jquery.mousewheel.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="js/lib/fancybox/jquery.fancybox.min.css">
-        <script src="js/lib/fancybox/jquery.fancybox.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="c_script/lib/fancybox/jquery.fancybox.min.css">
+        <script src="c_script/lib/fancybox/jquery.fancybox.min.js"></script>
 
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
         <script src="c_script/common.js"></script>
+        <script src="c_script/script.js"></script>
 
+        
     <!--------------------------- css & script end here ------------------------->
     <script type="importmap">
         {
@@ -108,32 +110,25 @@
                     </div>
                 </div>
             </div>
-            <div class="fold-2 fold-2-right">
+            <div class="fold-2 fold-2-right mobile_hide">
                 <div class="inside-menu">
                     <div class="inside-menu-item-wrapper">
                         <div class="inside-menu-item selected" data-detail="article">Article</div>
                         <div class="inside-menu-item" data-detail="shop">Shop</div>
-                        <div class="inside-menu-item" data-detail="video">Video</div>
-                        <div class="inside-menu-item" data-detail="sketch">Sketch</div>
-                        <div class="inside-menu-item" data-detail="archive">Archive</div>
+                        <!-- <div class="inside-menu-item" data-detail="video">Video</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="sketch">Sketch</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="archive">Archive</div> -->
                     </div>
                 </div>
 
                 <!-- SHOP 3 -->
 
                 <!-- ARTICLE -->
-                <div class="content for-article active">
+                <div class="content for-article active" id="article">
 
-                    <div class="content-heading">老街坊首飾.玉器工作坊
-                        <!-- <div class="content-shop-info">
-                            <p>2023年至現今</p>
-                            <p>新界荃灣眾安街25號2005鋪</p>
-                            <p>受訪者：區錫坤先生</p>
-                            <p>業務性質：首飾玉器</p>
-                        </div> -->
-                    </div>
+                    <div class="content-heading scrollin scrollin1">老街坊首飾.玉器工作坊</div>
                     
-                    <div class="content-article article-tc">
+                    <div class="content-article article-tc scrollin scrollin1">
                         <p>你好！歡迎光臨老街坊玉石。</p>
                         <p>在荃灣眾安街街市的繁華中，我們猶如一顆閃爍的寶石。到今天，隨著玉石的稀缺，我們是你的一個玉石收容所和修補店，為那些破損的玉石提供一個新的生命。在玉石的光影下，這裡是街坊每日過來放下煩憂，欣賞玉石工藝。一個在街市的玉石博物館，除了展示玉石工藝和行業的變化，亦把寄存玉石的客人的故事讓大家細味，每個都是最少五代的故事。</p>
                         <p>猶記得第一次見面，陳小姐和媽媽把翠綠玉石交到區先生手上，說要為下個月的婚禮訂造一隻手鈪。轉眼，陳小姐變成了張太太，帶著手抱嬰孩過來，一邊抽著兩斤菜心，一邊把手鈪再放到工藝師手上，說要改造幾女兒的禮物。由一分二，變了親子玉石首飾。下次再見，眨眼應有20年，沒有見到張太太，由女兒把媽媽的耳環帶過來，希望變成一雙婚介。上星期，有位年輕女仕把婚介帶過來，問到有沒有辦法把介指改造成為襟針。原來爸爸早兩年過身了，媽媽下月登六，希望為媽媽做一份獨一禮物。</p>
@@ -141,23 +136,16 @@
                         <p>由玉石看家庭歷史和生活變遷，讓我們這顆在眾安街街市的寶石為你把家的故事寄存吧。</p>
                     </div>
 
-                    <div class="content-block">
-                        <div class="article-ppl-name text-tc">梅詩華</div>
-                        <div class="article-ppl-desc">
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name text-tc scrollin scrollin1">梅詩華</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
                             <p class="text-tc">梅詩華<span class="text-en"> (Sarah)</span>，香港中文大學和倫敦大學學院建築系畢業，現為香港註冊建築師，「一口設計工作室」和「一口舍群」的共同創辦人。Sarah 相信設計能夠發起行動、創造改變，因而致力把以人為本的設計思維融入協力創作當中，連繫大眾與社區空間、建立社區的凝聚力。</p>
                         </div>
                     </div>
 
-                    <div class="content-heading">Old Neighbourhood Jade and Jewellery
-                        <!-- <div class="content-shop-info">
-                            <p>2023 to present</p>
-                            <p>Shop2005, 5 Chung On St, Tsuen Wan</p>
-                            <p>Interviewee: Mr. Au Shek Kwan</p>
-                            <p>Business: Jewelry and Jade</p>
-                        </div> -->
-                    </div>
+                    <div class="content-heading scrollin scrollin1">Old Neighbourhood Jade and Jewellery</div>
 
-                    <div class="content-article article-en">
+                    <div class="content-article article-en scrollin scrollin1">
                         <p>Hello! Welcome to the Old Neighbourhood Jade.</p>
                         <p>In this bustling Tsuen Wan Chung On Street Market, we are like a sparkling gem. Today, with the scarcity of jade, we are your jade shelter and repair shop, providing a new life for those damaged jades. Under the light and shadow of jade, this is where the neighbours come every day to put down their worries and appreciate jade craftsmanship. A jade living museum in the market, in addition to displaying the changes in jade craftsmanship and industry, also savours the stories of the guests who deposit their jades with us, each of which is at least five generations of family stories.</p>
                         <p>I can still  remember the first meeting, Miss Chan and her mother handed the emerald jade to Mr. Au, saying that they wanted to order a bracelet for next month’s wedding. In the blink of an eye, Miss Chan became Mrs. Cheung, carrying a baby in her arms, pulling a bag of choy sum on one side, and putting the bracelet back into the hands of our craftsman, saying that she wanted to transform the bracelet into a gift for her baby daughter. From one to two, it became a parent-child jade jewellery. The next time we meet again, it should be a good  20 years. I haven’t seen Mrs. Cheung this time. The daughter brought her mother’s earrings and hoped to become a pair of wedding rings. Last week, a young lady brought the wedding ring pair and asked if there was any way to transform the rings into a brooch. It turned out that her father had passed away two years ago, and her mother was going to have her 60th birthday next month, hoping to make a lasting gift for her mother.</p>
@@ -165,9 +153,9 @@
                         <p>From jade to see family history and life changes, let our jade shop, this forever sparkling gem in the Chung On Street Market, keep your family story for you.</p>
                     </div>
 
-                    <div class="content-block">
-                        <div class="article-ppl-name">Sarah</div>
-                        <div class="article-ppl-desc">
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name scrollin scrollin1">Sarah</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
                             <p>Sarah is a catalytic architect. She brings collaborative creations that are grounded in human-design thinking, to connect people to the space in their community and strengthen the social fabric. Sarah received her Bachelor of Architectural Studies degree from the Chinese University of Hong Kong, and the Master of Architecture from University College London in the UK. She is a registered architect in Hong Kong and the co-founders of One Bite Design Studio & One Bite Social, a charitable organisation promoting social creative collaborations in Hong Kong.</p>
                         </div>
                     </div>
@@ -175,35 +163,64 @@
                 </div>
 
                 <!-- SHOP -->
-                <div class="content for-shop">
-                    <div class="content-heading">老街坊首飾.玉器工作坊
-                        <div class="content-shop-info">
-                            <p>2023年至現今</p>
-                            <p>新界荃灣眾安街25號2005鋪</p>
-                            <p>受訪者：區錫坤先生</p>
-                            <p>業務性質：首飾玉器</p>
+                <div class="content for-shop" id="shop">
+                    <div class="content-heading scrollin scrollin1">老街坊首飾.玉器工作坊
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td colspan="2">2023年至現今</td></tr>
+                                    <tr><td colspan="2">新界荃灣眾安街25號2005鋪</td></tr>
+                                    <tr>
+                                        <td class="td-title">受訪者：</td><td>區錫坤先生</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-title">業務性質：</td><td>首飾玉器</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     
-                    <div class="content-article article-tc">
+                    <div class="content-article article-tc scrollin scrollin1">
                         <p>老街坊玉石是位於香港荃灣眾安街街市內的一家玉石店。隨著時間的流逝,這家店逐漸成為街坊們的玉石收容所和修補店,為破損的玉石提供新生。在這裡,客人不僅能欣賞到精美的玉石工藝品,還能聽到每件玉石背後的動人故事。無論是婚禮、生日,還是其他重要時刻,老街坊玉石都能根據客人的需求,為他們打造獨一無二的玉石禮品。</p>
                     </div>
 
-                    <div class="content-heading">Old Neighbourhood Jade and Jewellery
-                        <div class="content-shop-info">
-                            <p>2023 to present</p>
-                            <p>Shop2005, 5 Chung On St, Tsuen Wan</p>
-                            <p>Interviewee: Mr. Au Shek Kwan</p>
-                            <p>Business: Jewelry and Jade</p>
+                    <div class="content-heading scrollin scrollin1">Old Neighbourhood Jade and Jewellery
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td colspan="2">2023 to present</td></tr>
+                                    <tr><td colspan="2">Shop2005, 5 Chung On St, Tsuen Wan</td></tr>
+                                    <tr>
+                                        <td class="td-title">Interviewee:</td><td>Mr. Au Shek Kwan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-title">Business:</td><td>Jewelry and Jade</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    <div class="content-article article-en">
+                    <div class="content-article article-en scrollin scrollin1">
                         <p>Old Neighbourhood Jade is a jade shop located in the Tsuen Wan Chung On Street Market in Hong Kong. Over time, this shop has gradually become a jade stone refuge and repair shop for the neighbourhood, providing new life for damaged jade stones. Here, customers can not only appreciate exquisite jade crafts, but also hear the touching stories behind each jade piece. Whether it's for a wedding, birthday or other important occasion, Old Neighbourhood Jade can create unique jade gifts tailored to the customer's needs.</p>
                     </div>
 
                 </div>
 
+            </div>
+            <div class="mobile_show">
+                <div class="mobile_inside-menu_wrapper">
+                    <div class="inside-menu">
+                        <div class="inside-menu-item-wrapper">
+                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">Article</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">Shop</a>
+                            <!-- <a class="inside-menu-item" href="#video" data-fancybox data-detail="video">Video</a> -->
+                            <!-- <a class="inside-menu-item" href="#sketch" data-fancybox data-detail="sketch">Sketch</a> -->
+                            <!-- <a class="inside-menu-item" href="#archive" data-fancybox data-detail="archive">Archive</a> -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 	</body>

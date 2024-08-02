@@ -103,6 +103,7 @@ function DOMContentLoaded() {
     setupInsideMenu()
     init();
     animate();
+    fancyboxBinding()
 }
 function setupInsideMenu() {
     const menuItems = document.querySelectorAll(".fold-2-right .inside-menu-item")
@@ -126,6 +127,13 @@ function changeDetailView( e ) {
     })
     e.target.classList.add("selected")
 
+    const scrollins = document.querySelectorAll(".content .scrollin.startani")
+    scrollins.forEach( obj => {
+        obj.classList.remove("onscreen")
+        obj.classList.remove("startani")
+        obj.classList.add("leavescreen")
+    })
+
     const activeDetailContent = document.querySelectorAll(".content.active")
     activeDetailContent.forEach( obj => {
         obj.classList.remove("active")
@@ -134,12 +142,56 @@ function changeDetailView( e ) {
     if (activeContent !== undefined) {
         activeContent.classList.add("active")
     }
+
     // document.getElementsByClassName(activeContent)[0].classList.add("active")
     
-    // window.scrollTo({
-    //     top: 0, 
-    //     // behavior:"smooth"
-    // })
+    window.scrollTo({
+        top: 0, 
+        // behavior:"smooth"
+    })
+
+    doscroll()
+}
+
+function fancyboxBinding() {
+    console.log("fbBinding")
+    // console.log($.fancybox)
+
+    $.fancybox.defaults.afterLoad = function() {
+        console.log("resetInsideMenuButton")
+
+        const scrollins = document.querySelectorAll(".fancybox-content .scrollin")
+        
+        scrollins.forEach( obj => {
+            obj.classList.remove("onscreen")
+            obj.classList.remove("startani")
+            obj.classList.add("leavescreen")
+        })
+
+        // $(".fancybox-content").css( {
+        //     height: "",
+        //     overflow:"auto"
+        // })
+        console.log($(".fancybox-content").height())
+        $(".fancybox-content").css( {
+            height: $(".fancybox-content").height()+40+"px",
+            overflow: "hidden"
+        })
+
+        $(".fancybox-slide, .fancybox-content").on('scroll', function() {
+            doscroll();
+        })
+        doscroll()
+    }
+    console.log($.fancybox.defaults)
+    $.fancybox.defaults.beforeClose = function() {
+        console.log("resetInsideMenuButton")
+    }
+    
+    // $.fancybox.defaults.iframe.css = {overflow: hidden}
+    $.fancybox.defaults.beforeClose = function() {
+        console.log("resetInsideMenuButton")
+    }
 }
 
 function mobileChangeDetailView( e ) {
@@ -149,6 +201,24 @@ function mobileChangeDetailView( e ) {
     })
     e.target.classList.add("selected")
 
+    const scrollins = document.querySelectorAll(".content .scrollin.startani")
+    scrollins.forEach( obj => {
+        obj.classList.remove("onscreen")
+        obj.classList.remove("startani")
+        obj.classList.add("leavescreen")
+    })
+
+    const activeDetailContent = document.querySelectorAll(".content.active")
+    activeDetailContent.forEach( obj => {
+        obj.classList.remove("active")
+    })
+    const activeContent = document.querySelector(".content.for-" + e.target.dataset.detail)
+    if (activeContent !== undefined) {
+        activeContent.classList.add("active")
+    }
+
+    // fancyboxBinding()
+    doscroll()
 }
 
 function animate() {
