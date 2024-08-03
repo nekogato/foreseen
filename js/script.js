@@ -7,6 +7,7 @@ import ProjectedMaterial from '../js/ProjectedMaterial.js';
 let camera, scene, renderer;
 let targetDom;
 
+let objGroup;
 let raycaster;
 let pointer;
 let objects = [];
@@ -192,6 +193,12 @@ function fancyboxBinding() {
     $.fancybox.defaults.beforeClose = function() {
         console.log("resetInsideMenuButton")
     }
+    
+    // $.fancybox.defaults.iframe.css = {overflow: hidden}
+    $.fancybox.defaults.afterClose = function() {
+        $(".fancybox-slide .content").height("auto")
+        $(".wrapper-fold-2 .content").height("auto")
+    }
 }
 
 function mobileChangeDetailView( e ) {
@@ -229,6 +236,7 @@ function animate() {
         if (placementState == 1) object3.rotation.z += -0.01 * 1;
         if (placementState == 2) object3.rotation.z += -0.01 * 1;
     }
+    objGroup.position.y += (-0.2 - objGroup.position.y) / 30;
 
     if (controls) controls.update()
     render()
@@ -306,6 +314,10 @@ function init() {
 
     scene = new THREE.Scene();
 
+    objGroup = new THREE.Group;
+    scene.add(objGroup)
+    objGroup.position.y = -2.25;
+
     if (isShadeEnabled) {
         hemisphereLight = new THREE.HemisphereLight( 0xffffff, 0xCCCCCC, 4);
         scene.add( hemisphereLight );
@@ -347,7 +359,7 @@ function init() {
         // object.scale.setScalar(10);
         object.scale.setScalar( objArray[showSeq[0]].size );
         object.userData.map = thumbnailImg01
-        scene.add(object);
+        objGroup.add(object);
 
 
         object2.traverse(function (child) {
@@ -368,7 +380,7 @@ function init() {
         object2.scale.setScalar( objArray[showSeq[1]].size );
         // object2.position.x= -0.5;
         object2.userData.map = thumbnailImg02
-        scene.add(object2);
+        objGroup.add(object2);
 
 
         object3.traverse(function (child) {
@@ -391,7 +403,7 @@ function init() {
         // object2.position.x= -0.5;
         // object3.position.y = 0.065;
         object3.userData.map = thumbnailImg03
-        scene.add(object3);
+        objGroup.add(object3);
 
 
 
@@ -404,6 +416,7 @@ function init() {
 
         // cube.position.x = -1
         // scene.add( cube )
+
 
         initThumbnail()
 
@@ -675,7 +688,8 @@ function initThumbnail() {
     thumbnail = new THREE.Sprite( spriteMaterial )
     thumbnail.center.set(0.5,-0.5)
     thumbnail.scale.setScalar(0.25)
-    scene.add(thumbnail)
+    
+    objGroup.add(thumbnail)
 }
 function showThumbnail( target ) {
     targetDom.style.cursor = "pointer"
