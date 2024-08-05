@@ -149,6 +149,7 @@ html, body {
 .content.for-shop.active {
     display: block !important;
     margin-top: 0px;
+    /* overflow: hidden; */
 }
 
 .fancybox-slide .content.for-article.active,

@@ -7,6 +7,7 @@ import ProjectedMaterial from '../js/ProjectedMaterial.js';
 let camera, scene, renderer;
 let targetDom;
 
+let objGroup;
 let raycaster;
 let pointer;
 let objects = [];
@@ -380,6 +381,10 @@ function init() {
 
     scene = new THREE.Scene();
 
+    objGroup = new THREE.Group();
+    scene.add(objGroup)
+    objGroup.position.y = -0.125;
+
     if (isShadeEnabled) {
         hemisphereLight = new THREE.HemisphereLight( 0xffffff, 0xCCCCCC, 4);
         scene.add( hemisphereLight );
@@ -432,7 +437,8 @@ function init() {
             obj.rotation.x = Math.PI / 2
             obj.scale.setScalar( objArray[showSeq[i]].size );
             obj.userData.map = thumbnailImg01
-            scene.add(obj);    
+            objGroup.add(obj);
+            // scene.add(obj);    
         }
 
         // object.traverse(function (child) {
@@ -509,6 +515,7 @@ function init() {
 
         // cube.position.x = -1
         // scene.add( cube )
+
 
         initThumbnail()
 
@@ -798,7 +805,8 @@ function initThumbnail() {
     thumbnail = new THREE.Sprite( spriteMaterial )
     thumbnail.center.set(0.5,-0.5)
     thumbnail.scale.setScalar(0.25)
-    scene.add(thumbnail)
+    
+    objGroup.add(thumbnail)
 }
 function showThumbnail( target ) {
     targetDom.style.cursor = "pointer"
