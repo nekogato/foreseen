@@ -14,17 +14,19 @@ let objects = [];
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let setIndex = Math.floor(Number(urlParams.get("set")))
-// console.log(setIndex)
+console.log(setIndex)
 
 if (setIndex == 0) {
     console.log(document.querySelector(".wrapper-fold-2").dataset.shop)
     setIndex = document.querySelector(".wrapper-fold-2").dataset.shop
 }
 
+// setIndex = 4
+
 // if (window.seqIndex !== undefined && setIndex == 0) setIndex = window.seqIndex
 // console.log(window.seqIndex, setIndex) 
 
-if (setIndex == undefined || setIndex > 5 || setIndex < 1) setIndex = 1
+if (setIndex == undefined || setIndex > 6 || setIndex < 1) setIndex = 1
 
 let isShadeSet = urlParams.get("isShaded") == "false" ? false : true
 // console.log(isShadeSet)
@@ -33,18 +35,43 @@ const colorArrayIndex = setIndex-1
 const showSeqIndex = setIndex-1
 const posArrayIndex = setIndex-1
 
+// const objArray = [
+//     {path: "ElectricityBox_20240628.obj",       size: 10},              // 0
+//     {path: "Iron_20240628.obj",                 size: 0.5},             // 1
+//     {path: "JwelleryBox_20240628.obj",          size: 0.15},               // 2
+//     {path: "Keys_Main_20240628.obj",            size: 0.4},               // 3
+//     {path: "NeedlePad_20240628.obj",            size: 3},               // 4
+//     {path: "PearlTools_20240628.obj",           size: 0.3},               // 5
+//     {path: "Pin_20240628.obj",                  size: 0.05},            // 6
+//     {path: "PressureCooker_Top_20240628.obj",   size: 0.9},               // 7
+//     {path: "Scissors_20240628.obj",             size: 0.5},               // 8
+//     {path: "ShoeStand_20240628.obj",            size: 0.7},               // 9
+//     {path: "WorkingDesk_20240628.obj",          size: 0.4},               // 10
+// ]
 const objArray = [
-    {path: "ElectricityBox_20240628.obj",       size: 10},              // 0
-    {path: "Iron_20240628.obj",                 size: 0.5},             // 1
-    {path: "JwelleryBox_20240628.obj",          size: 0.15},               // 2
-    {path: "Keys_Main_20240628.obj",            size: 0.4},               // 3
-    {path: "NeedlePad_20240628.obj",            size: 3},               // 4
-    {path: "PearlTools_20240628.obj",           size: 0.3},               // 5
-    {path: "Pin_20240628.obj",                  size: 0.05},            // 6
-    {path: "PressureCooker_Top_20240628.obj",   size: 0.9},               // 7
-    {path: "Scissors_20240628.obj",             size: 0.5},               // 8
-    {path: "ShoeStand_20240628.obj",            size: 0.7},               // 9
-    {path: "WorkingDesk_20240628.obj",          size: 0.4},               // 10
+    {path: "ElectricityBox_20240628.obj",           name:"ElectricityBox",        size: 10,           shop: "A"},               // 0
+    {path: "PressureCooker_Top_20240628.obj",       name:"PressureCooker_Top",        size: 0.9,          shop: "A"},               // 1
+    {path: "WorkingDesk_20240628.obj",              name:"WorkingDesk",        size: 0.4,          shop: "B"},               // 2
+    {path: "ShoeStand_20240628.obj",                name:"ShoeStand",        size: 0.7,          shop: "C"},               // 3
+    {path: "Iron_20240628.obj",                     name:"Iron",        size: 0.6,          shop: "D"},               // 4
+    {path: "PearlTools_20240628.obj",               name:"PearlTools",        size: 0.3,     xRot: Math.PI/-4,      yRot: Math.PI/2,     zPos: -0.8, shop: "B"},               // 5
+    {path: "Scissors_20240628.obj",                 name:"Scissors",        size: 0.5,       xRot: Math.PI/-4,      zPos: -0.15,       shop: "D"},               // 6
+    {path: "NeedlePad_20240628.obj",                name:"NeedlePad",        size: 3,            shop: "E"},               // 7
+    {path: "JwelleryBox_20240628.obj",              name:"JwelleryBox",        size: 0.15,         shop: "F"},               // 8
+    {path: "Keys_Main_20240628.obj",                name:"Keys_Main",        size: 0.4,          shop: "C"},               // 9
+    {path: "Pin_20240628.obj",                      name:"Pin",               size: 0.07,    yRot: Math.PI/4,       zPos: -1,    shop: "D"},               // 10
+    {path: "ShoesOBJ_20240723.obj",                 name:"Group19384",        size: 0.05,    xRot: Math.PI/-2,      zPos: -3.5,     shop: "C"},               // 11
+    {path: "ShoeBagOBJ_20240724.obj",               name:"Group10136",        size: 3.5,     xRot: Math.PI/-2,     shop: "C"},               // 12
+    {path: "WoodenBoxOpenOBJ_20240725.obj",         name:"Group21129",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 13
+    {path: "WoodenBoxClosedOBJ_20240725.obj",       name:"Group47146",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 14
+    {path: "ShoeRackOBJ_20240726.obj",              name:"Group57180",        size: 0.18,    xRot: Math.PI/-2,     shop: "F"},               // 15
+    {path: "SewingMachineOBJ_20240727.obj",         name:"Group7732",         size: 0.75,    xRot: Math.PI/-2,     shop: "E"},               // 16
+    {path: "JarOfJadeOBJ_20240727.obj",             name:"Group17388",        size: 0.15,    xRot: Math.PI/-2,     shop: "B"},               // 17
+    {path: "HandDrawnShoes_OBJ_20240730.obj",       name:"Group34095",        size: 0.15,    xRot: Math.PI/-2,      zPos: -0.4,     shop: "F"},               // 18
+    {path: "HandDrawnShoes2_OBJ_20240730.obj",      name:"Group50196",        size: 0.2,     xRot: Math.PI/-2,     shop: "C"},               // 19
+    {path: "HandDrawnKey_OBJ_20240730.obj",         name:"Group64819",        size: 0.18,    xRot: Math.PI/-4,     shop: "C"},               // 20
+    {path: "HandDrawnNecklace_OBJ_20240730.obj",    name:"Group14082",        size: 0.2,     xRot: Math.PI/-4,     zPos: -0.5,      shop: "B"},               // 21
+    {path: "HandDrawnScissor_OBJ_20240730.obj",     name:"Group8048",         size: 0.0055,   xRot: Math.PI*3/4,    zPos: -12,        shop: "D"},               // 22
 ]
 
 const colorArray = [
@@ -53,22 +80,28 @@ const colorArray = [
     [new THREE.Color(0xffe7ab), new THREE.Color(0xedd087), new THREE.Color(0xefca6c)],
     [new THREE.Color(0xb490e5), new THREE.Color(0x9a68df), new THREE.Color(0x763dc4)],
     [new THREE.Color(0x87d190), new THREE.Color(0x73de80), new THREE.Color(0x4fe962)],
+    [new THREE.Color(0x8ec4ff), new THREE.Color(0x469bf8)],
 ]
 
 const posArray = [
-    [{x:0, z:0.25}, {x:-0.25, z:-0.12}, {x:0.25, z:0.25}],
-    [{x:-0.25, z:0.1}, {x:0.1, z:-0.2}, {x:0.25, z:0.1}],
-    [{x:0.25, z:0.25}, {x:-0.2, z:-0.1}, {x:0.1, z:-0.15}],
+    [{x:-0.2, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.15}, {x:0, z:-0.1}, {x:-0.3, z:-0.2}],
+    // [{x:0, z:0.25}, {x:-0.25, z:-0.12}, {x:0.25, z:0.25}, {x:-0.25, z:-0.25}, {x:-0.12, z:0.12}],
+    [{x:-0.3, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.1}, {x:-0.1, z:-0.3}, {x:-0.3, z:-0.2}, {x:0, z:0.2}],
+    // [{x:-0.25, z:0.1}, {x:0.1, z:-0.2}, {x:0.25, z:0.1}],
+    [{x:0.1, z:0.3}, {x:0.2, z:-0.2}, {x:0, z:0.1}, {x:-0.2, z:-0.2}],
+    // [{x:0.25, z:0.25}, {x:-0.2, z:-0.1}, {x:0.1, z:-0.15}],
     [{x:-0.25, z:0}, {x:0, z:-0.25}, {x:0.25, z:0.25}],
-    [{x:0.25, z:0.25}, {x:0, z:0}, {x:-0.25, z:-0.25}],
+    [{x:0.1, z:0.2}, {x:-0.2, z:-0.1}],
+    [{x:-0.2, z:0.2}, {x:0.2, z:0}],
 ]
 
 const showSeqArray = [
-    [9,2,0],       // [0,1,6],
-    [3,10,9],
-    [5, 10, 2],    // [2,4,5],
-    [8,7,0],
-    [3,7,5],
+    [8,13,14,15,18],       // [0,1,6],    F
+    [3,9,11,12,19,20],     // [3,10,9],   C
+    [2,5,17,21],           // [2,4,5],    B
+    [4,6,10,22],           // [4,6,10,22] D
+    [7,16],                //             E
+    [0,1],                 //             A
 ]
 
 // const colorArraySet = colorArray[colorArray.length-1]
@@ -102,7 +135,7 @@ document.addEventListener("DOMContentLoaded", DOMContentLoaded)
 function DOMContentLoaded() {
     setupInsideMenu()
     init();
-    animate();
+    // animate();
     fancyboxBinding()
 }
 function setupInsideMenu() {
@@ -192,6 +225,12 @@ function fancyboxBinding() {
     $.fancybox.defaults.beforeClose = function() {
         console.log("resetInsideMenuButton")
     }
+    
+     // $.fancybox.defaults.iframe.css = {overflow: hidden}
+     $.fancybox.defaults.afterClose = function() {
+        $(".fancybox-slide .content").height("auto")
+        $(".wrapper-fold-2 .content").height("auto")
+    }
 }
 
 function mobileChangeDetailView( e ) {
@@ -222,18 +261,27 @@ function mobileChangeDetailView( e ) {
 }
 
 function animate() {
-    if (object) object.rotation.z += 0.01 * 1;
-    if (object2) object2.rotation.z += -0.01 * 1;
-    if (object3) {
-        if (placementState == 0) object3.rotation.y += -0.01 * 1;
-        if (placementState == 1) object3.rotation.z += -0.01 * 1;
-        if (placementState == 2) object3.rotation.z += -0.01 * 1;
-    }
-
+    rotateObjects()
+    
     if (controls) controls.update()
     render()
 
     requestAnimationFrame(animate)
+}
+
+function rotateObjects() {
+
+    for (var i = 0; i < objects.length; i++) {
+        objects[i].rotation.z += 0.01 * 1;
+    }
+
+    // if (object) object.rotation.z += 0.01 * 1;
+    // if (object2) object2.rotation.z += -0.01 * 1;
+    // if (object3) {
+    //     if (placementState == 0) object3.rotation.y += -0.01 * 1;
+    //     if (placementState == 1) object3.rotation.z += -0.01 * 1;
+    //     if (placementState == 2) object3.rotation.z += -0.01 * 1;
+    // }
 }
 
 function changePlacement() {
@@ -243,39 +291,48 @@ function changePlacement() {
     placementState++
     if (placementState > 2) placementState = 0
 
-    switch (placementState) {
-        case 0:
-            object.position.z = 0
-            object2.position.x = 0
-            object2.position.z = 0
-            object3.position.x = 0
-            object3.position.z = 0
+    // switch (placementState) {
+    //     case 0:
+    //         object.position.z = 0
+    //         object2.position.x = 0
+    //         object2.position.z = 0
+    //         object3.position.x = 0
+    //         object3.position.z = 0
 
-            object3.rotation.z = 0
-            break
-        case 1:
-            object.position.z = 0
-            object2.position.x = -0.25
-            object3.position.x = 0.25
+    //         object3.rotation.z = 0
+    //         break
+    //     case 1:
+    //         object.position.z = 0
+    //         object2.position.x = -0.25
+    //         object3.position.x = 0.25
 
-            object3.rotation.y = 0
-            break
-        case 2:
-            // object.position.x = 0
-            // object.position.z = 0.25
-            // object2.position.x = -0.25
-            // object2.position.z = -0.12
-            // object3.position.x = 0.25
-            // object3.position.z = 0.25
+    //         object3.rotation.y = 0
+    //         break
+    //     case 2:
+    //         // object.position.x = 0
+    //         // object.position.z = 0.25
+    //         // object2.position.x = -0.25
+    //         // object2.position.z = -0.12
+    //         // object3.position.x = 0.25
+    //         // object3.position.z = 0.25
 
-            object.position.x = posArraySet[0].x
-            object.position.z = posArraySet[0].z
-            object2.position.x = posArraySet[1].x
-            object2.position.z = posArraySet[1].z
-            object3.position.x = posArraySet[2].x
-            object3.position.z = posArraySet[2].z
+    //         object.position.x = posArraySet[0].x
+    //         object.position.z = posArraySet[0].z
+    //         object2.position.x = posArraySet[1].x
+    //         object2.position.z = posArraySet[1].z
+    //         object3.position.x = posArraySet[2].x
+    //         object3.position.z = posArraySet[2].z
 
-            object3.rotation.y = 0
+    //         object3.rotation.y = 0
+    // }
+
+    for (var i=0; i < objects.length; i++) {
+        if (i<posArraySet.length) {
+            objects[i].position.x = posArraySet[i].x
+            objects[i].position.z = posArraySet[i].z
+        }
+
+        // objects[i].position.set(0,0,0)
     }
 
     // camera.position.x = 0;
@@ -285,6 +342,23 @@ function changePlacement() {
     camera.position.x = -1;
     camera.position.y = 2;
     camera.position.z = 1;
+}
+
+function pickColor( i ) {
+    const color1 = colorArraySet[0]
+    const color2 = colorArraySet[colorArraySet.length-1]
+
+    console.log(color1, color2)
+
+    const newColor = new THREE.Color(
+        color1.r * (1-i) + color2.r * i,
+        color1.g * (1-i) + color2.g * i,
+        color1.b * (1-i) + color2.b * i,
+    )
+
+    console.log(i, newColor)
+
+    return  newColor
 }
 
 function init() {
@@ -329,69 +403,100 @@ function init() {
     function loadModel() {
 
         console.log("loadModel")
+        console.log(objects.length)
 
-        object.traverse(function (child) {
-            console.log(child)
-            if (child.isMesh) {
-                // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
-                // child.material.map = texture;
+        for (var i=0; i<objects.length; i++) {
 
-                child.material = pMat
-            }
+            const obj = objects[i]
+            obj.traverse(function (child) {
+                if (child.isMesh) {
+                    console.log(child.name)
+                    child.material = pMat.clone()
+                    // child.material.color = colorArraySet[i]
+                    child.material.color = pickColor( i / showSeq.length )
+                    if (i == 4) {
+                        // child.material.color = new THREE.Color(0xCCCCCC)
+                        // console.log(child.position)
+                        // window.obj = child
+                    }
+                    // if (i == 1) child.rotation.x = Math.PI / -2
 
-        });
+                    if (objArray[showSeq[i]].xRot !== undefined) child.rotation.x = objArray[showSeq[i]].xRot
+                    if (objArray[showSeq[i]].yRot !== undefined) child.rotation.y = objArray[showSeq[i]].yRot
+                    if (objArray[showSeq[i]].zPos !== undefined) child.position.z = objArray[showSeq[i]].zPos
 
-        // object.position.y = - 0.95;
-        // object.scale.setScalar( 0.01 );
-        object.rotation.x = Math.PI / 2
-        // object.scale.setScalar(10);
-        object.scale.setScalar( objArray[showSeq[0]].size );
-        object.userData.map = thumbnailImg01
-        scene.add(object);
+                } else {
+                    console.log(child)
+                }
+            });
+            obj.rotation.x = Math.PI / 2
+            obj.scale.setScalar( objArray[showSeq[i]].size );
+            obj.userData.map = thumbnailImg01
+            scene.add(obj);    
+        }
+
+        // object.traverse(function (child) {
+        //     console.log(child)
+        //     if (child.isMesh) {
+        //         // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
+        //         // child.material.map = texture;
+
+        //         child.material = pMat
+        //     }
+
+        // });
+
+        // // object.position.y = - 0.95;
+        // // object.scale.setScalar( 0.01 );
+        // object.rotation.x = Math.PI / 2
+        // // object.scale.setScalar(10);
+        // object.scale.setScalar( objArray[showSeq[0]].size );
+        // object.userData.map = thumbnailImg01
+        // scene.add(object);
 
 
-        object2.traverse(function (child) {
-            console.log(child)
-            if (child.isMesh) {
-                // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
-                // child.material.map = texture;
+        // object2.traverse(function (child) {
+        //     console.log(child)
+        //     if (child.isMesh) {
+        //         // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
+        //         // child.material.map = texture;
 
-                child.material = pMat2
-            }
+        //         child.material = pMat2
+        //     }
 
-        });
+        // });
 
-        // object.position.y = - 0.95;
-        // object.scale.setScalar( 0.01 );
-        object2.rotation.x = Math.PI / 2
-        // object2.scale.setScalar(0.5);
-        object2.scale.setScalar( objArray[showSeq[1]].size );
-        // object2.position.x= -0.5;
-        object2.userData.map = thumbnailImg02
-        scene.add(object2);
+        // // object.position.y = - 0.95;
+        // // object.scale.setScalar( 0.01 );
+        // object2.rotation.x = Math.PI / 2
+        // // object2.scale.setScalar(0.5);
+        // object2.scale.setScalar( objArray[showSeq[1]].size );
+        // // object2.position.x= -0.5;
+        // object2.userData.map = thumbnailImg02
+        // scene.add(object2);
 
 
-        object3.traverse(function (child) {
-            console.log(child)
-            if (child.isMesh) {
-                // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
-                // child.material.map = texture;
+        // object3.traverse(function (child) {
+        //     console.log(child)
+        //     if (child.isMesh) {
+        //         // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
+        //         // child.material.map = texture;
 
-                child.material = pMat3
-            }
+        //         child.material = pMat3
+        //     }
 
-        });
+        // });
 
-        // object.position.y = - 0.95;
-        // object.scale.setScalar( 0.01 );
-        object3.rotation.x = Math.PI / 2
-        object3.scale.setScalar(0.05);
-        console.log(objArray[showSeq[2]].size)
-        object3.scale.setScalar( objArray[showSeq[2]].size );
-        // object2.position.x= -0.5;
-        // object3.position.y = 0.065;
-        object3.userData.map = thumbnailImg03
-        scene.add(object3);
+        // // object.position.y = - 0.95;
+        // // object.scale.setScalar( 0.01 );
+        // object3.rotation.x = Math.PI / 2
+        // object3.scale.setScalar(0.05);
+        // console.log(objArray[showSeq[2]].size)
+        // object3.scale.setScalar( objArray[showSeq[2]].size );
+        // // object2.position.x= -0.5;
+        // // object3.position.y = 0.065;
+        // object3.userData.map = thumbnailImg03
+        // scene.add(object3);
 
 
 
@@ -411,6 +516,7 @@ function init() {
         changePlacement()
 
         render();
+        animate();
 
     }
 
@@ -495,26 +601,43 @@ function init() {
     function onError() { }
 
     const loader = new OBJLoader(manager);
-    loader.load('assets/'+ objArray[showSeq[0]].path, function (obj) {   // assets/ElectricityBox_20240628.obj
 
-        object = obj;
-        objects.push(obj)
+    console.log(showSeq.length)
+    objects = []
+    const objectsNamesArr = []
+    for (var i = 0; i < showSeq.length; i++) {
+        objectsNamesArr[i] = objArray[showSeq[i]].name
+        loader.load('assets/obj/'+ objArray[showSeq[i]].path, function (obj) {   // assets/ElectricityBox_20240628.obj
 
-    }, onProgress, onError);
+            console.log(obj)
+            // object = obj;
+            const objectsId = objectsNamesArr.indexOf( obj.children[0].name)
+            console.log( obj.children[0].name, objectsId)
+            objects[objectsId] = obj
 
-    loader.load('assets/'+ objArray[showSeq[1]].path, function (obj) {   // 'assets/Iron_20240628.obj'
+        }, onProgress, onError);
+    }
 
-        object2 = obj;
-        objects.push(obj)
+    // loader.load('assets/obj/'+ objArray[showSeq[0]].path, function (obj) {   // assets/ElectricityBox_20240628.obj
 
-    }, onProgress, onError);
+    //     object = obj;
+    //     objects.push(obj)
 
-    loader.load('assets/'+ objArray[showSeq[2]].path, function (obj) {   // 'assets/Pin_20240628.obj'
+    // }, onProgress, onError);
 
-        object3 = obj;
-        objects.push(obj)
+    // loader.load('assets/obj/'+ objArray[showSeq[1]].path, function (obj) {   // 'assets/Iron_20240628.obj'
 
-    }, onProgress, onError);
+    //     object2 = obj;
+    //     objects.push(obj)
+
+    // }, onProgress, onError);
+
+    // loader.load('assets/obj/'+ objArray[showSeq[2]].path, function (obj) {   // 'assets/Pin_20240628.obj'
+
+    //     object3 = obj;
+    //     objects.push(obj)
+
+    // }, onProgress, onError);
 
 
     //

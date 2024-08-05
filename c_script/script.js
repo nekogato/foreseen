@@ -68,10 +68,10 @@ function doscroll(){
 
 		// added for fancybox 
 		var fbtop = ($(".fancybox-content").length > 0) ? $(".fancybox-content").offset().top : 0;
-		console.log(fbtop)
+		// console.log(fbtop)
 
 		var dis = (scrolltop+scrolltop2+hh)-mytop-fbtop;
-		console.log(dis)
+		// console.log(dis)
 		if(dis>0 ){
 			$this.removeClass("leavescreen");
 			$this.addClass("onscreen");

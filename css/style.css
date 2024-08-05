@@ -147,7 +147,7 @@ html, body {
 }
 .content.for-article.active,
 .content.for-shop.active {
-    display: block;
+    display: block !important;
     margin-top: 0px;
 }
 
