@@ -480,7 +480,7 @@ function floatanim(){
 
 				var pwidth = $(".box_object_wrapper").outerWidth() - ww;
 
-				var dis = -pwidth*mouse_to_ww_ratio
+				var dis = -pwidth*mouse_to_ww_ratio-(ww/4)*mouse_to_ww_ratio
 			}else{
 				var dis = 0;
 			}
