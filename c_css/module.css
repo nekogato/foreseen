@@ -173,7 +173,7 @@
     left: 0px;
     top:0px;
     bottom: 0px;
-    border-left:1px dashed #fff;
+    border-left:1px solid #fff;
     z-index: 1;
 }
 
