@@ -66,13 +66,30 @@ html, body {
     box-sizing: border-box;
     height: 100%;
 }
+
+.fold-2-left {
+    position: relative;
+}
+
+
+.fold-2-left::after {
+    content:"";
+    position: fixed;
+    top:0px;
+    left: 50%;
+    height: 100%;
+    width: 15px;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 100%);
+    margin-left: -15px;
+}
+
+
 .fold-2 {
     margin: 0;
     padding: 0;
     width: 50%;
     box-sizing: border-box;
     /* border: 1px solid #FF0000; */
-    box-shadow: -10px 0px 20px 0px rgba(255, 255,255,0.5);
     background-color: #bbbfc0;
     position: relative;
 }
@@ -181,7 +198,6 @@ html, body {
 .article-ppl-name {
     /* font-size: 1.5em; */
     font-size: 1em;
-    font-weight: bold;
     /* color: #666666; */
 }
 .article-ppl-name .text-tc {
@@ -278,6 +294,9 @@ a:hover > .contact-ig::before {
 @media (max-width: 1023px) {
     .wrapper-fold-2 {
         /* display:block; */
+    }
+    .fold-2-left::after {
+        display: none;
     }
     .fold-2 {
         width: calc(100%);

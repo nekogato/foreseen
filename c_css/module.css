@@ -38,6 +38,7 @@
     opacity: 0.5;
     cursor: pointer;
     position:relative;
+    color:#000;
 }
 
 .view_btn .view_hover_text{
@@ -189,6 +190,10 @@
     margin-top: 10px;
     text-align: center;
     color:#0000ff;
+}
+
+.box_item i{
+    font-style: italic;
 }
 
 .box_section_object{
@@ -388,6 +393,8 @@
     width: 100px;
     height: 100px;
     opacity: 0;
+    background-position: center center;
+    background-size: cover;
 }
 
 .box_object .box_popup_thumb + .box_popup_thumb .thumb{
@@ -466,6 +473,7 @@
     transform: translateY(100px) translateX(0px) translateZ(0px) scale(1) rotate(0deg);
     opacity: 0;
     display:flex;
+    color:#000;
 }
 
 .box_popup_name .text{

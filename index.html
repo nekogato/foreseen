@@ -51,10 +51,19 @@
 
         <div class="view_btn_wrapper">
             <div class="view_btn_inwrapper">
-				<div class="view_btn view_btn1 active" data-view="view1"></div>
-				<div class="view_btn view_btn2" data-view="view2"></div>
-				<div class="view_btn view_btn3" data-view="view3"></div>
-			</div>
+                <a class="view_btn view_btn1 active" data-view="view1">
+                    <div class="icon"></div>
+                    <div class="view_hover_text">Home 主頁</div>
+                </a>
+                <a class="view_btn view_btn2" href="timeline.html" data-view="view2">
+                    <div class="icon"></div>
+                    <div class="view_hover_text">Timeline 時間軸</div>
+                </a>
+                <a class="view_btn view_btn3 " href="objects.html"  data-view="view3">
+                    <div class="icon"></div>
+                    <div class="view_hover_text">All Objects 所有物品</div>
+                </a>
+            </div>
         </div>
 
 		<a class="menu_line_wrapper dropdown_btn">
@@ -893,6 +902,7 @@
             var originalMatArr = [];
 
 			$(window).on('load', function() {
+				/*
                 $(".view_btn").click(function(){
                     if($(this).hasClass("active")){
 
@@ -904,6 +914,7 @@
                     }
 
                 })
+				*/
 			})
 
             function checkview(){
