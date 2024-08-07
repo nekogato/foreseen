@@ -25,13 +25,14 @@ function doscroll(){
 	var scrolltop = $(window).scrollTop();
 	var hh = $(window).height();
 	var scrolltop2 = $(".fancybox-content").scrollTop();
+	var buffer = 100
 	scrolltop2 = (scrolltop2 == undefined) ? 0 : scrolltop2
 	
 	if ($(".fancybox-content").length > 0) {
 		hh = $(".fancybox-content").height() > hh ? $(".fancybox-content").height() : hh;
 	}
 
-	console.log(scrolltop, scrolltop2, hh)
+	// console.log(scrolltop + scrolltop2 + hh + buffer)
 
 	if($(".team_sub_section_menu").length>0){
 		var offsettop = 80;
@@ -70,7 +71,7 @@ function doscroll(){
 		var fbtop = ($(".fancybox-content").length > 0) ? $(".fancybox-content").offset().top : 0;
 		// console.log(fbtop)
 
-		var dis = (scrolltop+scrolltop2+hh)-mytop-fbtop;
+		var dis = (scrolltop+scrolltop2+hh+buffer)-mytop-fbtop;
 		// console.log(dis)
 		if(dis>0 ){
 			$this.removeClass("leavescreen");

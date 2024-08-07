@@ -10,12 +10,12 @@ let targetDom;
 let objGroup;
 let raycaster;
 let pointer;
-let objects = [];
+let objects;
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let setIndex = Math.floor(Number(urlParams.get("set")))
-console.log(setIndex)
+// console.log(setIndex)
 
 if (setIndex == 0) {
     console.log(document.querySelector(".wrapper-fold-2").dataset.shop)
@@ -141,7 +141,7 @@ function DOMContentLoaded() {
 }
 function setupInsideMenu() {
     const menuItems = document.querySelectorAll(".fold-2-right .inside-menu-item")
-    console.log(menuItems)
+    // console.log(menuItems)
     menuItems.forEach( obj => {
         obj.addEventListener("click", changeDetailView)
     })
@@ -188,11 +188,10 @@ function changeDetailView( e ) {
 }
 
 function fancyboxBinding() {
-    console.log("fbBinding")
+    // console.log("fbBinding")
     // console.log($.fancybox)
 
     $.fancybox.defaults.afterLoad = function() {
-        console.log("resetInsideMenuButton")
 
         const scrollins = document.querySelectorAll(".fancybox-content .scrollin")
         
@@ -206,39 +205,39 @@ function fancyboxBinding() {
         //     height: "",
         //     overflow:"auto"
         // })
-        console.log($(".fancybox-content").height())
-        $(".fancybox-content").css( {
-            height: $(".fancybox-content").height()+40+"px",
-            overflow: "hidden"
-        })
+        // console.log($(".fancybox-content").height())
+        // $(".fancybox-content").css( {
+        //     height: $(".fancybox-content").height()+40+"px",
+        //     overflow: "hidden"
+        // })
 
         $(".fancybox-slide, .fancybox-content").on('scroll', function() {
             doscroll();
         })
         doscroll()
     }
-    console.log($.fancybox.defaults)
+    // console.log($.fancybox.defaults)
     $.fancybox.defaults.beforeClose = function() {
-        console.log("resetInsideMenuButton")
+        resetInsideMenuButton()
     }
-    
-    // $.fancybox.defaults.iframe.css = {overflow: hidden}
-    $.fancybox.defaults.beforeClose = function() {
-        console.log("resetInsideMenuButton")
-    }
+
     
      // $.fancybox.defaults.iframe.css = {overflow: hidden}
      $.fancybox.defaults.afterClose = function() {
-        $(".fancybox-slide .content").height("auto")
-        $(".wrapper-fold-2 .content").height("auto")
+        // $(".fancybox-slide .content").height("auto")
+        // $(".wrapper-fold-2 .content").height("auto")
     }
 }
 
-function mobileChangeDetailView( e ) {
+function resetInsideMenuButton() {
     const selectedMenuItems = document.querySelectorAll(".mobile_inside-menu_wrapper .inside-menu-item.selected")
     selectedMenuItems.forEach( obj => {
         obj.classList.remove("selected")
     })
+}
+
+function mobileChangeDetailView( e ) {
+   resetInsideMenuButton()
     e.target.classList.add("selected")
 
     const scrollins = document.querySelectorAll(".content .scrollin.startani")
@@ -264,6 +263,7 @@ function mobileChangeDetailView( e ) {
 function animate() {
     rotateObjects()
     
+    scrollObjDC();
     if (controls) controls.update()
     render()
 
@@ -349,7 +349,7 @@ function pickColor( i ) {
     const color1 = colorArraySet[0]
     const color2 = colorArraySet[colorArraySet.length-1]
 
-    console.log(color1, color2)
+    //console.log(color1, color2)
 
     const newColor = new THREE.Color(
         color1.r * (1-i) + color2.r * i,
@@ -357,9 +357,81 @@ function pickColor( i ) {
         color1.b * (1-i) + color2.b * i,
     )
 
-    console.log(i, newColor)
+    // console.log(i, newColor)
 
     return  newColor
+}
+
+const mouse = { init: new THREE.Vector2(), current: new THREE.Vector2() }
+const objDC = {
+    force: 0,
+    curX: 0,
+    dampling: 0.9,
+    maxForce: 20,
+    multiplier: 50,
+}
+function initObjectsDrawer() {
+    document.querySelectorAll('.objects-drawer-slip').forEach( obj => {
+        obj.addEventListener("click", toggleObjectsDrawer)
+    })
+
+    objDC.wrapper = document.querySelector(".objects-drawer-item-wrapper")
+    objDC.content = document.querySelector(".objects-drawer-content")
+    if (objDC.wrapper !== null) {
+       objDC.content.addEventListener("pointerdown", objDCPointerDown, {passive: false})
+    }
+}
+function objDCPointerDown( e ) {
+    // e.preventDefault()
+    document.addEventListener("pointermove", objDCPointerMove, {passive: false})
+    document.addEventListener("pointerup", objDCPointerUp)
+
+    mouse.init = { 
+        x: ( e.pageX / window.innerWidth - 0.5 ) * 2,
+        xA: ( e.pageX - window.innerWidth / 2 )
+    }
+}
+function objDCPointerMove( e ) {
+    e.preventDefault()
+    mouse.current.x = ( e.pageX / window.innerWidth - 0.5 ) * 2
+    mouse.current.xA = e.pageX - window.innerWidth / 2
+    // addObjDCForce( mouse.current.x - mouse.init.x )
+    addObjDCForce( mouse.current.xA - mouse.init.xA, true )
+    mouse.init.x = mouse.current.x;
+    mouse.init.xA = mouse.current.xA;
+    // console.log(mouse.current.xA)
+}
+function objDCPointerUp( e ) {
+    document.removeEventListener("pointermove", objDCPointerMove)
+    document.removeEventListener("pointerup", objDCPointerUp)
+}
+function addObjDCForce( force, multiplier ) {
+    // console.log( force )
+    if (multiplier) {
+        objDC.force += force / 4
+    } else [
+        objDC.force += force * objDC.multiplier
+    ]
+}
+function scrollObjDC() {
+    if (objDC.wrapper == null) return
+    objDC.curX += Math.max( -objDC.maxForce, Math.min( objDC.maxForce, objDC.force))
+    objDC.curX = Math.min(0, objDC.curX)
+    // console.log(window.innerWidth, objDC.wrapper.getBoundingClientRect().width, objDC.wrapper.scrollWidth)
+    const maxX = (document.querySelector("html").clientWidth - objDC.wrapper.scrollWidth) - 20
+    // console.log(maxX)
+    objDC.curX = Math.max( objDC.curX, maxX )
+    objDC.force *= objDC.dampling;
+    objDC.wrapper.style.transform = "translateX(" + objDC.curX + "px)"
+}
+
+function  toggleObjectsDrawer( e ) {
+    console.log( e, e.target.parent)
+    if (e.target.parentElement.classList.contains("active")) {
+        e.target.parentElement.classList.remove("active")
+    } else {
+        e.target.parentElement.classList.add("active")
+    }
 }
 
 function init() {
@@ -415,7 +487,7 @@ function init() {
             const obj = objects[i]
             obj.traverse(function (child) {
                 if (child.isMesh) {
-                    console.log(child.name)
+                    // console.log(child.name)
                     child.material = pMat.clone()
                     // child.material.color = colorArraySet[i]
                     child.material.color = pickColor( i / showSeq.length )
@@ -431,7 +503,7 @@ function init() {
                     if (objArray[showSeq[i]].zPos !== undefined) child.position.z = objArray[showSeq[i]].zPos
 
                 } else {
-                    console.log(child)
+                    // console.log(child)
                 }
             });
             obj.rotation.x = Math.PI / 2
@@ -522,6 +594,8 @@ function init() {
         placementState = 2 -1
         changePlacement()
 
+        initObjectsDrawer()
+
         render();
         animate();
 
@@ -609,17 +683,17 @@ function init() {
 
     const loader = new OBJLoader(manager);
 
-    console.log(showSeq.length)
+    // console.log(showSeq.length)
     objects = []
     const objectsNamesArr = []
     for (var i = 0; i < showSeq.length; i++) {
         objectsNamesArr[i] = objArray[showSeq[i]].name
         loader.load('assets/obj/'+ objArray[showSeq[i]].path, function (obj) {   // assets/ElectricityBox_20240628.obj
 
-            console.log(obj)
+            // console.log(obj)
             // object = obj;
             const objectsId = objectsNamesArr.indexOf( obj.children[0].name)
-            console.log( obj.children[0].name, objectsId)
+            // console.log( obj.children[0].name, objectsId)
             objects[objectsId] = obj
 
         }, onProgress, onError);
@@ -704,31 +778,32 @@ function onPointerMove( event ) {
 
 function onPointerClick( event ) {
 
-    raycaster.setFromCamera( pointer, camera );
+    // console.log(pointer)
 
-	// calculate objects intersecting the picking ray
-	const intersects = raycaster.intersectObjects( objects );
+    // pointer.x = ( event.clientX / targetDom.getBoundingClientRect().width ) * 2 - 1;
+	// pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
-    if ( intersects.length > 1 ) {
-        switch (intersects[ 0 ].object.parent) {
-            case object:
-                // console.log("1")
-                openObject(0)
-                window.openObject(0)
-                break
-            case object2:
-                // console.log("2")
-                openObject(1)
-                window.openObject(1)
-                break
-            case object3:
-                // console.log("3")
-                openObject(2)
-                window.openObject(2)
-                break
-        }
+    // console.log(pointer)
+
+    // raycaster.setFromCamera( pointer, camera );
+
+	// // calculate objects intersecting the picking ray
+	// const intersects = raycaster.intersectObjects( objects );
+
+    // if (intersects.length > 1) {
+    //     console.log(intersects[0].object)
+    //     const index = objects.indexOf( intersects[0].object.parent )
+        
+    //     openObject( index )
+    //     window.openObject( index )
+    // }
+    
+    if (curPointerIndex != undefined) {
+        openObject( curPointerIndex )
     }
 }
+
+let curPointerIndex = undefined
 
 function raycast() {
     raycaster.setFromCamera( pointer, camera );
@@ -739,30 +814,33 @@ function raycast() {
     // console.log(intersects.length)
 
 	for ( let i = 0; i < intersects.length; i ++ ) {
-        if (intersects[ i ].object === object) {
-            console.log("1")
-        }
+        // if (intersects[ i ].object === object) {
+        //     console.log("1")
+        // }
 
-        switch (intersects[ i ].object.parent) {
-            case object:
-                // console.log("1")
-                showThumbnail(object)
-                break
-            case object2:
-                // console.log("2")
-                showThumbnail(object2)
-                break
-            case object3:
-                // console.log("3")
-                showThumbnail(object3)
-                break
-        }
+        showThumbnail(intersects[i].object.parent)
+
+        // switch (intersects[ i ].object.parent) {
+        //     case object:
+        //         // console.log("1")
+        //         showThumbnail(object)
+        //         break
+        //     case object2:
+        //         // console.log("2")
+        //         showThumbnail(object2)
+        //         break
+        //     case object3:
+        //         // console.log("3")
+        //         showThumbnail(object3)
+        //         break
+        // }
 
 		// intersects[ i ].object.material.color.set( 0xff0000 );
 	}
 
     if ( intersects.length < 1 ) {
         hideThumbnail()
+        curPointerIndex = undefined
     }
 
     // if ( intersects.length < 1) {
@@ -810,7 +888,12 @@ function initThumbnail() {
 }
 function showThumbnail( target ) {
     targetDom.style.cursor = "pointer"
+
+    const index = objects.indexOf(target)
+    curPointerIndex = index
+    // console.log( index )
     // console.log("showThumbnail")
+
     if (thumbnail) {
         thumbnail.material.opacity = 1
         thumbnail.position.copy(target.position)
