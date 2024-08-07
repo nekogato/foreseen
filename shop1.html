@@ -17,10 +17,12 @@
         <script src="c_script/lib/jquery.mousewheel.min.js"></script>
         <link rel="stylesheet" type="text/css" href="c_script/lib/fancybox/jquery.fancybox.min.css">
         <script src="c_script/lib/fancybox/jquery.fancybox.min.js"></script>
-
+        <script src="c_script/lib/jquery.ba-hashchange.min.js"></script>
+        
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
         <script src="c_script/common.js"></script>
         <script src="c_script/script.js"></script>
+        <script src="c_script/shophash.js"></script>
 
 
     <!--------------------------- css & script end here ------------------------->
@@ -43,10 +45,10 @@
     </script>
     </head>
 	<body class="body_shopdetail body_shopdetail_color_1">
-        <img src="c_images/top_left_logo1.svg" class="top_left_logo1">
+        <a href="index.html"><img src="c_images/top_left_logo1.svg" class="top_left_logo1">
         <img src="c_images/top_left_logo2.svg" class="top_left_logo2">
         <img src="c_images/top_right_logo1.svg" class="top_right_logo1">
-        <img src="c_images/top_right_logo2.svg" class="top_right_logo2">
+        <img src="c_images/top_right_logo2.svg" class="top_right_logo2"></a>
 
 
 		<div class="right_menu mobile_hide">
@@ -92,7 +94,7 @@
         </div>
         
         <div class="wrapper-fold-2" data-shop="1">
-            <div class="fold-2">
+            <div class="fold-2 fold-2-left">
                 <div id="threejs-canvas">
                     <div class="debug">
                         <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
@@ -206,24 +208,42 @@
             <div class="objects-drawer-slip">Other Objects</div>
             <div class="objects-drawer-content">
                 <div class="objects-drawer-item-wrapper">
-                <div class="objects-drawer-item">ABCDE</div>
-                <div class="objects-drawer-item">ABCDE</div>
-                <div class="objects-drawer-item">ABCDE</div>
-                <div class="objects-drawer-item">ABCDE</div>
-                <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
 
-                <div class="objects-drawer-item">ABCDE</div>
-                <div class="objects-drawer-item">ABCDE</div>
-                <div class="objects-drawer-item">ABCDE</div>
-                <div class="objects-drawer-item">ABCDE</div>
-                <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                    <div class="objects-drawer-item">ABCDE</div>
+                </div>
             </div>
         </div>
 
-        <!-- <div class="all_item_btn_wrapper"><div class="all_item_btn text4">(View All Items)</div></div> -->
-
-        <div class="popup">
-            
+        <div class="object_popup" data-id="jar_of_jade">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="popup_object_sample.html"></a>
         </div>
+
+        <div class="object_popup" data-id="wooden_tool_box">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="popup_object_sample.html"></a>
+        </div>
+
+
+        <!-- <div class="object_popup" id="object1_shoe_rack">
+            <div class="object_popup_content">
+                object1_shoe_rack
+            </div>
+            <a class="object_popup_close"></a>
+        </div>
+
+        <div class="object_popup" id="object1_wooden_tool_box">
+            <div class="object_popup_content">
+                object1_wooden_tool_box
+            </div>
+            <a class="object_popup_close"></a>
+        </div> -->
 	</body>
 </html>

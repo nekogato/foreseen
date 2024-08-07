@@ -372,7 +372,7 @@ const objDC = {
 }
 function initObjectsDrawer() {
     document.querySelectorAll('.objects-drawer-slip').forEach( obj => {
-        obj.addEventListener("click", toggleObjectsDrawer)
+        obj.addEventListener("click", toggleObjectsDrawer, {passive: false})
     })
 
     objDC.wrapper = document.querySelector(".objects-drawer-item-wrapper")
@@ -425,8 +425,10 @@ function scrollObjDC() {
     objDC.wrapper.style.transform = "translateX(" + objDC.curX + "px)"
 }
 
-function  toggleObjectsDrawer( e ) {
-    console.log( e, e.target.parent)
+function toggleObjectsDrawer( e ) {
+    e.preventDefault()
+    e.stopPropagation()
+    // console.log( e, e.target.parent)
     if (e.target.parentElement.classList.contains("active")) {
         e.target.parentElement.classList.remove("active")
     } else {
