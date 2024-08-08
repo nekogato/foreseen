@@ -17,7 +17,7 @@ dialog {
   text-align: center;
   max-width: 20em;
   color: white;
-  background-color: #000;
+  background: none;
   border: none;
   position: relative;
   transform: translate(-50%, -50%);
@@ -29,22 +29,19 @@ dialog {
   left: 50%;
 }
 
-progress {
+.progress-bar-wrapper {
   width: 100%;
   height: 1em;
   border: none;
   background-color: #fff;
   color: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 1px #CCFF00;
 }
 
-progress::-webkit-progress-bar {
-  background-color: #333;
-}
-
-progress::-webkit-progress-value {
-  background-color: #eee;
-}
-
-progress::-moz-progress-bar {
-  background-color: #eee;
+.progress-bar{
+  width:0%;
+  height: 100%;
+  background-color: #CCFF00;
 }
