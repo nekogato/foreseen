@@ -12,14 +12,23 @@ const controls = new SPLAT.OrbitControls(camera, canvas);
 async function main() {
   // Load and convert ply from url
   const url = $(".file_url").attr("data-file");
-  await SPLAT.PLYLoader.LoadAsync(url, scene, (progress) => (progressIndicator.value = progress * 100));
+  await SPLAT.PLYLoader.LoadAsync(url, scene, (progress) => (
+    $(".progress-bar").css("width",progress * 100+"%")
+  ));
   progressDialog.close();
   for (let i = 0; i < scene.objects.length; i++) {
-    console.log(scene.objects[i].scale)
-    scene.objects[i].scale={
-        x:5,
-        y:5,
-        z:5
+    if($(window).width()<1024){
+      scene.objects[i].scale={
+          x:2,
+          y:2,
+          z:2
+      }
+    }else{
+      scene.objects[i].scale={
+          x:5,
+          y:5,
+          z:5
+      }
     }
     //scene.objects[i].scale(10,10,10)
   }

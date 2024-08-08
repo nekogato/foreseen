@@ -50,29 +50,29 @@ const posArrayIndex = setIndex-1
 //     {path: "WorkingDesk_20240628.obj",          size: 0.4},               // 10
 // ]
 const objArray = [
-    {path: "ElectricityBox_20240628.obj",           name:"ElectricityBox",        size: 10,           shop: "A"},               // 0
-    {path: "PressureCooker_Top_20240628.obj",       name:"PressureCooker_Top",        size: 0.9,          shop: "A"},               // 1
-    {path: "WorkingDesk_20240628.obj",              name:"WorkingDesk",        size: 0.4,          shop: "B"},               // 2
-    {path: "ShoeStand_20240628.obj",                name:"ShoeStand",        size: 0.7,          shop: "C"},               // 3
-    {path: "Iron_20240628.obj",                     name:"Iron",        size: 0.6,          shop: "D"},               // 4
-    {path: "PearlTools_20240628.obj",               name:"PearlTools",        size: 0.3,     xRot: Math.PI/-4,      yRot: Math.PI/2,     zPos: -0.8, shop: "B"},               // 5
-    {path: "Scissors_20240628.obj",                 name:"Scissors",        size: 0.5,       xRot: Math.PI/-4,      zPos: -0.15,       shop: "D"},               // 6
-    {path: "NeedlePad_20240628.obj",                name:"NeedlePad",        size: 3,            shop: "E"},               // 7
-    {path: "JwelleryBox_20240628.obj",              name:"JwelleryBox",        size: 0.15,         shop: "F"},               // 8
-    {path: "Keys_Main_20240628.obj",                name:"Keys_Main",        size: 0.4,          shop: "C"},               // 9
-    {path: "Pin_20240628.obj",                      name:"Pin",               size: 0.07,    yRot: Math.PI/4,       zPos: -1,    shop: "D"},               // 10
-    {path: "ShoesOBJ_20240723.obj",                 name:"Group19384",        size: 0.05,    xRot: Math.PI/-2,      zPos: -3.5,     shop: "C"},               // 11
-    {path: "ShoeBagOBJ_20240724.obj",               name:"Group10136",        size: 3.5,     xRot: Math.PI/-2,     shop: "C"},               // 12
-    {path: "WoodenBoxOpenOBJ_20240725.obj",         name:"Group21129",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 13
-    {path: "WoodenBoxClosedOBJ_20240725.obj",       name:"Group47146",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 14
-    {path: "ShoeRackOBJ_20240726.obj",              name:"Group57180",        size: 0.18,    xRot: Math.PI/-2,     shop: "F"},               // 15
-    {path: "SewingMachineOBJ_20240727.obj",         name:"Group7732",         size: 0.75,    xRot: Math.PI/-2,     shop: "E"},               // 16
-    {path: "JarOfJadeOBJ_20240727.obj",             name:"Group17388",        size: 0.15,    xRot: Math.PI/-2,     shop: "B"},               // 17
-    {path: "HandDrawnShoes_OBJ_20240730.obj",       name:"Group34095",        size: 0.15,    xRot: Math.PI/-2,      zPos: -0.4,     shop: "F"},               // 18
-    {path: "HandDrawnShoes2_OBJ_20240730.obj",      name:"Group50196",        size: 0.2,     xRot: Math.PI/-2,     shop: "C"},               // 19
-    {path: "HandDrawnKey_OBJ_20240730.obj",         name:"Group64819",        size: 0.18,    xRot: Math.PI/-4,     shop: "C"},               // 20
-    {path: "HandDrawnNecklace_OBJ_20240730.obj",    name:"Group14082",        size: 0.2,     xRot: Math.PI/-4,     zPos: -0.5,      shop: "B"},               // 21
-    {path: "HandDrawnScissor_OBJ_20240730.obj",     name:"Group8048",         size: 0.0055,   xRot: Math.PI*3/4,    zPos: -12,        shop: "D"},               // 22
+    {path: "ElectricityBox_20240628.obj",           id:"electricity_box", name:"ElectricityBox",        size: 10,           shop: "A"},               // 0
+    {path: "PressureCooker_Top_20240628.obj",       id:"rice_cooker", name:"PressureCooker_Top",        size: 0.9,          shop: "A"},               // 1
+    {path: "WorkingDesk_20240628.obj",              id:"working_desk", name:"WorkingDesk",        size: 0.4,          shop: "B"},               // 2
+    {path: "ShoeStand_20240628.obj",                id:"shoe_stretcher", name:"ShoeStand",        size: 0.7,          shop: "C"},               // 3
+    {path: "Iron_20240628.obj",                     id:"iron", name:"Iron",        size: 0.6,          shop: "D"},               // 4
+    {path: "PearlTools_20240628.obj",               id:"pearl_tools", name:"PearlTools",        size: 0.3,     xRot: Math.PI/-4,      yRot: Math.PI/2,     zPos: -0.8, shop: "B"},               // 5
+    {path: "Scissors_20240628.obj",                 id:"scissors", name:"Scissors",        size: 0.5,       xRot: Math.PI/-4,      zPos: -0.15,       shop: "D"},               // 6
+    {path: "NeedlePad_20240628.obj",                id:"needle_pad", name:"NeedlePad",        size: 3,            shop: "E"},               // 7
+    {path: "JwelleryBox_20240628.obj",              id:"jewelery_box", name:"JwelleryBox",        size: 0.15,         shop: "F"},               // 8
+    {path: "Keys_Main_20240628.obj",                id:"key", name:"Keys_Main",        size: 0.4,          shop: "C"},               // 9
+    {path: "Pin_20240628.obj",                      id:"pin", name:"Pin",               size: 0.07,    yRot: Math.PI/4,       zPos: -1,    shop: "D"},               // 10
+    {path: "ShoesOBJ_20240723.obj",                 id:"boots", name:"Group19384",        size: 0.05,    xRot: Math.PI/-2,      zPos: -3.5,     shop: "C"},               // 11
+    {path: "ShoeBagOBJ_20240724.obj",               id:"boots_with_bag", name:"Group10136",        size: 3.5,     xRot: Math.PI/-2,     shop: "C"},               // 12
+    {path: "WoodenBoxOpenOBJ_20240725.obj",         id:"wooden_tool_box_open", name:"Group21129",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 13
+    {path: "WoodenBoxClosedOBJ_20240725.obj",       id:"wooden_tool_box", name:"Group47146",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 14
+    {path: "ShoeRackOBJ_20240726.obj",              id:"shoe_rack", name:"Group57180",        size: 0.18,    xRot: Math.PI/-2,     shop: "F"},               // 15
+    {path: "SewingMachineOBJ_20240727.obj",         id:"sewing_machine", name:"Group7732",         size: 0.75,    xRot: Math.PI/-2,     shop: "E"},               // 16
+    {path: "JarOfJadeOBJ_20240727.obj",             id:"jar_of_jade", name:"Group17388",        size: 0.15,    xRot: Math.PI/-2,     shop: "B"},               // 17
+    {path: "HandDrawnShoes_OBJ_20240730.obj",       id:"handdraw_first_pair_of_shoes", name:"Group34095",        size: 0.15,    xRot: Math.PI/-2,      zPos: -0.4,     shop: "F"},               // 18
+    {path: "HandDrawnShoes2_OBJ_20240730.obj",      id:"handdraw_shoes", name:"Group50196",        size: 0.2,     xRot: Math.PI/-2,     shop: "C"},               // 19
+    {path: "HandDrawnKey_OBJ_20240730.obj",         id:"handdraw_key", name:"Group64819",        size: 0.18,    xRot: Math.PI/-4,     shop: "C"},               // 20
+    {path: "HandDrawnNecklace_OBJ_20240730.obj",    id:"handdraw_goldfish_jewelry", name:"Group14082",        size: 0.2,     xRot: Math.PI/-4,     zPos: -0.5,      shop: "B"},               // 21
+    {path: "HandDrawnScissor_OBJ_20240730.obj",     id:"handDraw_scissors", name:"Group8048",         size: 0.0055,   xRot: Math.PI*3/4,    zPos: -12,        shop: "D"},               // 22
 ]
 
 const colorArray = [
@@ -224,6 +224,7 @@ function fancyboxBinding() {
     
      // $.fancybox.defaults.iframe.css = {overflow: hidden}
      $.fancybox.defaults.afterClose = function() {
+        window.location.hash="";
         // $(".fancybox-slide .content").height("auto")
         // $(".wrapper-fold-2 .content").height("auto")
     }
@@ -510,7 +511,9 @@ function init() {
             });
             obj.rotation.x = Math.PI / 2
             obj.scale.setScalar( objArray[showSeq[i]].size );
-            obj.userData.map = thumbnailImg01
+            obj.userData.map = thumbnailImg01;
+            // you can find the thumbnail here 'c_images/objects/', but need to add the object name and shadow
+            // obj.userData.map = new THREE.TextureLoader().load('c_images/objects/'+objArray[showSeq[i]].id+".png");
             objGroup.add(obj);
             // scene.add(obj);    
         }
@@ -801,7 +804,7 @@ function onPointerClick( event ) {
     // }
     
     if (curPointerIndex != undefined) {
-        openObject( curPointerIndex )
+        openObject( curPointerIndex, objArray[showSeq[curPointerIndex]].id )
     }
 }
 
@@ -869,8 +872,9 @@ function raycast() {
     // }
 }
 
-function openObject( index ) {
-    console.log("openObject", index)
+function openObject( index, id ) {
+    console.log(index, id)
+    window.location.hash = id;
 }
 
 function initThumbnail() {

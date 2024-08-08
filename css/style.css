@@ -236,7 +236,7 @@ html, body {
     z-index: 999;
     text-align: center;
     overflow: hidden;
-    margin-bottom: -242px;
+    margin-bottom: -264px;
     transition: margin-bottom 250ms ease-out;
     pointer-events: none;
 }
@@ -274,13 +274,26 @@ html, body {
 .objects-drawer-item {
     display: inline-block;
     width: 200px;
-    height: 200px;
-    border: 1px solid #CCC;
-    background: #bcbec0 url("../c_images/box_item.png");
+    margin: 10px;  
+    vertical-align: top;
+    /* margin: auto; */
+}
+
+.objects-drawer-item .thumb{
+    width: 170px;
+    height: 150px;
+    background-position: center center;
     background-size: contain;
     border-radius: 10px;
-    margin: 10px;
-    /* margin: auto; */
+    background-repeat: no-repeat;
+    margin: auto;
+}
+
+.objects-drawer-item .text{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5em;
 }
 
 .svg-color{
@@ -340,9 +353,18 @@ a:hover > .contact-ig::before {
 
 .fancybox-slide .content{
     color:#000;
+}
+
+.fancybox-slide--iframe .fancybox-content, .fancybox-content {
     border-radius: 20px;
     background-color: #bbbfc0;
     box-shadow: 0px 0px 20px #fff;
+    overflow: hidden;
+}
+
+.fancybox-slide--iframe .fancybox-content{
+    height : 600px;
+    width : 800px;
 }
 
 .object_popup{
@@ -449,6 +471,12 @@ a:hover > .contact-ig::before {
         background-color: #bbbfc0;
         box-shadow: 0px 0px 20px #fff;
     }
+
+    .fancybox-slide--iframe .fancybox-content{
+        height : 100%;
+        width : 100%;
+    }
+
     .body_shopdetail .top_right_logo2,
     .body_shopdetail .top_right_logo1 {
         /* right: 55px !important; */
