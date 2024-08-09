@@ -108,6 +108,7 @@ html, body {
   display: flex;
   flex-wrap: nowrap;
   padding: 20px;
+  justify-content: center;
 }
 
 .inside-menu-item {
@@ -266,6 +267,7 @@ html, body {
     background: #FFF;
     padding: 10px;
     white-space: nowrap;
+    overflow-x: auto;
     /* overflow: auto; */
 }
 .objects-drawer-item-wrapper {
@@ -347,7 +349,7 @@ a:hover > .contact-ig::before {
 .mobile_inside-menu_wrapper{
     position: fixed;
     left: 0px;
-    bottom: 0px;
+    bottom: 40px;
     width: 100%;
 }
 
