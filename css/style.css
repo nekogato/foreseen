@@ -296,6 +296,7 @@ html, body {
     text-align: center;
     font-size: 12px;
     line-height: 1.5em;
+      white-space: normal;
 }
 
 .svg-color{
@@ -483,6 +484,15 @@ a:hover > .contact-ig::before {
     .body_shopdetail .top_right_logo1 {
         /* right: 55px !important; */
         right: 24px;
+    }
+
+    .objects-drawer-item {
+        width: 140px;
+    }
+
+    .objects-drawer-item .thumb{
+        width: 120px;
+        height: 100px;
     }
 }
 

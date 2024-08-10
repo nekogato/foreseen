@@ -411,9 +411,11 @@ function toggleObjectsDrawer( e ) {
     e.stopPropagation()
     // console.log( e, e.target.parent)
     if (e.target.parentElement.classList.contains("active")) {
+        $("body").removeClass("noraycaster")
         e.target.parentElement.classList.remove("active")
         objDC.target.style.marginBottom = objDC.contentMarginBottom
     } else {
+        $("body").addClass("noraycaster")
         e.target.parentElement.classList.add("active")
         objDC.target.style.marginBottom = ""
     }
@@ -828,67 +830,70 @@ function onPointerClick( event ) {
 }
 
 function raycast() {
-    raycaster.setFromCamera( pointer, camera );
+    if(!$("body").hasClass("noraycaster")){
 
-	// calculate objects intersecting the picking ray
-	const intersects = raycaster.intersectObjects( objects );
+        raycaster.setFromCamera( pointer, camera );
 
-    // console.log(intersects.length)
+        // calculate objects intersecting the picking ray
+        const intersects = raycaster.intersectObjects( objects );
 
-	for ( let i = 0; i < intersects.length; i ++ ) {
-        // if (intersects[ i ].object === object) {
-        //     console.log("1")
-        // }
+        // console.log(intersects.length)
 
-        const index = objects.indexOf(intersects[i].object.parent)
-        if ( curPointerIndex !== index ) {
-            showThumbnail(intersects[i].object.parent)
+        for ( let i = 0; i < intersects.length; i ++ ) {
+            // if (intersects[ i ].object === object) {
+            //     console.log("1")
+            // }
+
+            const index = objects.indexOf(intersects[i].object.parent)
+            if ( curPointerIndex !== index ) {
+                showThumbnail(intersects[i].object.parent)
+            }
+
+            // switch (intersects[ i ].object.parent) {
+            //     case object:
+            //         // console.log("1")
+            //         showThumbnail(object)
+            //         break
+            //     case object2:
+            //         // console.log("2")
+            //         showThumbnail(object2)
+            //         break
+            //     case object3:
+            //         // console.log("3")
+            //         showThumbnail(object3)
+            //         break
+            // }
+
+            // intersects[ i ].object.material.color.set( 0xff0000 );
         }
 
-        // switch (intersects[ i ].object.parent) {
-        //     case object:
-        //         // console.log("1")
-        //         showThumbnail(object)
-        //         break
-        //     case object2:
-        //         // console.log("2")
-        //         showThumbnail(object2)
-        //         break
-        //     case object3:
-        //         // console.log("3")
-        //         showThumbnail(object3)
-        //         break
+        if ( intersects.length < 1 && curPointerIndex != undefined) {
+            hideThumbnail()
+        }
+
+        // if ( intersects.length < 1) {
+        //     // console.log(highlightedObjects)
+        //     if (object && object.userData !== undefined) {
+        //         console.log(object.userData.originalColor)
+        //         if (object.userData.originalColor !== undefined && !object.userData.mouseover) {
+        //             object.material.color.set(object.userData.originalColor)
+        //             object.userData.mouseover = false
+        //         }
+        //     }
+        //     if (object2 && object2.userData !== undefined) {
+        //         if (object2.userData.originalColor !== undefined && !object2.userData.mouseover) {
+        //             object2.material.color.set(object2.userData.originalColor)
+        //             object2.userData.mouseover = false
+        //         }
+        //     }
+        //     if (object3 && object3.userData !== undefined) {
+        //         if (object3.userData.originalColor !== undefined && !object3.userData.mouseover) {
+        //             object3.material.color.set(object23userData.originalColor)
+        //             object3.userData.mouseover = false
+        //         }
+        //     }
         // }
-
-		// intersects[ i ].object.material.color.set( 0xff0000 );
-	}
-
-    if ( intersects.length < 1 && curPointerIndex != undefined) {
-        hideThumbnail()
     }
-
-    // if ( intersects.length < 1) {
-    //     // console.log(highlightedObjects)
-    //     if (object && object.userData !== undefined) {
-    //         console.log(object.userData.originalColor)
-    //         if (object.userData.originalColor !== undefined && !object.userData.mouseover) {
-    //             object.material.color.set(object.userData.originalColor)
-    //             object.userData.mouseover = false
-    //         }
-    //     }
-    //     if (object2 && object2.userData !== undefined) {
-    //         if (object2.userData.originalColor !== undefined && !object2.userData.mouseover) {
-    //             object2.material.color.set(object2.userData.originalColor)
-    //             object2.userData.mouseover = false
-    //         }
-    //     }
-    //     if (object3 && object3.userData !== undefined) {
-    //         if (object3.userData.originalColor !== undefined && !object3.userData.mouseover) {
-    //             object3.material.color.set(object23userData.originalColor)
-    //             object3.userData.mouseover = false
-    //         }
-    //     }
-    // }
 }
 
 function openObject( index, id ) {

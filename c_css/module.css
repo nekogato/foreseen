@@ -1,3 +1,42 @@
+.loading{
+    position: fixed;
+    width:100%;
+    height:100%;
+    left:0px;
+    top:0px;
+    margin:auto;
+    display:flex;
+    z-index:998;
+    align-items:center;
+    background-color:#A9E300;
+}
+
+.loading img{
+    width:20px;
+    height:20px;
+    margin:auto;
+}
+
+.overlay_shop_name{
+    position: fixed;
+    width:100%;
+    height:100%;
+    left:0px;
+    top:0px;
+    margin:auto;
+    display:flex;
+    z-index:9999;
+    align-items:center;
+    pointer-events:none;
+    color:#fff;
+	mix-blend-mode: difference;
+}
+
+.overlay_shop_name .shop_name{
+    margin:auto;
+    text-align:center;
+}
+
 .float_circle{
     position: fixed;
     width:0px;
