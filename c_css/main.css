@@ -361,7 +361,7 @@ body {
 
 	/* mobile */
 	.mobile_hide{
-		display:none;
+		display:none !important;
 	}
 		
 	.mobile_show{

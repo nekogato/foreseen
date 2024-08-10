@@ -829,12 +829,13 @@
         top: 0px;
         bottom: auto;
         border-left: none;
-        border-top: 1px dashed #fff;
+        border-top: 1px solid #fff;
     }
 
     .box_object {
         height: auto;
         display: block;
+        padding-top: 20px;
     }
 
     .box_object .box_object_thumb {
@@ -931,6 +932,26 @@
     .left_item, .right_item {
         padding: 20px;
         width: 85%;
+    }
+
+    .box_popup_name{
+        position: relative;
+        top:auto;
+        left: auto;
+        right: auto;
+        margin-top: 20px;
+        opacity: 1;
+        -ms-transform: translateY(0px) translateX(0px) translateZ(0px) scale(1) rotate(0deg); 
+        -webkit-transform: translateY(0px) translateX(0px) translateZ(0px) scale(1) rotate(0deg); 
+        transform: translateY(0px) translateX(0px) translateZ(0px) scale(1) rotate(0deg);
+    }
+
+    .box_popup_name .text{
+        margin-bottom: 20px;
+    }
+
+    .view_btn_wrapper{
+        display: none;
     }
 
 }
