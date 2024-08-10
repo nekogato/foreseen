@@ -186,6 +186,13 @@ html, body {
     line-height: 1.5em;
 }
 
+.content-shop-info table{
+    width:100%;
+    border-top:1px solid #fff;
+    border-bottom:1px solid #fff;
+    margin-top: 30px;
+}
+
 .td-title {
     padding-right: 0.5em;
 }
@@ -314,11 +321,12 @@ html, body {
     text-align: center;
     font-size: 12px;
     line-height: 1.5em;
+    white-space: normal;
     transition: all 250ms ease-out;
 }
 
 .objects-drawer-item:hover .text {
-    transform: scale(1.2)
+    transform: scale(1.2);
 }
 
 .svg-color{
@@ -454,6 +462,14 @@ a:hover > .contact-ig::before {
     position: absolute;
 } */
 
+@media (max-width: 1440px) {
+
+    .content {
+        margin: 30px 60px;
+    }
+
+}
+
 @media (max-width: 1023px) {
     .wrapper-fold-2 {
         /* display:block; */
@@ -513,6 +529,15 @@ a:hover > .contact-ig::before {
     .body_shopdetail .top_right_logo1 {
         /* right: 55px !important; */
         right: 24px;
+    }
+
+    .objects-drawer-item {
+        width: 140px;
+    }
+
+    .objects-drawer-item .thumb{
+        width: 120px;
+        height: 100px;
     }
 }
 

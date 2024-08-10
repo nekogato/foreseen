@@ -133,19 +133,19 @@
             import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 			var itemArr = [
-				['c_model/Asset1-v1/Asset1.gltf',0,0,0, 30,30,30, 0,0,0,"style2",0,"[01] Shoes","model0"],
-				['c_model/clothes/clothes.gltf',-18,5,-5, 30,30,30, 10,0,30,"style1",5,"[03] Shoes","model2"],
-				['c_model/clothes2/clothes2.gltf',-3,8,-10, 30,30,30, 120,120,20,"style1",5,"[02] Books","model1"],
-				['c_model/hammer/hammer.gltf',0,-5,7, 30,30,30, 20,40,50,"style4",5,"[04] Glasses","model3"],
-				['c_model/hammer2/hammer2.gltf',17,-7,-10, 30,30,30, 10,0,40,"style3",5,"[05] Clothes","model4"],
-				['c_model/key/key.gltf',-17,-6,3, 30,30,30, 30,80,50,"style1",5,"[06] Shop","model5"],
-				['c_model/key2/key2.gltf',-8,-9,13, 30,30,30, 30,0,30,"style1",5,"[07] Mirror","model6"],
-				['c_model/magnifier/magnifier.gltf',8,-11,-3, 30,30,30, 60,30,80,"style1",5,"[08] Hair","model7"],
-				['c_model/magnifier2/magnifier2.gltf',10,6,-12, 30,30,30, 30,60,20,"style3",5,"[09] Toys","model8"],
-				['c_model/rin/rin.gltf',-9,-6,-7, 30,30,30, 30,30,0,"style1",5,"[10] Shoes","model9"],
-				['c_model/rin2/rin2.gltf',-8,8,3, 30,30,30, 50,20,0,"style1",5,"[11] Food","model10"],
-				['c_model/screw/screw.gltf',13,4,8, 30,30,30, 30,70,0,"style1",5,"[12] Drinks","model11"],
-				['c_model/screw2/screw2.gltf',5,4,8, 30,30,30, 30,70,0,"style1",5,"[12] Drinks","model11"]
+				['c_model/Asset1-v1/Asset1.gltf',0,0,0, 30,30,30, 0,0,0,"style2",0,"","model0",""],
+				['c_model/clothes/clothes.gltf',-18,5,-5, 30,30,30, 10,0,30,"style1",5,"Adaptive Clothing<br/>縫補寶","model2","shop5"],
+				['c_model/clothes2/clothes2.gltf',-3,8,-10, 30,30,30, 120,120,20,"style1",5,"Adaptive Clothing<br/>縫補寶","model1","shop5"],
+				['c_model/hammer/hammer.gltf',0,-5,7, 30,30,30, 20,40,50,"style4",5,"Baby Professional Tailor and Curtain Shop<br/>縫補寶","model3","shop4"],
+				['c_model/hammer2/hammer2.gltf',17,-7,-10, 30,30,30, 10,0,40,"style3",5,"Baby Professional Tailor and Curtain Shop<br/>縫補寶","model4","shop4"],
+				['c_model/key/key.gltf',-17,-6,3, 30,30,30, 30,80,50,"style1",5,"Fong Man Engineering Company<br/>方文工程公司","model5","shop6"],
+				['c_model/key2/key2.gltf',-8,-9,13, 30,30,30, 30,0,30,"style1",5,"Fong Man Engineering Company<br/>方文工程公司","model6","shop6"],
+				['c_model/magnifier/magnifier.gltf',8,-11,-3, 30,30,30, 60,30,80,"style1",5,"Leung Kee Pai Dong<br/>良記排檔百貨","model7","shop1"],
+				['c_model/magnifier2/magnifier2.gltf',10,6,-12, 30,30,30, 30,60,20,"style3",5,"Leung Kee Pai Dong<br/>良記排檔百貨","model8","shop1"],
+				['c_model/rin/rin.gltf',-9,-6,-7, 30,30,30, 30,30,0,"style1",5,"Shing Shun Shoes and Keys<br/>誠信補鞋配匙","model9","shop2"],
+				['c_model/rin2/rin2.gltf',-8,8,3, 30,30,30, 50,20,0,"style1",5,"Shing Shun Shoes and Keys<br/>誠信補鞋配匙","model10","shop2"],
+				['c_model/screw/screw.gltf',13,4,8, 30,30,30, 30,70,0,"style1",5,"Old Neighbourhood Jade and Jewellery<br/>老街坊首飾.玉器工作坊","model11","shop3"],
+				['c_model/screw2/screw2.gltf',5,4,8, 30,30,30, 30,70,0,"style1",5,"Old Neighbourhood Jade and Jewellery<br/>老街坊首飾.玉器工作坊","model11","shop3"]
 			];
 
 			var camera, scene, renderer,composer, smallgroup,biggroup,gridgroup,gridHelper,gridHelper2,yearlinegroup, mouseX, mouseY, windowHalfX, windowHalfY;
@@ -180,17 +180,25 @@
 			init();
 			animate();
 
-			function importglTF(url,x,y,z,size_x,size_y,size_z,rotate_x, rotate_y, rotate_z,material,mass,text,id,order){
+			var loadedlength=0
+
+			function importglTF(url,x,y,z,size_x,size_y,size_z,rotate_x, rotate_y, rotate_z,material,mass,text,id,shop,order){
 				loader.load(
 					url,
 					function ( gltf ) {
 						const model = gltf.scene;
-
+						loadedlength++;
+						if(loadedlength==itemArr.length){
+							$(".loading").stop().fadeOut();
+							$("body").addClass("modelloaded");
+						}
 
 						model.traverse( function ( child ) {
 
 
 							if ( child.isMesh ) {
+								child.myshop = shop;
+								child.mytext = text;
 								if(material=="style2"){
 									if (child.material.map){
 
@@ -569,7 +577,7 @@
 				};
 
 				for (let i = 0; i < itemArr.length; i++) {
-					importglTF(itemArr[i][0],itemArr[i][1],itemArr[i][2],itemArr[i][3], itemArr[i][4],itemArr[i][5],itemArr[i][6], itemArr[i][7],itemArr[i][8],itemArr[i][9],itemArr[i][10],itemArr[i][11],itemArr[i][12],itemArr[i][13],i)
+					importglTF(itemArr[i][0],itemArr[i][1],itemArr[i][2],itemArr[i][3], itemArr[i][4],itemArr[i][5],itemArr[i][6], itemArr[i][7],itemArr[i][8],itemArr[i][9],itemArr[i][10],itemArr[i][11],itemArr[i][12],itemArr[i][13],itemArr[i][14],i)
 				};
 
 
@@ -667,11 +675,11 @@
 				windowHalfY = window.innerHeight / 2;
 
 				
-                // Event listeners for mouse down and touch start events
-                // document.addEventListener('mousemove', onMouseMove, false);
-                // document.addEventListener('mouseup', onMouseUp, false);
-                // document.addEventListener('mousedown', onMouseDown, false);
-                // document.addEventListener('mousemove', onMouseMoveScale, false);
+                //Event listeners for mouse down and touch start events
+                document.addEventListener('mousemove', onMouseMove, false);
+                document.addEventListener('mouseup', onMouseUp, false);
+                document.addEventListener('mousedown', onMouseDown, false);
+        		document.addEventListener('click', onMouseClick, false);
 				onWindowResize();
 
 
@@ -680,42 +688,80 @@
 
             // Function to handle mouse move events
             function onMouseMove(event) {
-                moved=true;
-                var deltaMove = {
-                    x: event.clientX - previousMousePosition.x,
-                    y: event.clientY - previousMousePosition.y
-                };
+				if($("body").hasClass("modelloaded")){
+					moved=true;
 
-                if(view=="view3"){
-                    if (isDragging) {
-                        targetGroupPosition.x = THREE.MathUtils.clamp(targetGroupPosition.x - deltaMove.x * 0.01, minX, maxX);
-                        targetGroupPosition.y = THREE.MathUtils.clamp(targetGroupPosition.y + deltaMove.y * 0.01, minY, maxY);
-                    }
-                }
+					mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+					mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
-                previousMousePosition = { x: event.clientX, y: event.clientY };
-            }
+					raycaster.setFromCamera(mouse, camera);
+
+					var intersects = raycaster.intersectObjects(modelArr);
+
+					if (intersects.length > 0) {
+						modelArr.forEach(model => {
+							if (intersects[0].object.parent === model || intersects[0].object.parent.parent === model) {
+								gsap.to(model.targetscale, { x:35, y: 35, z: 35, duration: 0.15, onComplete: function(){
+								}, });
+								console.log(intersects[0].object.mytext)
+								$(".overlay_shop_name .shop_name").html(intersects[0].object.mytext)
+							} else {
+								gsap.to(model.targetscale, { x:30, y: 30, z: 30, duration: 0.15, onComplete: function(){
+								}, });
+								//plane.parent.userData.targetScale = 1; // Return to normal scale
+							}
+						});
+					}else{
+						modelArr.forEach(model => {
+							gsap.to(model.targetscale, { x:30, y: 30, z: 30, duration: 0.15, onComplete: function(){
+							}, });
+						});
+								$(".overlay_shop_name .shop_name").html("")
+					}
+				}
+			}
 
             // Function to handle mouse down event
             function onMouseDown(event) {
-                moved=false;
-                event.preventDefault();
-                isDragging = true;
-                previousMousePosition = { x: event.clientX, y: event.clientY };
+				if($("body").hasClass("modelloaded")){
+                	moved=false;
+				}
             }
 
 
             // Function to handle mouse up event
             function onMouseUp(event) {
-                event.preventDefault();
-                isDragging = false;
+                
             }
 
-            function onMouseMoveScale(event) {
-                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-                mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-            }
+			// Function to handle mouse click event
+			function onMouseClick(event) {
+				if($("body").hasClass("modelloaded")){
 
+					if(!moved){
+						// Convert mouse position to normalized device coordinates (-1 to +1) for both components
+						mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+						mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+						// Update the raycaster with the camera and mouse position
+						raycaster.setFromCamera(mouse, camera);
+
+						// Calculate objects intersecting the ray
+						var intersects = raycaster.intersectObjects(modelArr);
+
+						if (intersects.length > 0) {
+							//alert(intersects[0].object.myshop)
+							//console.log(intersects[0].object.parent,modelArr)
+							modelArr.forEach(model => {
+								if (intersects[0].object.parent === model || intersects[0].object.parent.parent === model) {
+									if(model.myid!=="model0"){
+										window.location = intersects[0].object.myshop+".html";
+									} 
+								}
+							});
+						}
+					}
+				}
+			}
 
 			function onWindowResize() {
 
@@ -1093,6 +1139,12 @@
             }
 
 		</script>
+
+		<div class="overlay_shop_name mobile_hide">
+			<div class="shop_name text1"></div>
+		</div>
+
+		<div class="loading"><img src="c_images/oval.svg"></div>
 
 	</body>
 </html>

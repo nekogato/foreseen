@@ -423,11 +423,13 @@ function toggleObjectsDrawer( e ) {
     e.stopPropagation()
     //// close drawer
     if (objDC.target.classList.contains("active")) {
+        $("body").removeClass("noraycaster")
         objDC.target.classList.remove("active")
         objDC.target.style.marginBottom = objDC.contentMarginBottom
         pointer.isActive = true
     } else {
     //// open drawer
+        $("body").addClass("noraycaster")
         objDC.target.classList.add("active")
         objDC.target.style.marginBottom = ""
         pointer.isActive = false
@@ -922,8 +924,8 @@ function raycast() {
 
     raycaster.setFromCamera( pointer, camera );
 
-	// calculate objects intersecting the picking ray
-	const intersects = raycaster.intersectObjects( objects );
+        // calculate objects intersecting the picking ray
+        const intersects = raycaster.intersectObjects( objects );
 
     if (intersects.length > 0) {
         // console.log(intersects.length)
