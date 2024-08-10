@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import ProjectedMaterial from '../js/ProjectedMaterial.js';
 
@@ -11,6 +13,14 @@ let objGroup;
 let raycaster;
 let pointer;
 let objects;
+
+let themeColor
+const colorWhite = new THREE.Color(0xFFFFFF)
+
+let textMaterial, lineMaterial;
+let fontPalatinoItalic
+let curPointerIndex = undefined
+let rAFhideThumbnail
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -50,57 +60,54 @@ const posArrayIndex = setIndex-1
 //     {path: "WorkingDesk_20240628.obj",          size: 0.4},               // 10
 // ]
 const objArray = [
-    {path: "ElectricityBox_20240628.obj",           id:"electricity_box", name:"ElectricityBox",        size: 10,           shop: "A"},               // 0
-    {path: "PressureCooker_Top_20240628.obj",       id:"rice_cooker", name:"PressureCooker_Top",        size: 0.9,          shop: "A"},               // 1
-    {path: "WorkingDesk_20240628.obj",              id:"working_desk", name:"WorkingDesk",        size: 0.4,          shop: "B"},               // 2
-    {path: "ShoeStand_20240628.obj",                id:"shoe_stretcher", name:"ShoeStand",        size: 0.7,          shop: "C"},               // 3
-    {path: "Iron_20240628.obj",                     id:"iron", name:"Iron",        size: 0.6,          shop: "D"},               // 4
-    {path: "PearlTools_20240628.obj",               id:"pearl_tools", name:"PearlTools",        size: 0.3,     xRot: Math.PI/-4,      yRot: Math.PI/2,     zPos: -0.8, shop: "B"},               // 5
-    {path: "Scissors_20240628.obj",                 id:"scissors", name:"Scissors",        size: 0.5,       xRot: Math.PI/-4,      zPos: -0.15,       shop: "D"},               // 6
-    {path: "NeedlePad_20240628.obj",                id:"needle_pad", name:"NeedlePad",        size: 3,            shop: "E"},               // 7
-    {path: "JwelleryBox_20240628.obj",              id:"jewelery_box", name:"JwelleryBox",        size: 0.15,         shop: "F"},               // 8
-    {path: "Keys_Main_20240628.obj",                id:"key", name:"Keys_Main",        size: 0.4,          shop: "C"},               // 9
-    {path: "Pin_20240628.obj",                      id:"pin", name:"Pin",               size: 0.07,    yRot: Math.PI/4,       zPos: -1,    shop: "D"},               // 10
-    {path: "ShoesOBJ_20240723.obj",                 id:"boots", name:"Group19384",        size: 0.05,    xRot: Math.PI/-2,      zPos: -3.5,     shop: "C"},               // 11
-    {path: "ShoeBagOBJ_20240724.obj",               id:"boots_with_bag", name:"Group10136",        size: 3.5,     xRot: Math.PI/-2,     shop: "C"},               // 12
-    {path: "WoodenBoxOpenOBJ_20240725.obj",         id:"wooden_tool_box_open", name:"Group21129",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 13
-    {path: "WoodenBoxClosedOBJ_20240725.obj",       id:"wooden_tool_box", name:"Group47146",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 14
-    {path: "ShoeRackOBJ_20240726.obj",              id:"shoe_rack", name:"Group57180",        size: 0.18,    xRot: Math.PI/-2,     shop: "F"},               // 15
-    {path: "SewingMachineOBJ_20240727.obj",         id:"sewing_machine", name:"Group7732",         size: 0.75,    xRot: Math.PI/-2,     shop: "E"},               // 16
-    {path: "JarOfJadeOBJ_20240727.obj",             id:"jar_of_jade", name:"Group17388",        size: 0.15,    xRot: Math.PI/-2,     shop: "B"},               // 17
-    {path: "HandDrawnShoes_OBJ_20240730.obj",       id:"handdraw_first_pair_of_shoes", name:"Group34095",        size: 0.15,    xRot: Math.PI/-2,      zPos: -0.4,     shop: "F"},               // 18
-    {path: "HandDrawnShoes2_OBJ_20240730.obj",      id:"handdraw_shoes", name:"Group50196",        size: 0.2,     xRot: Math.PI/-2,     shop: "C"},               // 19
-    {path: "HandDrawnKey_OBJ_20240730.obj",         id:"handdraw_key", name:"Group64819",        size: 0.18,    xRot: Math.PI/-4,     shop: "C"},               // 20
-    {path: "HandDrawnNecklace_OBJ_20240730.obj",    id:"handdraw_goldfish_jewelry", name:"Group14082",        size: 0.2,     xRot: Math.PI/-4,     zPos: -0.5,      shop: "B"},               // 21
-    {path: "HandDrawnScissor_OBJ_20240730.obj",     id:"handDraw_scissors", name:"Group8048",         size: 0.0055,   xRot: Math.PI*3/4,    zPos: -12,        shop: "D"},               // 22
+    {path: "ElectricityBox_20240628.obj",           id:"electricity_box",               name:"ElectricityBox",        size: 10,           shop: "A"},               // 0
+    {path: "PressureCooker_Top_20240628.obj",       id:"rice_cooker",                   name:"PressureCooker_Top",        size: 0.9,          shop: "A"},               // 1
+    {path: "WorkingDesk_20240628.obj",              id:"working_desk",                  name:"WorkingDesk",        size: 0.4,          shop: "B"},               // 2
+    {path: "ShoeStand_20240628.obj",                id:"shoe_stretcher",                name:"ShoeStand",        size: 0.7,          shop: "C"},               // 3
+    {path: "Iron_20240628.obj",                     id:"iron",                          name:"Iron",        size: 0.6,          shop: "D"},               // 4
+    {path: "PearlTools_20240628.obj",               id:"pearl_tools",                   name:"PearlTools",        size: 0.3,     xRot: Math.PI/-4,      yRot: Math.PI/2,     zPos: -0.8, shop: "B"},               // 5
+    {path: "Scissors_20240628.obj",                 id:"scissors",                      name:"Scissors",        size: 0.5,       xRot: Math.PI/-4,      zPos: -0.15,       shop: "D"},               // 6
+    {path: "NeedlePad_20240628.obj",                id:"needle_pad",                    name:"NeedlePad",        size: 3,            shop: "E"},               // 7
+    {path: "JwelleryBox_20240628.obj",              id:"jewelery_box",                  name:"JwelleryBox",        size: 0.15,         shop: "F"},               // 8
+    {path: "Keys_Main_20240628.obj",                id:"key",                           name:"Keys_Main",        size: 0.4,          shop: "C"},               // 9
+    {path: "Pin_20240628.obj",                      id:"pin",                           name:"Pin",               size: 0.07,    yRot: Math.PI/4,       zPos: -1,    shop: "D"},               // 10
+    {path: "ShoesOBJ_20240723.obj",                 id:"boots",                         name:"Group19384",        size: 0.05,    xRot: Math.PI/-2,      zPos: -3.5,     shop: "C"},               // 11
+    {path: "ShoeBagOBJ_20240724.obj",               id:"boots_with_bag",                name:"Group10136",        size: 3.5,     xRot: Math.PI/-2,     shop: "C"},               // 12
+    {path: "WoodenBoxOpenOBJ_20240725.obj",         id:"wooden_tool_box_open",          name:"Group21129",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 13
+    {path: "WoodenBoxClosedOBJ_20240725.obj",       id:"wooden_tool_box",               name:"Group47146",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 14
+    {path: "ShoeRackOBJ_20240726.obj",              id:"shoe_rack",                     name:"Group57180",        size: 0.18,    xRot: Math.PI/-2,     shop: "F"},               // 15
+    {path: "SewingMachineOBJ_20240727.obj",         id:"sewing_machine",                name:"Group7732",         size: 0.75,    xRot: Math.PI/-2,     shop: "E"},               // 16
+    {path: "JarOfJadeOBJ_20240727.obj",             id:"jar_of_jade",                   name:"Group17388",        size: 0.15,    xRot: Math.PI/-2,     shop: "B"},               // 17
+    {path: "HandDrawnShoes_OBJ_20240730.obj",       id:"handdraw_first_pair_of_shoes",  name:"Group34095",        size: 0.15,    xRot: Math.PI/-2,      zPos: -0.4,     shop: "F"},               // 18
+    {path: "HandDrawnShoes2_OBJ_20240730.obj",      id:"handdraw_shoes",                name:"Group50196",        size: 0.2,     xRot: Math.PI/-2,     shop: "C"},               // 19
+    {path: "HandDrawnKey_OBJ_20240730.obj",         id:"handdraw_key",                  name:"Group64819",        size: 0.18,    xRot: Math.PI/-4,     shop: "C"},               // 20
+    {path: "HandDrawnNecklace_OBJ_20240730.obj",    id:"handdraw_goldfish_jewelry",     name:"Group14082",        size: 0.2,     xRot: Math.PI/-4,     zPos: -0.5,      shop: "B"},               // 21
+    {path: "HandDrawnScissor_OBJ_20240730.obj",     id:"handDraw_scissors",             name:"Group8048",         size: 0.0055,   xRot: Math.PI*3/4,    zPos: -12,        shop: "D"},               // 22
 ]
 
 const colorArray = [
-    [new THREE.Color(0x7abbb8), new THREE.Color(0x5e9391), new THREE.Color(0x84cfcd)],
-    [new THREE.Color(0xffbdff), new THREE.Color(0xff9bff), new THREE.Color(0xf68af6)],
-    [new THREE.Color(0xffe7ab), new THREE.Color(0xedd087), new THREE.Color(0xefca6c)],
-    [new THREE.Color(0xb490e5), new THREE.Color(0x9a68df), new THREE.Color(0x763dc4)],
-    [new THREE.Color(0x87d190), new THREE.Color(0x73de80), new THREE.Color(0x4fe962)],
-    [new THREE.Color(0x8ec4ff), new THREE.Color(0x469bf8)],
+    [new THREE.Color(0x7abbb8), new THREE.Color(0x84cfcd)],
+    [new THREE.Color(0xd9b385), new THREE.Color(0xff9c24)],
+    [new THREE.Color(0xd6d6d6), new THREE.Color(0xb8b8b8)],
+    [new THREE.Color(0x575757), new THREE.Color(0x8c8c8c)],
+    [new THREE.Color(0xacbdd3), new THREE.Color(0x95aac2)],
+    [new THREE.Color(0xe0c381), new THREE.Color(0xf9c347)],
 ]
 
 const posArray = [
     [{x:-0.2, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.15}, {x:0, z:-0.1}, {x:-0.3, z:-0.2}],
-    // [{x:0, z:0.25}, {x:-0.25, z:-0.12}, {x:0.25, z:0.25}, {x:-0.25, z:-0.25}, {x:-0.12, z:0.12}],
     [{x:-0.3, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.1}, {x:-0.1, z:-0.3}, {x:-0.3, z:-0.2}, {x:0, z:0.2}],
-    // [{x:-0.25, z:0.1}, {x:0.1, z:-0.2}, {x:0.25, z:0.1}],
-    [{x:0.1, z:0.3}, {x:0.2, z:-0.2}, {x:0, z:0.1}, {x:-0.2, z:-0.2}],
-    // [{x:0.25, z:0.25}, {x:-0.2, z:-0.1}, {x:0.1, z:-0.15}],
-    [{x:-0.25, z:0}, {x:0, z:-0.25}, {x:0.25, z:0.25}],
+    [{x:0.2, z:0.3}, {x:0.2, z:-0.2}, {x:-0.1, z:0.1}, {x:-0.2, z:-0.1}],
+    [{x:-0.25, z:0}, {x:0, z:-0.25}, {x:0.25, z:0.25}, {x:0, z:0}],
     [{x:0.1, z:0.2}, {x:-0.2, z:-0.1}],
     [{x:-0.2, z:0.2}, {x:0.2, z:0}],
 ]
 
 const showSeqArray = [
-    [8,13,14,15,18],       // [0,1,6],    F
-    [3,9,11,12,19,20],     // [3,10,9],   C
-    [2,5,17,21],           // [2,4,5],    B
-    [4,6,10,22],           // [4,6,10,22] D
+    [8,13,14,15,18],       //             F
+    [3,9,11,12,19,20],     //             C
+    [2,5,17,21],           //             B
+    [4,6,10,22],           //             D
     [7,16],                //             E
     [0,1],                 //             A
 ]
@@ -263,8 +270,9 @@ function mobileChangeDetailView( e ) {
 
 function animate() {
     rotateObjects()
+    updateThumbnail()
     
-    scrollObjDC();
+    // scrollObjDC();
     if (controls) controls.update()
     render()
 
@@ -290,60 +298,21 @@ function changePlacement() {
 
     console.log("changePlacement")
 
-    placementState++
-    if (placementState > 2) placementState = 0
-
-    // switch (placementState) {
-    //     case 0:
-    //         object.position.z = 0
-    //         object2.position.x = 0
-    //         object2.position.z = 0
-    //         object3.position.x = 0
-    //         object3.position.z = 0
-
-    //         object3.rotation.z = 0
-    //         break
-    //     case 1:
-    //         object.position.z = 0
-    //         object2.position.x = -0.25
-    //         object3.position.x = 0.25
-
-    //         object3.rotation.y = 0
-    //         break
-    //     case 2:
-    //         // object.position.x = 0
-    //         // object.position.z = 0.25
-    //         // object2.position.x = -0.25
-    //         // object2.position.z = -0.12
-    //         // object3.position.x = 0.25
-    //         // object3.position.z = 0.25
-
-    //         object.position.x = posArraySet[0].x
-    //         object.position.z = posArraySet[0].z
-    //         object2.position.x = posArraySet[1].x
-    //         object2.position.z = posArraySet[1].z
-    //         object3.position.x = posArraySet[2].x
-    //         object3.position.z = posArraySet[2].z
-
-    //         object3.rotation.y = 0
-    // }
-
     for (var i=0; i < objects.length; i++) {
         if (i<posArraySet.length) {
             objects[i].position.x = posArraySet[i].x
             objects[i].position.z = posArraySet[i].z
+            gsap.fromTo( objects[i].position, {y: 2},{y:0, duration: 1 + i/objects.length * 1, ease: "power1.out"})
         }
-
-        // objects[i].position.set(0,0,0)
     }
 
-    // camera.position.x = 0;
-    // camera.position.y = 0;
-    // camera.position.z = 1;
+    // camera.position.x = -1;
+    // camera.position.y = 2;
+    // camera.position.z = 10;
 
-    camera.position.x = -1;
-    camera.position.y = 2;
-    camera.position.z = 1;
+    // gsap.fromTo( camera.position, 2, {x:-1, y:2, z:2}, {x:-1, y:2, z:1, onUpdate: ()=> { controls.update();}} )
+
+    gsap.fromTo( camera.position, 2, {x:1,y:8,z:8}, {x:-1, y:2, z:1, onUpdate: ()=> { controls.update();}} )
 }
 
 function pickColor( i ) {
@@ -372,14 +341,25 @@ const objDC = {
     multiplier: 50,
 }
 function initObjectsDrawer() {
-    document.querySelectorAll('.objects-drawer-slip').forEach( obj => {
-        obj.addEventListener("click", toggleObjectsDrawer, {passive: false})
-    })
-
+    objDC.target = document.querySelector('.objects-drawer')
+    objDC.slip = document.querySelector('.objects-drawer-slip')
     objDC.wrapper = document.querySelector(".objects-drawer-item-wrapper")
     objDC.content = document.querySelector(".objects-drawer-content")
+
+    objDC.slip.addEventListener("click", toggleObjectsDrawer, {passive: false})
+
+    objDC.resizeMarginBottom = () => {
+        objDC.contentMarginBottom = -1 * objDC.content.offsetHeight + "px"
+        
+        if (!objDC.target.classList.contains("active")) {
+            objDC.target.style.marginBottom = objDC.contentMarginBottom
+        }
+    }
+
+    objDC.resizeMarginBottom()
+    
     if (objDC.wrapper !== null) {
-       objDC.content.addEventListener("pointerdown", objDCPointerDown, {passive: false})
+    //    objDC.content.addEventListener("pointerdown", objDCPointerDown, {passive: false})
     }
 }
 function objDCPointerDown( e ) {
@@ -432,8 +412,10 @@ function toggleObjectsDrawer( e ) {
     // console.log( e, e.target.parent)
     if (e.target.parentElement.classList.contains("active")) {
         e.target.parentElement.classList.remove("active")
+        objDC.target.style.marginBottom = objDC.contentMarginBottom
     } else {
         e.target.parentElement.classList.add("active")
+        objDC.target.style.marginBottom = ""
     }
 }
 
@@ -485,15 +467,28 @@ function init() {
         console.log("loadModel")
         console.log(objects.length)
 
+        const textureLoader = new THREE.TextureLoader();
+
+        textMaterial = new THREE.MeshBasicMaterial({
+            color: new THREE.Color(0x000000),
+            transparent: true,
+            opacity: 1,
+            depthWrite: false,
+            depthTest: false,
+        })
+
         for (var i=0; i<objects.length; i++) {
 
             const obj = objects[i]
             obj.traverse(function (child) {
                 if (child.isMesh) {
                     // console.log(child.name)
-                    child.material = pMat.clone()
+                    // console.log(child.material.side)
+                    // child.material = pMat.clone()
+                    child.material = new THREE.MeshStandardMaterial()
                     // child.material.color = colorArraySet[i]
                     child.material.color = pickColor( i / showSeq.length )
+                    child.material.side = THREE.DoubleSide
                     if (i == 4) {
                         // child.material.color = new THREE.Color(0xCCCCCC)
                         // console.log(child.position)
@@ -511,11 +506,49 @@ function init() {
             });
             obj.rotation.x = Math.PI / 2
             obj.scale.setScalar( objArray[showSeq[i]].size );
-            obj.userData.map = thumbnailImg01;
+            // obj.userData.map = thumbnailImg01;
             // you can find the thumbnail here 'c_images/objects/', but need to add the object name and shadow
             // obj.userData.map = new THREE.TextureLoader().load('c_images/objects/'+objArray[showSeq[i]].id+".png");
+            textureLoader.load('c_images/objects/'+objArray[showSeq[i]].id+".png",
+                (texture) => {
+                    texture.colorSpace = THREE.SRGBColorSpace;
+                    obj.userData.map = texture
+                }
+            );
+
+            // const geometry = new TextGeometry( "(" + objArray[showSeq[i]].id + ")", {
+            const geometry = new TextGeometry( "( " + substituteText( objArray[showSeq[i]].id ) + " )", {
+                font: fontPalatinoItalic,
+                size: 6,
+                depth: 5,
+                curveSegments: 12,
+                // bevelEnabled: true,
+                // bevelThickness: 10,
+                // bevelSize: 8,
+                // bevelOffset: 0,
+                // bevelSegments: 5
+            } );
+            geometry.computeBoundingBox()
+            geometry.translate( -geometry.boundingBox.max.x/2, 0, 0)
+            
+            const text = new THREE.Mesh( geometry, textMaterial)
+            text.name = "text"
+            text.scale.set(0.005,0.005,0.005)
+            text.position.y = -0.175
+            obj.userData.textObj = text
+
             objGroup.add(obj);
             // scene.add(obj);    
+        }
+
+        function substituteText( text ) {
+            const words = text.split("_")
+            
+            for (let i=0; i < words.length; i++) {
+                words[i] = words[i][0].toUpperCase() + words[i].substr(1)
+            }
+
+            return words.join(" ")
         }
 
         // object.traverse(function (child) {
@@ -668,7 +701,7 @@ function init() {
 
         pMat = new THREE.MeshStandardMaterial({color: colorArraySet[0]})
         pMat2 = new THREE.MeshStandardMaterial({color: colorArraySet[1]})
-        pMat3 = new THREE.MeshStandardMaterial({color: colorArraySet[2]})
+        pMat3 = new THREE.MeshStandardMaterial({color: colorArraySet[0]})
     }
 
     // model
@@ -704,26 +737,11 @@ function init() {
         }, onProgress, onError);
     }
 
-    // loader.load('assets/obj/'+ objArray[showSeq[0]].path, function (obj) {   // assets/ElectricityBox_20240628.obj
+    const fontLoader = new FontLoader(manager);
 
-    //     object = obj;
-    //     objects.push(obj)
-
-    // }, onProgress, onError);
-
-    // loader.load('assets/obj/'+ objArray[showSeq[1]].path, function (obj) {   // 'assets/Iron_20240628.obj'
-
-    //     object2 = obj;
-    //     objects.push(obj)
-
-    // }, onProgress, onError);
-
-    // loader.load('assets/obj/'+ objArray[showSeq[2]].path, function (obj) {   // 'assets/Pin_20240628.obj'
-
-    //     object3 = obj;
-    //     objects.push(obj)
-
-    // }, onProgress, onError);
+    fontLoader.load( 'c_css/fonts/Palatino_Italic.json', ( font ) => {
+        fontPalatinoItalic = font
+    } );
 
 
     //
@@ -761,7 +779,8 @@ function init() {
     document.getElementById("debug-shifted").addEventListener("change", inputChange)
 
     document.addEventListener("pointermove", onPointerMove)
-    document.addEventListener("click", onPointerClick)
+    // document.addEventListener("click", onPointerClick)
+    renderer.domElement.addEventListener("click", onPointerClick)
 
     onWindowResize()
 }
@@ -808,8 +827,6 @@ function onPointerClick( event ) {
     }
 }
 
-let curPointerIndex = undefined
-
 function raycast() {
     raycaster.setFromCamera( pointer, camera );
 
@@ -823,7 +840,10 @@ function raycast() {
         //     console.log("1")
         // }
 
-        showThumbnail(intersects[i].object.parent)
+        const index = objects.indexOf(intersects[i].object.parent)
+        if ( curPointerIndex !== index ) {
+            showThumbnail(intersects[i].object.parent)
+        }
 
         // switch (intersects[ i ].object.parent) {
         //     case object:
@@ -843,9 +863,8 @@ function raycast() {
 		// intersects[ i ].object.material.color.set( 0xff0000 );
 	}
 
-    if ( intersects.length < 1 ) {
+    if ( intersects.length < 1 && curPointerIndex != undefined) {
         hideThumbnail()
-        curPointerIndex = undefined
     }
 
     // if ( intersects.length < 1) {
@@ -877,22 +896,117 @@ function openObject( index, id ) {
     window.location.hash = id;
 }
 
+function RoundedRectangleGeometry( w, h, r, s ) { // width, height, radius corner, smoothness
+		
+	// helper const's
+	const wi = w / 2 - r;		// inner width
+	const hi = h / 2 - r;		// inner height
+	const w2 = w / 2;			// half width
+	const h2 = h / 2;			// half height
+	const ul = r / w;			// u left
+	const ur = ( w - r ) / w;	// u right
+	const vl = r / h;			// v low
+	const vh = ( h - r ) / h;	// v high	
+	
+	let positions = [wi, hi, 0, -wi, hi, 0, -wi, -hi, 0, wi, -hi, 0];
+	
+	let uvs = [ur, vh, ul, vh, ul, vl, ur, vl];
+	
+	let n = [
+		3 * ( s + 1 ) + 3,  3 * ( s + 1 ) + 4,  s + 4,  s + 5,
+		2 * ( s + 1 ) + 4,  2,  1,  2 * ( s + 1 ) + 3,
+		3,  4 * ( s + 1 ) + 3,  4, 0
+	];
+	
+	let indices = [
+		n[0], n[1], n[2],  n[0], n[2],  n[3],
+		n[4], n[5], n[6],  n[4], n[6],  n[7],
+		n[8], n[9], n[10], n[8], n[10], n[11]
+	];
+	
+	let phi, cos, sin, xc, yc, uc, vc, idx;
+	
+	for ( let i = 0; i < 4; i ++ ) {
+		xc = i < 1 || i > 2 ? wi : -wi;
+		yc = i < 2 ? hi : -hi;
+		
+		uc = i < 1 || i > 2 ? ur : ul;
+		vc = i < 2 ? vh : vl;
+			
+		for ( let j = 0; j <= s; j ++ ) {
+			phi = Math.PI / 2  *  ( i + j / s );
+			cos = Math.cos( phi );
+			sin = Math.sin( phi );
+
+			positions.push( xc + r * cos, yc + r * sin, 0 );
+
+			uvs.push( uc + ul * cos, vc + vl * sin );
+					
+			if ( j < s ) {
+				idx =  ( s + 1 ) * i + j + 4;
+				indices.push( i, idx, idx + 1 );
+			}
+		}
+	}
+		
+	const geometry = new THREE.BufferGeometry( );
+	geometry.setIndex( new THREE.BufferAttribute( new Uint32Array( indices ), 1 ) );
+	geometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array( positions ), 3 ) );
+	geometry.setAttribute( 'uv', new THREE.BufferAttribute( new Float32Array( uvs ), 2 ) );
+	
+	return geometry;	
+}
+
 function initThumbnail() {
     console.log("initThumbnail")
-    const spriteMaterial = new THREE.SpriteMaterial({
-        map: thumbnailImg01,
-        depthTest: false,
-        opacity: 0,
-    });
-    // spriteMaterial.sizeAttenuation = false;
+    // const spriteMaterial = new THREE.SpriteMaterial({
+    //     map: thumbnailImg01,
+    //     depthTest: false,
+    //     opacity: 0,
+    // });
+    // // spriteMaterial.sizeAttenuation = false;
 
-    thumbnail = new THREE.Sprite( spriteMaterial )
-    thumbnail.center.set(0.5,-0.5)
-    thumbnail.scale.setScalar(0.25)
+    // thumbnail = new THREE.Sprite( spriteMaterial )
+    // thumbnail.center.set(0.5,-0.5)
+    // thumbnail.scale.setScalar(0.25)
+
+    themeColor = pickColor(0.5)
+
+    thumbnail = new THREE.Mesh( 
+        new RoundedRectangleGeometry(0.25,0.25,0.025,18), 
+        new THREE.MeshBasicMaterial({
+            // color: new THREE.Color(0xCCCCCC),
+            color: themeColor,
+            side: THREE.DoubleSide,
+            transparent: true,
+            depthTest: false,
+            depthWrite: false,
+            opacity: 0,
+        })
+    )
+
+    lineMaterial = new THREE.MeshBasicMaterial({ color: colorWhite, transparent: true, opacity: 0 })
+    const line = new THREE.Mesh( 
+        new THREE.CylinderGeometry(0.001,0.001,0.3,32),
+        lineMaterial
+    )
+    line.name = "homepage-line"
+    line.position.y = -0.35
+
+    thumbnail.add(line)
+
+    thumbnail.scale.setScalar(0.5)
     
     objGroup.add(thumbnail)
 }
+function updateThumbnail() {
+    thumbnail.quaternion.copy(camera.quaternion)
+}
 function showThumbnail( target ) {
+    // console.log("showThumbnail")
+
+    cancelAnimationFrame(rAFhideThumbnail)
+
     targetDom.style.cursor = "pointer"
 
     const index = objects.indexOf(target)
@@ -903,22 +1017,41 @@ function showThumbnail( target ) {
     if (thumbnail) {
         thumbnail.material.opacity = 1
         thumbnail.position.copy(target.position)
-        thumbnail.material.map = target.userData.map
+        if (target.userData.map !== undefined) {
+            thumbnail.material.map = target.userData.map
+            thumbnail.material.color = colorWhite
+        } else {
+            thumbnail.material.map = null
+            thumbnail.material.color = themeColor
+        }
+        thumbnail.remove(thumbnail.getObjectByName("text"))
+        thumbnail.add(target.userData.textObj)
     }
+
+    textMaterial.opacity = 1
+    lineMaterial.opacity = 1
     
-    // thumbnail.position.y += 0.5
+    thumbnail.position.y += 0.5
+    gsap.from( thumbnail.position, 0.5, {y: thumbnail.position.y - 0.05})
     // thumbnail.position.y = pointer.y
 }
 function hideThumbnail() {
+    // console.log("hideThumbnail", curPointerIndex)
+
+    curPointerIndex = undefined
+
     targetDom.style.cursor = ""
     if (thumbnail !== undefined && thumbnail.material.opacity > 0) {
         thumbnail.material.opacity -= 0.01
+        textMaterial.opacity -= 0.01
+        lineMaterial.opacity -= 0.01
 
         // console.log(thumbnail.material.opacity)
         if (thumbnail.material.opacity > 0) {
-            requestAnimationFrame(hideThumbnail)
+            rAFhideThumbnail = requestAnimationFrame(hideThumbnail)
         } else {
             thumbnail.material.opacity = 0
+            textMaterial.opacity = 0
         }
     }
 }
@@ -959,6 +1092,11 @@ function onWindowResize() {
     }
 
     renderer.setSize(targetDom.getBoundingClientRect().width, window.innerHeight * ratio);
+
+    if (objDC !== undefined && objDC.resizeMarginBottom !== undefined) {
+        console.log(objDC.resizeMarginBottom)
+        objDC.resizeMarginBottom()
+    }
 
     render()
 }
