@@ -197,9 +197,7 @@ html, body {
     letter-spacing: 0.05em;
 }
 .article-ppl-name {
-    /* font-size: 1.5em; */
     font-size: 1em;
-    /* color: #666666; */
 }
 .article-ppl-name .text-tc {
     font-size: 0.95em;
@@ -211,9 +209,7 @@ html, body {
     font-size: 0.8em;
 }
 .article-ppl-desc {
-    /* margin-bottom: 60px; */
     font-size: 0.9em;
-    /* color: #666666; */
 }
 .contact-ig {
     display: inline-block;
@@ -237,13 +233,33 @@ html, body {
     z-index: 999;
     text-align: center;
     overflow: hidden;
-    margin-bottom: -264px;
+    margin-bottom: -359px;
     transition: margin-bottom 250ms ease-out;
     pointer-events: none;
 }
 .objects-drawer.active {
     margin-bottom: 0px;
     pointer-events: all;
+}
+.objects-drawer-backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(rgba(212, 212, 212, 0.8), rgba(187, 191, 192,0.8) 67%);
+    opacity: 0;
+    transition: all 200ms ease-out;
+}
+.objects-drawer.active .objects-drawer-backdrop  {
+    cursor: pointer;
+    pointer-events: all;
+    opacity: 1;
+}
+.objects-drawer.active .objects-drawer-backdrop:hover  {
+    opacity: 0.7;
 }
 .objects-drawer-slip{
     pointer-events: all;
@@ -263,12 +279,11 @@ html, body {
 }
 .objects-drawer-content {
     width: 100%;
-    /* height: 40px; */
     background: #FFF;
     padding: 10px;
     white-space: nowrap;
     overflow-x: auto;
-    /* overflow: auto; */
+    box-sizing: border-box;
 }
 .objects-drawer-item-wrapper {
     user-select: none;
@@ -278,10 +293,12 @@ html, body {
     width: 200px;
     margin: 10px;  
     vertical-align: top;
-    /* margin: auto; */
+    text-wrap: balance;
 }
-
-.objects-drawer-item .thumb{
+.objects-drawer-item:hover .thumb {
+    transform: scale(0.95);
+}
+.objects-drawer-item .thumb {
     width: 170px;
     height: 150px;
     background-position: center center;
@@ -289,13 +306,19 @@ html, body {
     border-radius: 10px;
     background-repeat: no-repeat;
     margin: auto;
+    transition: transform 250ms ease-out;
 }
 
-.objects-drawer-item .text{
+.objects-drawer-item .text {
     margin-top: 20px;
     text-align: center;
     font-size: 12px;
     line-height: 1.5em;
+    transition: all 250ms ease-out;
+}
+
+.objects-drawer-item:hover .text {
+    transform: scale(1.2)
 }
 
 .svg-color{
@@ -465,6 +488,13 @@ a:hover > .contact-ig::before {
     .inside-menu-item-wrapper {
         flex-wrap: nowrap;
         overflow-x: auto;
+    }
+    .objects-drawer-item {
+        width: 125px;
+    }
+    .objects-drawer-item .thumb {
+        width: 85px;
+        height: 75px;
     }
     .fancybox-slide .content {
         padding: 20px;

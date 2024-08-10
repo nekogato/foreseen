@@ -126,7 +126,7 @@ const showSeq = showSeqArray[showSeqIndex]
 let object, object2, object3;
 let pMat, pMat2, pMat3;
 
-let thumbnail
+let thumbnail, thumbnailLine
 let thumbnailImg01, thumbnailImg02, thumbnailImg03;
 
 let hemisphereLight
@@ -162,10 +162,7 @@ function setupInsideMenu() {
 }
 
 function changeDetailView( e ) {
-    const selectedMenuItems = document.querySelectorAll(".fold-2-right .inside-menu-item.selected")
-    selectedMenuItems.forEach( obj => {
-        obj.classList.remove("selected")
-    })
+    resetInsideMenuButton()
     e.target.classList.add("selected")
 
     const scrollins = document.querySelectorAll(".content .scrollin.startani")
@@ -192,6 +189,12 @@ function changeDetailView( e ) {
     })
 
     doscroll()
+}
+function resetInsideMenuButton() {
+    const selectedMenuItems = document.querySelectorAll(".fold-2-right .inside-menu-item.selected")
+    selectedMenuItems.forEach( obj => {
+        obj.classList.remove("selected")
+    })
 }
 
 function fancyboxBinding() {
@@ -225,7 +228,8 @@ function fancyboxBinding() {
     }
     // console.log($.fancybox.defaults)
     $.fancybox.defaults.beforeClose = function() {
-        resetInsideMenuButton()
+        resetMobileInsideMenuButton()
+        console.log("resetclose")
     }
 
     
@@ -237,7 +241,7 @@ function fancyboxBinding() {
     }
 }
 
-function resetInsideMenuButton() {
+function resetMobileInsideMenuButton() {
     const selectedMenuItems = document.querySelectorAll(".mobile_inside-menu_wrapper .inside-menu-item.selected")
     selectedMenuItems.forEach( obj => {
         obj.classList.remove("selected")
@@ -245,7 +249,11 @@ function resetInsideMenuButton() {
 }
 
 function mobileChangeDetailView( e ) {
-   resetInsideMenuButton()
+    resetInsideMenuButton()
+    const btn = document.querySelector(".fold-2-right .inside-menu-item[data-detail='"+ e.target.dataset.detail +"']")
+    btn.classList.add("selected")
+
+    resetMobileInsideMenuButton()
     e.target.classList.add("selected")
 
     const scrollins = document.querySelectorAll(".content .scrollin.startani")
@@ -312,7 +320,9 @@ function changePlacement() {
 
     // gsap.fromTo( camera.position, 2, {x:-1, y:2, z:2}, {x:-1, y:2, z:1, onUpdate: ()=> { controls.update();}} )
 
-    gsap.fromTo( camera.position, 2, {x:1,y:8,z:8}, {x:-1, y:2, z:1, onUpdate: ()=> { controls.update();}} )
+    gsap.fromTo( camera.position, 4, {x:2,y:4,z:0}, {x:-1, y:4, z:4, onUpdate: ()=> { controls.update();}} )
+    // gsap.fromTo( camera.position, 2, {x:0,y:10,z:0}, {x:-1, y:2, z:1, onUpdate: ()=> { controls.update();}} )
+    // gsap.fromTo( camera.zoom, 10, {zoom: 1000}, {zoom: 750, onUpdate: ()=> { controls.update();}} )
 }
 
 function pickColor( i ) {
@@ -345,12 +355,14 @@ function initObjectsDrawer() {
     objDC.slip = document.querySelector('.objects-drawer-slip')
     objDC.wrapper = document.querySelector(".objects-drawer-item-wrapper")
     objDC.content = document.querySelector(".objects-drawer-content")
+    objDC.backdrop = document.querySelector(".objects-drawer-backdrop")
 
-    objDC.slip.addEventListener("click", toggleObjectsDrawer, {passive: false})
+    if (objDC.slip !== null) objDC.slip.addEventListener("click", toggleObjectsDrawer, {passive: false})
+    if (objDC.backdrop !== null) objDC.backdrop.addEventListener("click", toggleObjectsDrawer, {passive: false})
 
     objDC.resizeMarginBottom = () => {
+        objDC.content.style.display = "block"
         objDC.contentMarginBottom = -1 * objDC.content.offsetHeight + "px"
-        
         if (!objDC.target.classList.contains("active")) {
             objDC.target.style.marginBottom = objDC.contentMarginBottom
         }
@@ -409,13 +421,16 @@ function scrollObjDC() {
 function toggleObjectsDrawer( e ) {
     e.preventDefault()
     e.stopPropagation()
-    // console.log( e, e.target.parent)
-    if (e.target.parentElement.classList.contains("active")) {
-        e.target.parentElement.classList.remove("active")
+    //// close drawer
+    if (objDC.target.classList.contains("active")) {
+        objDC.target.classList.remove("active")
         objDC.target.style.marginBottom = objDC.contentMarginBottom
+        pointer.isActive = true
     } else {
-        e.target.parentElement.classList.add("active")
+    //// open drawer
+        objDC.target.classList.add("active")
         objDC.target.style.marginBottom = ""
+        pointer.isActive = false
     }
 }
 
@@ -426,7 +441,7 @@ function init() {
     // camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 20 );
 
     camera = new THREE.OrthographicCamera(targetDom.getBoundingClientRect().width / - 2, targetDom.getBoundingClientRect().width/ 2, window.innerHeight / 2, window.innerHeight / - 2, 0.1, 20);
-    camera.zoom = 1000;
+    camera.zoom = 750;
     camera.position.x = -1;
     camera.position.y = 2;
     camera.position.z = 1;
@@ -506,6 +521,21 @@ function init() {
             });
             obj.rotation.x = Math.PI / 2
             obj.scale.setScalar( objArray[showSeq[i]].size );
+            
+            // obj.updateMatrix()
+            // obj.children[0].updateMatrix()
+            // obj.children[0].geometry.computeBoundingBox()
+            // console.log( obj.scale.y )
+            // console.log( obj.children[0].geometry.boundingBox )
+            // console.log( obj.children[0].geometry.boundingBox.min, obj.children[0].geometry.boundingBox.max)
+            // console.log( obj.children[0].geometry.boundingBox.max.y - obj.children[0].geometry.boundingBox.min.y )
+            // obj.userData.height = (obj.children[0].geometry.boundingBox.max.y - obj.children[0].geometry.boundingBox.min.y) * obj.scale.y
+            // console.log( obj.userData.height )
+
+            const aabb = new THREE.Box3();
+            aabb.setFromObject( obj );
+            obj.userData.height = aabb.max.y - aabb.min.y
+
             // obj.userData.map = thumbnailImg01;
             // you can find the thumbnail here 'c_images/objects/', but need to add the object name and shadow
             // obj.userData.map = new THREE.TextureLoader().load('c_images/objects/'+objArray[showSeq[i]].id+".png");
@@ -778,11 +808,57 @@ function init() {
     document.getElementById("debug-series").addEventListener("change", inputChange)
     document.getElementById("debug-shifted").addEventListener("change", inputChange)
 
+    document.addEventListener("pointermove", checkPointerType)
     document.addEventListener("pointermove", onPointerMove)
     // document.addEventListener("click", onPointerClick)
+    renderer.domElement.addEventListener("pointerdown", trackPointerEvent)
+    renderer.domElement.addEventListener("pointerup", trackPointerEvent)
+    renderer.domElement.addEventListener("click", trackPointerEvent)
+    // renderer.domElement.addEventListener("pointermove", trackPointerEvent)
     renderer.domElement.addEventListener("click", onPointerClick)
 
     onWindowResize()
+}
+
+let dPointer = {
+    down: new THREE.Vector2(),
+    move: new THREE.Vector2()
+}
+function trackPointerEvent(e) {
+    // console.log(e.type)
+    if (e.type == "pointerdown") {
+        dPointer.isDragged = false
+        dPointer.down.set(e.pageX, e.pageY)
+
+        renderer.domElement.addEventListener("pointermove", trackPointerEvent)
+    }
+    if (e.type == "pointerup") {
+        renderer.domElement.removeEventListener("pointermove", trackPointerEvent)
+    }
+    if (e.type == "pointermove" && !dPointer.isDragged) {
+        dPointer.move.set(e.pageX, e.pageY)
+        dPointer.distance = dPointer.move.distanceTo(dPointer.down)
+        if (dPointer.distance > 10) {
+            dPointer.isDragged = true;
+        }
+    }
+}
+
+let isPointerType
+function checkPointerType( event ) {
+    console.log( event.pointerType )
+    if ( event.pointerType == "touch" || event.pointerType == "pen") {
+        isPointerType = "touch"
+    }
+    if ( event.pointerType == "mouse") {
+        isPointerType = "mouse"
+    }
+        
+    document.removeEventListener("pointermove", checkPointerType)
+    document.removeEventListener("pointerdown", checkPointerType)
+
+    console.log(isPointerType)
+    
 }
 
 function onPointerMove( event ) {
@@ -803,92 +879,64 @@ function onPointerMove( event ) {
 function onPointerClick( event ) {
 
     // console.log(pointer)
+    if (isPointerType == "touch") {
+        pointer.x = ( event.clientX / targetDom.getBoundingClientRect().width ) * 2 - 1;
+	    pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
-    // pointer.x = ( event.clientX / targetDom.getBoundingClientRect().width ) * 2 - 1;
-	// pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+        raycaster.setFromCamera( pointer, camera );
 
-    // console.log(pointer)
+        // calculate objects intersecting the picking ray
+        const intersects = raycaster.intersectObjects( objects );
 
-    // raycaster.setFromCamera( pointer, camera );
-
-	// // calculate objects intersecting the picking ray
-	// const intersects = raycaster.intersectObjects( objects );
-
-    // if (intersects.length > 1) {
-    //     console.log(intersects[0].object)
-    //     const index = objects.indexOf( intersects[0].object.parent )
-        
-    //     openObject( index )
-    //     window.openObject( index )
-    // }
-    
-    if (curPointerIndex != undefined) {
-        openObject( curPointerIndex, objArray[showSeq[curPointerIndex]].id )
-    }
+        if (intersects.length > 1) {
+            const index = objects.indexOf(intersects[0].object.parent)
+            if ( curPointerIndex == undefined || curPointerIndex !== index ) {
+                showThumbnail(intersects[0].object.parent)
+            } else {
+                //console.log(intersects[0].object)
+                if (curPointerIndex == index ) {
+                    openObject( curPointerIndex, objArray[showSeq[curPointerIndex]].id )
+                    hideThumbnail()
+                }
+            }
+        } else {
+            hideThumbnail()
+        }
+    } else {
+        if (curPointerIndex != undefined && !dPointer.isDragged) {
+            openObject( curPointerIndex, objArray[showSeq[curPointerIndex]].id )
+            hideThumbnail()
+        }
+    } 
 }
 
 function raycast() {
+    if (isPointerType == "touch") return
+
+    if (pointer.isActive == false) {
+        if ( curPointerIndex != undefined) {
+            hideThumbnail()
+        }
+        return
+    } 
+
     raycaster.setFromCamera( pointer, camera );
 
 	// calculate objects intersecting the picking ray
 	const intersects = raycaster.intersectObjects( objects );
 
-    // console.log(intersects.length)
-
-	for ( let i = 0; i < intersects.length; i ++ ) {
-        // if (intersects[ i ].object === object) {
-        //     console.log("1")
-        // }
-
-        const index = objects.indexOf(intersects[i].object.parent)
+    if (intersects.length > 0) {
+        // console.log(intersects.length)
+   
+        const index = objects.indexOf(intersects[0].object.parent)
         if ( curPointerIndex !== index ) {
-            showThumbnail(intersects[i].object.parent)
+            showThumbnail(intersects[0].object.parent)
         }
-
-        // switch (intersects[ i ].object.parent) {
-        //     case object:
-        //         // console.log("1")
-        //         showThumbnail(object)
-        //         break
-        //     case object2:
-        //         // console.log("2")
-        //         showThumbnail(object2)
-        //         break
-        //     case object3:
-        //         // console.log("3")
-        //         showThumbnail(object3)
-        //         break
-        // }
-
-		// intersects[ i ].object.material.color.set( 0xff0000 );
-	}
-
-    if ( intersects.length < 1 && curPointerIndex != undefined) {
-        hideThumbnail()
+	} else {
+        if ( curPointerIndex != undefined ) {
+            hideThumbnail()
+        }
     }
-
-    // if ( intersects.length < 1) {
-    //     // console.log(highlightedObjects)
-    //     if (object && object.userData !== undefined) {
-    //         console.log(object.userData.originalColor)
-    //         if (object.userData.originalColor !== undefined && !object.userData.mouseover) {
-    //             object.material.color.set(object.userData.originalColor)
-    //             object.userData.mouseover = false
-    //         }
-    //     }
-    //     if (object2 && object2.userData !== undefined) {
-    //         if (object2.userData.originalColor !== undefined && !object2.userData.mouseover) {
-    //             object2.material.color.set(object2.userData.originalColor)
-    //             object2.userData.mouseover = false
-    //         }
-    //     }
-    //     if (object3 && object3.userData !== undefined) {
-    //         if (object3.userData.originalColor !== undefined && !object3.userData.mouseover) {
-    //             object3.material.color.set(object23userData.originalColor)
-    //             object3.userData.mouseover = false
-    //         }
-    //     }
-    // }
 }
 
 function openObject( index, id ) {
@@ -986,17 +1034,20 @@ function initThumbnail() {
     )
 
     lineMaterial = new THREE.MeshBasicMaterial({ color: colorWhite, transparent: true, opacity: 0 })
-    const line = new THREE.Mesh( 
+    thumbnailLine = new THREE.Mesh( 
         new THREE.CylinderGeometry(0.001,0.001,0.3,32),
         lineMaterial
     )
-    line.name = "homepage-line"
-    line.position.y = -0.35
+    thumbnailLine.geometry.computeBoundingBox()
+    thumbnailLine.geometry.translate(0,thumbnailLine.geometry.boundingBox.max.y,0)
+    thumbnailLine.name = "thumbnail-line"
+    thumbnailLine.position.y = 2
 
-    thumbnail.add(line)
+    //thumbnail.add(line)
 
     thumbnail.scale.setScalar(0.5)
     
+    objGroup.add(thumbnailLine)
     objGroup.add(thumbnail)
 }
 function updateThumbnail() {
@@ -1015,8 +1066,10 @@ function showThumbnail( target ) {
     // console.log("showThumbnail")
 
     if (thumbnail) {
+        gsap.to(thumbnail.material, 0, {opacity: 1, overwrite: true})
         thumbnail.material.opacity = 1
         thumbnail.position.copy(target.position)
+        thumbnailLine.position.copy(target.position)
         if (target.userData.map !== undefined) {
             thumbnail.material.map = target.userData.map
             thumbnail.material.color = colorWhite
@@ -1028,32 +1081,50 @@ function showThumbnail( target ) {
         thumbnail.add(target.userData.textObj)
     }
 
-    textMaterial.opacity = 1
-    lineMaterial.opacity = 1
+    gsap.to(textMaterial, 0, {opacity: 1, overwrite: true})
+    gsap.to(lineMaterial, 0, {opacity: 1, overwrite: true})
+    // textMaterial.opacity = 1
+    // lineMaterial.opacity = 1
+
+    // console.log(target.userData.height)
+    // const scale = 1
+    // const scale = 1 - (target.userData.height / 0.3)
+    // const scale = (target.userData.height ) / 0.3
+    const scale = (0.1 + 0.05) /0.3
     
-    thumbnail.position.y += 0.5
+    // thumbnail.position.y = 0.5
+    thumbnail.position.y = target.userData.height + 0.1 + 0.1
+    thumbnailLine.position.y = target.userData.height - 0.05
+    // thumbnailLine.position.y = target.userData.height + 0.1
     gsap.from( thumbnail.position, 0.5, {y: thumbnail.position.y - 0.05})
+    gsap.fromTo( thumbnailLine.scale, 0.5, {y: scale * 0.8},{y: scale } )
     // thumbnail.position.y = pointer.y
 }
 function hideThumbnail() {
     // console.log("hideThumbnail", curPointerIndex)
 
-    curPointerIndex = undefined
-
-    targetDom.style.cursor = ""
-    if (thumbnail !== undefined && thumbnail.material.opacity > 0) {
-        thumbnail.material.opacity -= 0.01
-        textMaterial.opacity -= 0.01
-        lineMaterial.opacity -= 0.01
-
-        // console.log(thumbnail.material.opacity)
-        if (thumbnail.material.opacity > 0) {
-            rAFhideThumbnail = requestAnimationFrame(hideThumbnail)
-        } else {
-            thumbnail.material.opacity = 0
-            textMaterial.opacity = 0
-        }
+    if (thumbnail !== undefined) {
+        const dur = thumbnail.material.opacity
+        gsap.to(thumbnail.material, dur, {opacity: 0, delay: 0.25, onStart: ()=> { 
+            curPointerIndex = undefined
+            targetDom.style.cursor = ""
+         } })
+        gsap.to(textMaterial, dur, {opacity: 0, delay: 0.25})
+        gsap.to(lineMaterial, dur, {opacity: 0, delay: 0.25})
     }
+    // if (thumbnail !== undefined && thumbnail.material.opacity > 0) {
+    //     thumbnail.material.opacity -= 0.05
+    //     textMaterial.opacity -= 0.05
+    //     lineMaterial.opacity -= 0.05
+
+    //     // console.log(thumbnail.material.opacity)
+    //     if (thumbnail.material.opacity > 0) {
+    //         rAFhideThumbnail = requestAnimationFrame(hideThumbnail)
+    //     } else {
+    //         thumbnail.material.opacity = 0
+    //         textMaterial.opacity = 0
+    //     }
+    // }
 }
 
 function inputChange(e) {
@@ -1094,7 +1165,7 @@ function onWindowResize() {
     renderer.setSize(targetDom.getBoundingClientRect().width, window.innerHeight * ratio);
 
     if (objDC !== undefined && objDC.resizeMarginBottom !== undefined) {
-        console.log(objDC.resizeMarginBottom)
+        // console.log(objDC.resizeMarginBottom)
         objDC.resizeMarginBottom()
     }
 
