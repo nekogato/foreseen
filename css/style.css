@@ -186,6 +186,13 @@ html, body {
     line-height: 1.5em;
 }
 
+.content-shop-info table{
+    width:100%;
+    border-top:1px solid #fff;
+    border-bottom:1px solid #fff;
+    margin-top: 30px;
+}
+
 .td-title {
     padding-right: 0.5em;
 }
@@ -431,6 +438,14 @@ a:hover > .contact-ig::before {
     transform: rotate(-45deg);
     position: absolute;
 } */
+
+@media (max-width: 1440px) {
+
+    .content {
+        margin: 30px 60px;
+    }
+
+}
 
 @media (max-width: 1023px) {
     .wrapper-fold-2 {
