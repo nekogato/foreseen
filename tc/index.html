@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Foreseen</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="../c_css/fonts/stylesheet.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/home.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/main.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/module.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/color.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="../c_script/lib/gsap.min.js"></script>
+        <script src="../c_script/script.js"></script>
+        <script src="../c_script/common.js"></script>
+	</head>
+	<body>
+        <!-- SVG Shape Definition -->
+		<svg width="0" height="0">
+			<defs>
+				<clipPath id="clip-shape" clipPathUnits="objectBoundingBox">
+					<path d="M 0.5,0 
+							 C 0.75,0, 1,0.25, 1,0.5 
+							 C 1,0.75, 0.75,1, 0.5,1 
+							 C 0.25,1, 0,0.75, 0,0.5 
+							 C 0,0.25, 0.25,0, 0.5,0 Z" />
+				</clipPath>
+			</defs>
+		</svg>
+
+		<a href="index.html">
+			<img src="../c_images/top_left_logo1.svg" class="top_left_logo1">
+			<img src="../c_images/top_left_logo2.svg" class="top_left_logo2">
+			<img src="../c_images/top_right_logo1.svg" class="top_right_logo1">
+			<img src="../c_images/top_right_logo2.svg" class="top_right_logo2">
+		</a>
+
+		<div class="bottom_left_logo scrollin scrollin1">
+			<img src="../c_images/bottom_left_logo1.svg" class="bottom_left_logo1">
+			<img src="../c_images/bottom_left_logo2.svg" class="bottom_left_logo2">
+		</div>
+
+		<div id="blocker"></div>
+
+		<div class="right_menu mobile_hide">
+
+		</div>
+
+		<div class="lang_menu scrollin scrollin1 mobile_hide">
+			<a class="lang_en">EN</a>
+			<a class="lang_tc">中</a>
+		</div>
+
+        <div class="view_btn_wrapper">
+            <div class="view_btn_inwrapper">
+                <a class="view_btn view_btn1 active" data-view="view1">
+                    <div class="icon"></div>
+                    <div class="view_hover_text">Home 主頁</div>
+                </a>
+                <a class="view_btn view_btn2" href="timeline.html" data-view="view2">
+                    <div class="icon"></div>
+                    <div class="view_hover_text">Timeline 時間軸</div>
+                </a>
+                <a class="view_btn view_btn3 " href="objects.html"  data-view="view3">
+                    <div class="icon"></div>
+                    <div class="view_hover_text">All Objects 所有物品</div>
+                </a>
+            </div>
+        </div>
+
+		<a class="menu_line_wrapper dropdown_btn">
+            <div class="menu_line ">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </a>
+
+        <div class="dropdown_wrapper">
+            <div class="dropdown text3">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div>主頁</div>
+                            <div><i>(Home)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <div>簡介</div>
+                            <div><i>(About)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="timeline.html">
+                            <div>時間軸</div>
+                            <div><i>(Timeline)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="objects.html">
+                            <div>所有物品</div>
+                            <div><i>(All Objects)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="team.html">
+                            <div>項目團隊</div>
+                            <div><i>(Team)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="mobile_lang_menu scrollin scrollin1 mobile_show">
+							<a class="lang_en">EN</a>
+							<a class="lang_tc">中</a>
+						</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+		<div class="mobile_show"></div>
+		<div class="mobile_hide"></div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "../c_script/three.module.js",
+					"three/addons/": "../jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+            import { DragControls } from 'three/addons/controls/DragControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+            import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+            import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+
+			var itemArr = [
+				['../c_model/Asset1-v1/Asset1.gltf',0,0,0, 30,30,30, 0,0,0,"style2",0,"","model0",""],
+				['../c_model/clothes/clothes.gltf',-18,5,-5, 30,30,30, 10,0,30,"style1",5,"縫補寶","model2","shop5"],
+				['../c_model/clothes2/clothes2.gltf',-3,8,-10, 30,30,30, 120,120,20,"style1",5,"縫補寶","model1","shop5"],
+				['../c_model/hammer/hammer.gltf',0,-5,7, 30,30,30, 20,40,50,"style4",5,"寶貝改衣專門店","model3","shop4"],
+				['../c_model/hammer2/hammer2.gltf',17,-7,-10, 30,30,30, 10,0,40,"style3",5,"寶貝改衣專門店","model4","shop4"],
+				['../c_model/key/key.gltf',-17,-6,3, 30,30,30, 30,80,50,"style1",5,"方文工程公司","model5","shop6"],
+				['../c_model/key2/key2.gltf',-8,-9,13, 30,30,30, 30,0,30,"style1",5,"方文工程公司","model6","shop6"],
+				['../c_model/magnifier/magnifier.gltf',8,-11,-3, 30,30,30, 60,30,80,"style1",5,"良記排檔百貨","model7","shop1"],
+				['../c_model/magnifier2/magnifier2.gltf',10,6,-12, 30,30,30, 30,60,20,"style3",5,"良記排檔百貨","model8","shop1"],
+				['../c_model/rin/rin.gltf',-9,-6,-7, 30,30,30, 30,30,0,"style1",5,"誠信補鞋配匙","model9","shop2"],
+				['../c_model/rin2/rin2.gltf',-8,8,3, 30,30,30, 50,20,0,"style1",5,"誠信補鞋配匙","model10","shop2"],
+				['../c_model/screw/screw.gltf',13,4,8, 30,30,30, 30,70,0,"style1",5,"老街坊首飾.玉器工作坊","model11","shop3"],
+				['../c_model/screw2/screw2.gltf',5,4,8, 30,30,30, 30,70,0,"style1",5,"老街坊首飾.玉器工作坊","model11","shop3"]
+			];
+
+			var camera, scene, renderer,composer, smallgroup,biggroup,gridgroup,gridHelper,gridHelper2,yearlinegroup, mouseX, mouseY, windowHalfX, windowHalfY;
+			var loader, controls, dragcontrols, pointer;
+			const mouse = new THREE.Vector2(), raycaster = new THREE.Raycaster();
+			var sphereMesh, sphereMesh2, sphereBody, sphereBody2;
+			const timeStep = 1 / 60;
+			let lastCallTime;
+       		var blow = 0, blow2 = 0;
+			let world;
+			var GLTFArr=[], GLTFBodyArr=[], materialArr=[],materialArr2=[],materialArr3=[],materialArr4=[], textArr=[], yearTextArr=[],pointArr=[], gridArr=[], modelArr=[], modelMatArr=[], lineArr=[], childArr=[];
+			var centerModel;
+            var currentCameraLookAt = new THREE.Vector3(0,0,0);
+            var currentCameraPosition = new THREE.Vector3(0,0,0);
+            var changingview = false;
+
+            var view = "view1";
+
+			var start = false;
+
+
+            // Variables to track mouse movement
+            var isDragging = false;
+            var previousMousePosition = { x: 0, y: 0 };
+            var targetGroupPosition = new THREE.Vector3(0,0,0);
+            var targetCamSetting = {fov:5};
+            var minX = -60, maxX = 60, minY = -80, maxY = 80;
+
+            var selected = false;
+            var moved = false;
+
+			init();
+			animate();
+
+			var loadedlength=0
+
+			function importglTF(url,x,y,z,size_x,size_y,size_z,rotate_x, rotate_y, rotate_z,material,mass,text,id,shop,order){
+				loader.load(
+					url,
+					function ( gltf ) {
+						const model = gltf.scene;
+						loadedlength++;
+						if(loadedlength==itemArr.length){
+							$(".loading").stop().fadeOut();
+							$("body").addClass("modelloaded");
+						}
+
+						model.traverse( function ( child ) {
+
+
+							if ( child.isMesh ) {
+								child.myshop = shop;
+								child.mytext = text;
+								if(material=="style2"){
+									if (child.material.map){
+
+										var envMap = new THREE.CubeTextureLoader()
+											.setPath('../c_textures/') // Replace with the path to your cube texture images
+											.load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
+										envMap.encoding = THREE.sRGBEncoding;
+
+										//child.material=texture;
+										child.material.metalnessMap="";
+										//child.material.normalMap="";
+										child.material.roughnessMap="";
+										child.material.metalness=0.9;
+										child.material.roughness=0.3;
+										child.material.envMap=envMap;
+										child.mystyle=material;
+										// child.material.metalness = 0.9;
+										// child.material.roughness = 0;
+
+										childArr.push(child)
+										materialArr.push(child.material)
+										materialArr2.push(child.material)
+
+										
+
+									}
+								}
+
+								if(material=="style3"){
+									if (child.material.map){
+
+										var envMap = new THREE.CubeTextureLoader()
+											.setPath('../c_textures/') // Replace with the path to your cube texture images
+											.load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
+										envMap.encoding = THREE.sRGBEncoding;
+
+										//child.material=texture;
+										child.material.map="";
+										child.material.metalnessMap="";
+										//child.material.normalMap="";
+										//child.material.roughnessMap="";
+										child.material.metalness=0.6;
+										child.material.roughness=0.5;
+										child.material.envMap=envMap;
+										child.mystyle=material;
+										// child.material.metalness = 0.9;
+										// child.material.roughness = 0;
+										childArr.push(child)
+										materialArr.push(child.material)
+										materialArr3.push(child.material)
+									}
+								}
+
+								if(material=="style4"){
+									if (child.material.map){
+
+										var envMap = new THREE.CubeTextureLoader()
+											.setPath('../c_textures/') // Replace with the path to your cube texture images
+											.load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
+										envMap.encoding = THREE.sRGBEncoding;
+
+										//child.material=texture;
+										child.material.map="";
+										child.material.metalnessMap="";
+										// child.material.normalMap="";
+										child.material.roughnessMap="";
+										child.material.metalness=0.9;
+										child.material.roughness=0.3;
+										child.material.envMap=envMap;
+										child.mystyle=material;
+										// child.material.metalness = 0.9;
+										// child.material.roughness = 0;
+										childArr.push(child)
+										materialArr.push(child.material)
+										materialArr4.push(child.material)
+									}
+								}
+								
+							}
+						});
+                            
+						// var modelgroup = new THREE.Group();
+						// modelgroup.add(model);
+						// modelgroup.myid = id;
+						// modelMatArr[order]=model;
+                        //modelArr.push(model)
+							modelMatArr[order]=model;
+                        if(material!=="style2"){
+
+							const boundingBox = new THREE.Box3().setFromObject(model);
+							const newsize = new THREE.Vector3();
+							boundingBox.getSize(newsize);
+
+                            var modelgroup = new THREE.Group();
+							modelgroup.myid = id;
+                            modelgroup.add(model);
+							const targetposition = new THREE.Vector3();
+							modelgroup.targetposition =  targetposition;
+							modelgroup.targetposition.x =  x;
+							modelgroup.targetposition.y =  y;
+							modelgroup.targetposition.z =  z;
+                            modelgroup.position.set(x,y,z)
+							const targetscale = new THREE.Vector3();
+							modelgroup.targetscale =  targetscale;
+							modelgroup.targetscale.x =  size_x;
+							modelgroup.targetscale.y =  size_y;
+							modelgroup.targetscale.z =  size_z;
+                            modelgroup.scale.set(size_x,size_y,size_z)
+                            modelgroup.rotateX(Math.PI / 180 * rotate_x)
+                            modelgroup.rotateY(Math.PI / 180 * rotate_y)
+                            modelgroup.rotateZ(Math.PI / 180 * rotate_z)
+                            GLTFArr[order]=modelgroup;
+							modelArr[order]=modelgroup;
+						    smallgroup.add( modelgroup );
+
+
+							const boxGeometry = new THREE.BoxGeometry(0.01, 0.01, 0.01);
+							const newmaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+							const boxMesh = new THREE.Mesh(boxGeometry, newmaterial);
+							boxMesh.position.set(-newsize.x/2,-newsize.y/2,newsize.z/2);
+                            boxMesh.visible=false;
+                            pointArr.push(boxMesh);
+							modelgroup.add(boxMesh);
+
+                            const loader = new FontLoader();
+
+                            loader.load( 'c_css/fonts/Palatino_Roman.json', function ( font ) {
+
+                                const fontgeometry = new TextGeometry( text, {
+                                    font: font,
+                                    size: 1,
+                                    depth: 0,
+                                    bevelEnabled: false,
+                                } );
+
+                                
+
+                                const fontmaterial = new THREE.MeshBasicMaterial( {color: 0x000000} ); 
+                                const fontmesh = new THREE.Mesh( fontgeometry, fontmaterial ); 
+
+                                fontmesh.renderOrder = 999;
+                                fontmesh.material.depthTest = false;
+                                fontmesh.material.depthWrite = false;
+
+                                
+                                var fontgroup = new THREE.Group();
+                                fontgroup.add(fontmesh)
+                                textArr.push(fontgroup);
+                                scene.add(fontgroup)
+                            } );
+
+
+                        }else{
+                            
+                            var modelgroup = new THREE.Group();
+							modelgroup.myid = id;
+                            modelgroup.add(model)
+							modelArr[order]=modelgroup;
+							modelgroup.position.set(x,y,z)
+                            modelgroup.scale.set(size_x,size_y,size_z)
+                            modelgroup.rotateX(Math.PI / 180 * rotate_x)
+                            modelgroup.rotateY(Math.PI / 180 * rotate_y)
+                            modelgroup.rotateZ(Math.PI / 180 * rotate_z)
+						    biggroup.add( modelgroup );
+						    //scene.add( modelgroup );
+                        }
+
+
+
+						// const boxGeometry = new THREE.BoxGeometry(newsize.x, newsize.y, newsize.z);
+						// const newmaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe:true });
+						// const boxMesh = new THREE.Mesh(boxGeometry, newmaterial);
+						// boxMesh.position.copy(position);
+						// scene.add(boxMesh);
+
+
+					},
+					function ( xhr ) {
+						console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+					},
+					function ( error ) {
+						console.log( error);
+					}
+				);
+			}
+
+
+			function importgridglTF(url,x,y,z,size_x,size_y,size_z){
+				loader.load(
+					url,
+					function ( gltf ) {
+						const model = gltf.scene;
+
+
+						model.traverse( function ( child ) {
+
+
+							if ( child.isMesh ) {
+									if (child.material){
+
+										
+
+
+									}
+
+								
+								
+							}
+						});
+                            
+                        model.position.set(x,y,z)
+                        model.scale.set(size_x,size_y,size_z)
+                        model.renderOrder = 999;
+
+						gridArr.push(model)
+						gridgroup.add( model );
+
+					},
+					function ( xhr ) {
+						console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+					},
+					function ( error ) {
+						console.log( error);
+					}
+				);
+			}
+
+			function init() {
+
+
+				var container = document.getElementById( 'container' );
+
+				camera = new THREE.PerspectiveCamera( 5, window.innerWidth / window.innerHeight, 0.1, 20000 );
+				//camera.position.set( 170, 170, 170 );
+                camera.position.set( 140, 140, 380 );
+                currentCameraPosition = new THREE.Vector3(140, 140, 380)
+
+
+				scene = new THREE.Scene();
+
+				// Add ambient light to illuminate the entire scene
+				const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+				scene.add(ambientLight);
+
+				// Add directional light for more realistic shading
+				const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+				directionalLight.position.set(10, 10, 10); // Adjust light direction
+				scene.add(directionalLight);
+
+				// const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 5 );
+				// scene.add( light );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				// Block iframe events when dragging camera
+
+				var blocker = document.getElementById( 'blocker' );
+				blocker.style.display = 'none';
+
+				renderer = new THREE.WebGLRenderer({ alpha: true });
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.domElement.style.position = 'fixed';
+				renderer.domElement.style.top = 0;
+				renderer.setClearColor( 0x000000, 0 ); // the default
+				document.body.appendChild( renderer.domElement );
+				controls = new OrbitControls(camera, renderer.domElement);
+				controls.maxPolarAngle = Math.PI / 2;
+                controls.enablePan = false;
+
+
+				// const geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
+				// const material = new THREE.MeshNormalMaterial( {
+				// color: 0x870098
+				// } ); 
+				// const cube = new THREE.Mesh( geometry, material ); 
+				// scene.add( cube );
+
+				// Sphere
+				const sphereGeometry = new THREE.SphereGeometry(3, 32, 32)
+				const sphereMaterial = new THREE.MeshNormalMaterial({ 
+					color: 0x870098
+				})
+				sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial)
+				//scene.add(sphereMesh)
+
+
+				sphereMesh2 = new THREE.Mesh(sphereGeometry, sphereMaterial)
+				//scene.add(sphereMesh2)
+
+                smallgroup = new THREE.Group();
+                biggroup = new THREE.Group();
+
+                biggroup.add(smallgroup);
+                scene.add(biggroup)
+
+
+
+
+                const size = 150;
+                const divisions = 50;
+                gridHelper = new THREE.GridHelper( size, divisions,0x000000,0xffffff );
+                gridHelper.colorGrid = 0xffffff;
+				//gridHelper.rotation.x = Math.PI / 2;
+				gridHelper.position.set(0,0,0);
+
+                //scene.add( gridHelper );
+
+
+                gridHelper2 = new THREE.GridHelper( size, divisions,0x000000,0xffffff );
+                gridHelper2.colorGrid = 0xffffff;
+				gridHelper2.rotation.z = Math.PI / 2;
+				gridHelper2.position.set(0,0,0);
+
+                //scene.add( gridHelper2 );
+
+                yearlinegroup = new THREE.Group();
+                scene.add(yearlinegroup)
+				yearlinegroup.visible=false;
+
+				for (let i = 0; i < 20; i++) {
+					const yearlinegeometry = new THREE.CylinderGeometry( 0, 0, 9999, 12 );
+					const yearlinematerial = new THREE.MeshBasicMaterial( {color: 0xcab095, wireframe:true} ); 
+					const yearlinemesh = new THREE.Mesh( yearlinegeometry, yearlinematerial );
+					yearlinemesh.rotation.z = Math.PI / 2;
+					yearlinemesh.position.z = -100+i*10;
+					yearlinegroup.add(yearlinemesh)
+
+					const loader = new FontLoader();
+
+					loader.load( '../c_css/fonts/Palatino_Italic.json', function ( font ) {
+						var num = i ;
+						if(num<10){
+							num = "0"+num;
+						}
+						const fontgeometry = new TextGeometry( "20"+num, {
+							font: font,
+							size: 1,
+							depth: 0,
+							bevelEnabled: false,
+						} );
+
+
+						const fontmaterial = new THREE.MeshBasicMaterial( {color: 0xffffff} ); 
+						const fontmesh = new THREE.Mesh( fontgeometry, fontmaterial ); 
+
+						fontmesh.renderOrder = 999;
+						fontmesh.material.depthTest = false;
+						fontmesh.material.depthWrite = false;
+
+						fontgeometry.computeBoundingBox();
+						if (fontgeometry.boundingBox) {
+							fontgeometry.translate(-fontgeometry.boundingBox.max.x / 2, -fontgeometry.boundingBox.max.y / 2, 0);
+						}
+
+						// const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+						// const newmaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+						// const boxMesh = new THREE.Mesh(boxGeometry, newmaterial);
+						
+						var fontgroup = new THREE.Group();
+						fontgroup.add(fontmesh)
+						//fontgroup.add(boxMesh)
+						fontgroup.position.z = -100+i*10+5;
+						yearTextArr.push(fontgroup);
+						yearlinegroup.add(fontgroup)
+					} );
+
+				};
+
+
+				loader = new GLTFLoader();
+
+				for (let i = 0; i < itemArr.length; i++) {
+					modelArr.push("1");
+					modelMatArr.push("1")
+				};
+
+				for (let i = 0; i < itemArr.length; i++) {
+					importglTF(itemArr[i][0],itemArr[i][1],itemArr[i][2],itemArr[i][3], itemArr[i][4],itemArr[i][5],itemArr[i][6], itemArr[i][7],itemArr[i][8],itemArr[i][9],itemArr[i][10],itemArr[i][11],itemArr[i][12],itemArr[i][13],itemArr[i][14],i)
+				};
+
+
+                dragcontrols = new DragControls( [ ... childArr ], camera, renderer.domElement );
+                
+                gridgroup = new THREE.Group();
+                scene.add(gridgroup)
+
+				const linegeometry = new THREE.CylinderGeometry( 0, 0, 9999, 12 ); 
+				const linegeometry2 = new THREE.CylinderGeometry( 0, 0, 9999, 12 ); 
+                const linematerial = new THREE.MeshBasicMaterial( {color: 0x29ABE2, wireframe:true} ); 
+
+                const linemesh = new THREE.Mesh( linegeometry, linematerial ); 
+				linemesh.position.set(-8.5,0,0);
+                const linemesh2 = new THREE.Mesh( linegeometry, linematerial ); 
+				linemesh2.position.set(8.5,0,0);
+                const linemesh3 = new THREE.Mesh( linegeometry, linematerial ); 
+				linemesh3.position.set(-13.5,0,0);
+                const linemesh4 = new THREE.Mesh( linegeometry, linematerial ); 
+				linemesh4.position.set(13.5,0,0);
+
+
+                const linemesh5 = new THREE.Mesh( linegeometry2, linematerial ); 
+				linemesh5.position.set(0,-2.5,0);
+                linemesh5.rotation.z = Math.PI / 2;
+                const linemesh6 = new THREE.Mesh( linegeometry2, linematerial ); 
+				linemesh6.position.set(0,0.8,0);
+                linemesh6.rotation.z = Math.PI / 2;
+                const linemesh7 = new THREE.Mesh( linegeometry2, linematerial ); 
+				linemesh7.position.set(0,-6.5,0);
+                linemesh7.rotation.z = Math.PI / 2;
+                const linemesh8 = new THREE.Mesh( linegeometry2, linematerial ); 
+				linemesh8.position.set(0,6.5,0);
+                linemesh8.rotation.z = Math.PI / 2;
+
+                lineArr.push(linemesh, linemesh2, linemesh3, linemesh4, linemesh5, linemesh6, linemesh7, linemesh8)
+
+				importgridglTF('../c_model/box-v1/box.gltf',-8.5,-10,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',-8.5,10,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',8.5,-10,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',8.5,10,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',-13.5,-10,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',-13.5,10,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',13.5,-10,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',13.5,10,0, 30,30,30)
+				
+				importgridglTF('../c_model/box-v1/box.gltf',-17,-2.5,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',-17,0.8,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',17,-2.5,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',17,0.8,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',-17,-6.5,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',-17,6.5,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',17,-6.5,0, 30,30,30)
+				importgridglTF('../c_model/box-v1/box.gltf',17,6.5,0, 30,30,30)
+
+                linemesh.renderOrder = 999;
+                linemesh.material.depthTest = false;
+                linemesh.material.depthWrite = false;
+                linemesh2.renderOrder = 999;
+                linemesh2.material.depthTest = false;
+                linemesh2.material.depthWrite = false;
+                linemesh3.renderOrder = 999;
+                linemesh3.material.depthTest = false;
+                linemesh3.material.depthWrite = false;
+                linemesh4.renderOrder = 999;
+                linemesh4.material.depthTest = false;
+                linemesh4.material.depthWrite = false;
+                linemesh5.renderOrder = 999;
+                linemesh5.material.depthTest = false;
+                linemesh5.material.depthWrite = false;
+                linemesh6.renderOrder = 999;
+                linemesh6.material.depthTest = false;
+                linemesh6.material.depthWrite = false;
+                linemesh7.renderOrder = 999;
+                linemesh7.material.depthTest = false;
+                linemesh7.material.depthWrite = false;
+                linemesh8.renderOrder = 999;
+                linemesh8.material.depthTest = false;
+                linemesh8.material.depthWrite = false;
+
+                gridgroup.position.set(-0.5,0,1)
+
+                gridgroup.add(linemesh);
+                gridgroup.add(linemesh2);
+                gridgroup.add(linemesh3);
+                gridgroup.add(linemesh4);
+                gridgroup.add(linemesh5);
+                gridgroup.add(linemesh6);
+                gridgroup.add(linemesh7);
+                gridgroup.add(linemesh8);
+
+
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				
+                //Event listeners for mouse down and touch start events
+                document.addEventListener('mousemove', onMouseMove, false);
+                document.addEventListener('mouseup', onMouseUp, false);
+                document.addEventListener('mousedown', onMouseDown, false);
+        		document.addEventListener('click', onMouseClick, false);
+				onWindowResize();
+
+
+			}
+
+
+            // Function to handle mouse move events
+            function onMouseMove(event) {
+				if($("body").hasClass("modelloaded")){
+					moved=true;
+
+					mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+					mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+					raycaster.setFromCamera(mouse, camera);
+
+					var intersects = raycaster.intersectObjects(modelArr);
+
+					if (intersects.length > 0) {
+						modelArr.forEach(model => {
+							if (intersects[0].object.parent === model || intersects[0].object.parent.parent === model) {
+								gsap.to(model.targetscale, { x:35, y: 35, z: 35, duration: 0.15, onComplete: function(){
+								}, });
+								console.log(intersects[0].object.mytext)
+								$(".overlay_shop_name .shop_name").html(intersects[0].object.mytext)
+							} else {
+								gsap.to(model.targetscale, { x:30, y: 30, z: 30, duration: 0.15, onComplete: function(){
+								}, });
+								//plane.parent.userData.targetScale = 1; // Return to normal scale
+							}
+						});
+					}else{
+						modelArr.forEach(model => {
+							gsap.to(model.targetscale, { x:30, y: 30, z: 30, duration: 0.15, onComplete: function(){
+							}, });
+						});
+								$(".overlay_shop_name .shop_name").html("")
+					}
+				}
+			}
+
+            // Function to handle mouse down event
+            function onMouseDown(event) {
+				if($("body").hasClass("modelloaded")){
+                	moved=false;
+				}
+            }
+
+
+            // Function to handle mouse up event
+            function onMouseUp(event) {
+                
+            }
+
+			// Function to handle mouse click event
+			function onMouseClick(event) {
+				if($("body").hasClass("modelloaded")){
+
+					if(!moved){
+						// Convert mouse position to normalized device coordinates (-1 to +1) for both components
+						mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+						mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+						// Update the raycaster with the camera and mouse position
+						raycaster.setFromCamera(mouse, camera);
+
+						// Calculate objects intersecting the ray
+						var intersects = raycaster.intersectObjects(modelArr);
+
+						if (intersects.length > 0) {
+							//alert(intersects[0].object.myshop)
+							//console.log(intersects[0].object.parent,modelArr)
+							modelArr.forEach(model => {
+								if (intersects[0].object.parent === model || intersects[0].object.parent.parent === model) {
+									if(model.myid!=="model0"){
+										window.location = intersects[0].object.myshop+".html";
+									} 
+								}
+							});
+						}
+					}
+				}
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );	
+
+			}
+
+            var t = 0;
+			function animate() {
+                 
+                t += 0.01;
+				// Step the physics world
+				const time = performance.now() / 1000;
+				if (!lastCallTime) {
+				    //world.step(timeStep)
+				} else {
+				    const dt = time - lastCallTime
+				    //world.step(timeStep, dt)
+				}
+				lastCallTime = time
+
+
+				for (let i = 0; i < GLTFArr.length; i++) {
+                    //GLTFArr[i].rotation.y -= 0.005;
+				} 
+
+				if($(window).width()<1024){
+					biggroup.scale.set(0.5,0.5)
+				}else{
+					biggroup.scale.set(1,1)
+				}
+
+
+                biggroup.position.x = -targetGroupPosition.x;
+                biggroup.position.y = -targetGroupPosition.y;
+
+				for (let i = 0; i < materialArr.length; i++) {
+					materialArr[i].envMapRotation.y -= 0.001;
+					materialArr[i].envMapRotation.needsUpdate = true;
+				} 
+				
+				start=true;
+
+				// sphereMesh.position.copy(sphereBody.position)
+				// sphereMesh.quaternion.copy(sphereBody.quaternion)
+				// sphereMesh2.position.copy(sphereBody2.position)
+				// sphereMesh2.quaternion.copy(sphereBody2.quaternion)
+
+				//gridHelper.position.set(0,0,camera.position.z-50)
+                
+				for (let i = 0; i < textArr.length; i++) {
+                    const boundingBox = new THREE.Box3().setFromObject(pointArr[i]);
+                    const position = new THREE.Vector3();
+                    boundingBox.getCenter(position);
+                    //textArr[i].position.set(position.x,position.y,position.z);
+                    textArr[i].position.copy(position)
+					//textArr[i].lookAt( camera.position );
+                    textArr[i].quaternion.copy(camera.quaternion);
+				} 
+
+				for (let i = 0; i < yearTextArr.length; i++) {
+                    yearTextArr[i].quaternion.copy(camera.quaternion);
+				} 
+
+				
+
+				for (let i = 0; i < gridArr.length; i++) {
+					gridArr[i].lookAt( camera.position );
+				} 
+
+				if(camera){
+					camera.fov = targetCamSetting.fov;
+					camera.updateProjectionMatrix();
+				}
+
+                if(view=="view1"){
+                    for (let i = 0; i < textArr.length; i++) {
+                        textArr[i].visible = false
+                    } 
+                    
+                    for (let i = 0; i < modelArr.length; i++) {
+                        if(modelArr[i].myid=="model0"){
+                            modelArr[i].visible = true;
+                        }
+                    } 
+                    
+                    for (let i = 0; i < gridArr.length; i++) {
+                        gridArr[i].visible = true
+                    } 
+                    
+                    for (let i = 0; i < lineArr.length; i++) {
+                        lineArr[i].visible = true
+                    } 
+
+					gridHelper.visible = false;
+					gridHelper2.visible = false;
+					yearlinegroup.visible=false;
+
+                	smallgroup.rotation.x -= 0.005;
+					
+                }
+
+                if(view=="view2"){
+                    for (let i = 0; i < textArr.length; i++) {
+                        textArr[i].visible = false
+                    } 
+
+                    for (let i = 0; i < modelArr.length; i++) {
+                        if(modelArr[i].myid=="model0"){
+                            modelArr[i].visible = true;
+                        }
+                    } 
+                    
+                    for (let i = 0; i < gridArr.length; i++) {
+                        gridArr[i].visible = true
+                    } 
+                    
+                    for (let i = 0; i < lineArr.length; i++) {
+                        lineArr[i].visible = true
+                    } 
+
+					gridHelper.visible = false;
+					gridHelper2.visible = false;
+					yearlinegroup.visible=false;
+
+                	smallgroup.rotation.x -= 0.005;
+					
+                }
+
+                if(view=="view3"){
+                    
+                    
+                    for (let i = 0; i < gridArr.length; i++) {
+                        gridArr[i].visible = false
+                    } 
+                    
+                    for (let i = 0; i < lineArr.length; i++) {
+                        lineArr[i].visible = false
+                    } 
+
+                    for (let i = 0; i < modelArr.length; i++) {
+                        if(modelArr[i].myid=="model0"){
+                            modelArr[i].visible = false;
+                        }
+                    } 
+					gridHelper.visible = true;
+					gridHelper2.visible = true;
+					yearlinegroup.visible=true;
+
+
+                	smallgroup.rotation.x = 0;
+                    
+                }
+
+                if(changingview){
+                    controls.enabled = false;
+                    camera.position.set( currentCameraPosition.x,currentCameraPosition.y, currentCameraPosition.z);
+                    camera.lookAt(currentCameraLookAt);
+                }else{
+                    currentCameraPosition.x = camera.position.x;
+                    currentCameraPosition.y = camera.position.y;
+                    currentCameraPosition.z = camera.position.z;
+                    controls.enabled = true;
+                    controls.update();
+                }
+                
+				if(modelArr.length){
+
+                    for (let i = 0; i < modelArr.length; i++) {
+                        if(modelArr[i].myid!=="model0"){
+							if(modelArr[i].position && modelArr[i].scale){
+								modelArr[i].position.set(modelArr[i].targetposition.x,modelArr[i].targetposition.y,modelArr[i].targetposition.z)
+								modelArr[i].scale.set(modelArr[i].targetscale.x,modelArr[i].targetscale.y,modelArr[i].targetscale.z)
+							}
+						}
+                    } 
+					//console.log(modelArr[0].position.x)
+				}
+
+				requestAnimationFrame( animate );
+				renderer.render( scene, camera );
+
+			}
+
+
+            var originalMatArr = [];
+
+			$(window).on('load', function() {
+				/*
+                $(".view_btn").click(function(){
+                    if($(this).hasClass("active")){
+
+                    }else{
+                        $(".view_btn.active").removeClass("active");
+                        $(this).addClass("active");
+                        view = $(".view_btn.active").attr("data-view")
+                        checkview();
+                    }
+
+                })
+				*/
+			})
+
+            function checkview(){
+                changingview = true;
+                if(view=="view1"){
+                    gsap.to(biggroup.rotation, { x:0, y: 0, z: 0, duration: 0.9, onComplete: function(){
+                    }, });
+                    gsap.to(currentCameraPosition, { x: 140, y: 140, z: 380, duration: 0.9, onComplete: function(){
+                        changingview = false;
+                        controls.enableRotate=true;
+                        controls.enablePan=false;
+                        dragcontrols.enabled=false;
+                    }, });
+
+                    gsap.to(targetGroupPosition, { x: 0, y: 0, z: 0, duration: 0.9, onComplete: function(){
+                    }, });
+                    gsap.to(targetCamSetting, { fov: 5, duration: 0.9, onComplete: function(){
+                    }, });
+
+					for (let i = 0; i < modelArr.length; i++) {
+                        if(modelArr[i].myid!=="model0"){
+
+							gsap.to(modelArr[i].targetposition, { x:itemArr[i][1], y: itemArr[i][2], z: itemArr[i][3], duration: 0.9, onComplete: function(){
+							}, });
+							gsap.to(modelArr[i].targetscale, { x:30, y: 30, z: 30, duration: 0.9, onComplete: function(){
+							}, });
+
+						}
+                    } 
+                }
+
+                if(view=="view2"){
+                    gsap.to(biggroup.rotation, { x:0, y: 0, z: 0, duration: 0.9, onComplete: function(){
+                    }, });
+                    gsap.to(currentCameraPosition, { x: 0, y: 0, z: 380, duration: 0.9, onComplete: function(){
+                        changingview = false;
+                        controls.enableRotate=true;
+                        controls.enablePan=false;
+                        dragcontrols.enabled=false;
+                    }, });
+
+                    gsap.to(targetGroupPosition, { x: 0, y: 0, z: 0, duration: 0.9, onComplete: function(){
+                    }, });
+                    gsap.to(targetCamSetting, { fov: 5, duration: 0.9, onComplete: function(){
+                    }, });
+
+					for (let i = 0; i < modelArr.length; i++) {
+                        if(modelArr[i].myid!=="model0"){
+
+							gsap.to(modelArr[i].targetposition, { x:itemArr[i][1], y: itemArr[i][2], z: itemArr[i][3], duration: 0.9, onComplete: function(){
+							}, });
+							gsap.to(modelArr[i].targetscale, { x:30, y: 30, z: 30, duration: 0.9, onComplete: function(){
+							}, });
+							
+						}
+                    } 
+                }
+
+                if(view=="view3"){
+
+
+					for (let i = 0; i < textArr.length; i++) {
+						textArr[i].visible = false;
+					} 
+
+                    gsap.to(biggroup.rotation, { x: 0, y: Math.PI / 2, z: 0, duration: 0.9, onComplete: function(){
+                    }, });
+                    
+                    gsap.to(currentCameraPosition, { x: 600, y: 0, z: 600, duration: 0.9, onComplete: function(){
+						
+						setTimeout(function(){
+
+							gsap.to(currentCameraPosition, { x: 600, y: 600, z: 600, duration: 0.9, onComplete: function(){
+								changingview = false;
+								controls.enableRotate=true;
+								controls.enablePan=false;
+								dragcontrols.enabled=false;
+
+
+							}, });
+							
+							gsap.to(targetCamSetting, { fov: 5, duration: 0.9, onComplete: function(){
+							}, });
+
+							for (let i = 0; i < textArr.length; i++) {
+								textArr[i].visible = true
+							} 
+							
+						},1200)
+
+                    }, });
+
+
+
+					for (let i = 0; i < modelArr.length; i++) {
+						if(modelArr[i].myid!=="model0"){
+
+							gsap.to(modelArr[i].targetposition, { x:itemArr[i][1]*1.5, y: 0, z: itemArr[i][3]*4, duration: 0.9, onComplete: function(){
+							}, });
+							gsap.to(modelArr[i].targetscale, { x:50, y: 50, z: 50, duration: 0.9, onComplete: function(){
+							}, });
+
+						}
+					} 
+
+                }
+
+                if(view=="view3"){
+                    originalMatArr=[];
+                    const newmaterial = new THREE.MeshBasicMaterial({ color: 0x86A9F4 });
+                    for (let i = 0; i < modelMatArr.length; i++) {
+                        modelMatArr[i].traverse(function(child) {
+
+                            if ( child.isMesh ) {
+
+                                if ( child.material ){
+                                    originalMatArr.push(child.material)
+                                    child.material = newmaterial
+                                }
+
+                            }
+
+                        });
+
+                    } 
+                }else{
+                    if(originalMatArr.length){
+                    var j =0;
+                        for (let i = 0; i < modelMatArr.length; i++) {
+                            modelMatArr[i].traverse(function(child) {
+
+                                if ( child.isMesh ) {
+
+                                    if ( child.material ){
+                                        child.material = originalMatArr[j]
+                                        j++
+                                    }
+
+                                }
+
+                            });
+
+                        } 
+                    }
+                   
+                    // var j=0;
+                    // var k=0;
+                    // var l=0;
+                    // for (let i = 0; i < modelArr.length; i++) {
+                    //     modelArr[i].traverse(function(child) {
+                    //         if ( child.isMesh ) {
+                    //             if(child.mystyle=="style2"){
+                    //                 child.material=materialArr2[j]
+                    //                 j++;
+                    //             }
+                    //             if(child.mystyle=="style3"){
+                    //                 child.material=materialArr3[k]
+                    //                 k++;
+                    //             }
+                    //             if(child.mystyle=="style4"){
+                    //                 child.material=materialArr4[l]
+                    //                 l++;
+                    //             }
+                    //         }
+                    //     });
+
+                    // } 
+                }
+            }
+
+		</script>
+
+		<div class="overlay_shop_name mobile_hide">
+			<div class="shop_name text1"></div>
+		</div>
+
+		<div class="loading"><img src="../c_images/oval.svg"></div>
+
+	</body>
+</html>

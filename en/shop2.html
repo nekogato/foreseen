@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Foreseen</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="../c_css/fonts/stylesheet.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/main.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/module.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/color.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="../c_script/lib/gsap.min.js"></script>
+        <script src="../c_script/lib/jquery.mousewheel.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../c_script/lib/fancybox/jquery.fancybox.min.css">
+        <script src="../c_script/lib/fancybox/jquery.fancybox.min.js"></script>
+        <script src="../c_script/lib/jquery.ba-hashchange.min.js"></script>
+        
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+        <script src="../c_script/common.js"></script>
+        <script src="../c_script/script.js"></script>
+        <script src="../c_script/shophash.js"></script>
+
+
+    <!--------------------------- css & script end here ------------------------->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "../c_script/three.module.js",
+                "three/addons/": "../jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="../js/script.js"></script>
+    <script type="module">
+        window.openObject = openIFrame
+        
+        //// rewrite your iframe here?
+        function openIFrame( index ) {
+            console.log("openIFrame", index)
+        }
+    </script>
+    </head>
+	<body class="body_shopdetail body_shopdetail_color_1">
+        <a href="index.html"><img src="../c_images/top_left_logo1.svg" class="top_left_logo1">
+        <img src="../c_images/top_left_logo2.svg" class="top_left_logo2">
+        <img src="../c_images/top_right_logo1.svg" class="top_right_logo1">
+        <img src="../c_images/top_right_logo2.svg" class="top_right_logo2"></a>
+
+
+		<div class="right_menu mobile_hide">
+
+		</div>
+
+		<div class="lang_menu scrollin scrollin1 mobile_hide">
+			<a class="lang_en">EN</a>
+			<a class="lang_tc">中</a>
+		</div>
+
+		<a class="menu_line_wrapper dropdown_btn">
+            <div class="menu_line ">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </a>
+
+        <div class="dropdown_wrapper">
+            <div class="dropdown text3">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div>主頁</div>
+                            <div><i>(Home)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <div>簡介</div>
+                            <div><i>(About)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="timeline.html">
+                            <div>時間軸</div>
+                            <div><i>(Timeline)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="objects.html">
+                            <div>所有物品</div>
+                            <div><i>(All Objects)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="team.html">
+                            <div>項目團隊</div>
+                            <div><i>(Team)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="mobile_lang_menu scrollin scrollin1 mobile_show">
+							<a class="lang_en">EN</a>
+							<a class="lang_tc">中</a>
+						</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="wrapper-fold-2" data-shop="2">
+            <div class="fold-2 fold-2-left">
+                <div id="threejs-canvas">
+                    <div class="debug">
+                        <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
+                        <br><br>
+                        <div>
+                            <label>
+                                <input type="radio" id="debug-center" name="placement_radiobtn" value="center">center
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-series" name="placement_radiobtn" value="series">series
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-shifted" name="placement_radiobtn" value="shifted" checked>shifted
+                            </label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fold-2 fold-2-right mobile_hide">
+                <div class="inside-menu">
+                    <div class="inside-menu-item-wrapper">
+                        <div class="inside-menu-item selected" data-detail="article">Article</div>
+                        <div class="inside-menu-item" data-detail="shop">Shop</div>
+                        <!-- <div class="inside-menu-item" data-detail="video">Video</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="sketch">Sketch</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="archive">Archive</div> -->
+                    </div>
+                </div>
+
+                <!-- SHOP 1 -->
+
+                <!-- ARTICLE -->
+                <div class="content for-article active" id="article">
+
+                    <div class="content-heading scrollin scrollin1">Shing Shun Shoes and Keys</div>
+
+                    <div class="content-article article-en scrollin scrollin1">
+                        <p>The most special thing about Cheng Shun is that it is located inside the Kwong King Building. The Kwong King Building is a representative of the iconic "monster buildings" in Hong Kong.</p>
+                        <p>Although everyone calls them "monster buildings", they each have their own unique "monstrous" charm. For the Kwong King Building in San Po Kong, it is that it looks like a massive building assembled from different large blocks of components. Viewed from a distance, it has an imposing "domineering" presence, making it difficult to take in the entire structure.</p>
+                        <p>The Kwong King Building, completed in 1972, was ahead of the trend of large-scale "podium" multi-story and multi-block private residential complexes in the city. It already had a massive podium with multi-story parking, murals, and a shopping mall. Interestingly, many of these "old private building shopping malls" have since "died", with most of them empty. But the Kwong King Mall has been well-operated, becoming a model for old residential building malls. No one ever imagined that one day, the Kwong King Building would be ranked among the top in a "100 Most Extraordinary Buildings" poll, and be preserved as a landmark in San Po Kong.</p>
+                        <p>When it was seen as a new landmark, the Kwong King Building no longer had any residential tenants. But the Kwong King Mall, along with all the floors above it, have been transformed into a brand-new "vertical retro shopping route". Many industries that cannot be found elsewhere in the city, the sole survivors in Hong Kong, have set up shop here. Cheng Shun, a shoe repair and key duplication shop, has become a highlight of this mall. Among the hundreds of these "old-school classic small shops", Cheng Shun is the only one that is the "original" shoe repair and key duplication store. The neighboring shops find it hard to believe, and often come to Cheng Shun to listen to the owner tell stories of the old San Po Kong. The owner's favorite stories are about how they continue to do shoe repairs and key duplication, and how the two businesses came to be combined.</p>
+                        <p>He would say that whenever there are two skills that are somehow combined together, it often has its origins on the street - the struggle for survival. The ice cream and noodle shops, the nail salons, they all emerged this way. Inside the Kwong King Building, there are many of these "combined shops" that cultural researchers love to study - they appear to have been together since ancient times, but only the shoe repair and key duplication shop, Cheng Shun, is the most classic example. Cheng Shun has become a research subject for countless university students, as physical keys have become almost obsolete in recent years, making Cheng Shun almost like a museum, supporting the new cultural economy of the Kwong King Building</p>
+                    </div>
+
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name scrollin scrollin1">Sampson Wong</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
+                            <p>Sampson Wong researches urbanization issues. He holds a PhD in Geography from the University of Manchester and is currently a lecturer in the General Education Foundation Course at the Chinese University of Hong Kong. Most recently, he co-founded the video project When in Doubt, Go for a Walk with other Hong Kong artists, to explore questions about urban walking and urban well-being.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- SHOP -->
+                 <div class="content for-shop" id="shop">
+                    <div class="content-heading scrollin scrollin1">Shing Shun Shoes and Keys
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td class="td-title">Year:</td><td>1997 to present</td></tr>
+                                    <tr><td class="td-title">Address:</td><td>Shop 27D, Hong King Building shopping centre, 86 Tseuk Luk St, San Po Kong</td></tr>
+                                    <tr><td class="td-title">Interviewee:</td><td>Mr. Brian Law</td></tr>
+                                    <tr><td class="td-title">Business:</td><td>Shoe Repair, Key Duplication</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="content-article article-en scrollin scrollin1">
+                        <p>Leung Kee Pai Dong is a unique small shop in Hong Kong that has been committed to providing various services and goods to the local community for many years. This store is operated by Mr. Fan Po, who can be described as a multi-talented elderly person who engages in shoe repair, merchandise sales, and artistic creation. Mr. Fan Po is also an amateur painter who loves artistic creation and has participated in painting outings to Macau. Although he does not have a formal art training background, he has created many works through self-learning and interest.</p>
+                        <p>Unfortunately, the operating license for Leung Kee Pai Dong will soon expire, which means this unique small shop may have to close down in the near future. Many local people feel reluctant to see the end of this warm and personable small shop and the story of its founder, Mr. Fan.</p>
+                    </div>
+                 </div>
+
+            </div>
+            <div class="mobile_show">
+                <div class="mobile_inside-menu_wrapper">
+                    <div class="inside-menu">
+                        <div class="inside-menu-item-wrapper">
+                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">Article</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">Shop</a>
+                            <!-- <a class="inside-menu-item" href="#video" data-fancybox data-detail="video">Video</a> -->
+                            <!-- <a class="inside-menu-item" href="#sketch" data-fancybox data-detail="sketch">Sketch</a> -->
+                            <!-- <a class="inside-menu-item" href="#archive" data-fancybox data-detail="archive">Archive</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="objects-drawer">
+            <div class="objects-drawer-backdrop"></div>
+            <div class="objects-drawer-slip">Other Shops</div>
+            <div class="objects-drawer-content">
+                <div class="objects-drawer-item-wrapper">
+                    <div class="objects-drawer-item">
+                        <a href="shop6.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_6.png);"></div>
+                            <div class="text">
+                                <div class="eng">Fong Man Engineering Company</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop1.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_1.png);"></div>
+                            <div class="text">
+                                <div class="eng">Leung Kee Pai Dong</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop2.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_2.png);"></div>
+                            <div class="text">
+                                <div class="eng">Shing Shun Shoes and Keys</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop4.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_4.png);"></div>
+                            <div class="text">
+                                <div class="eng">Baby Professional Tailor and<br>Curtain Shop</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop5.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_5.png);"></div>
+                            <div class="text">
+                                <div class="eng">Adaptive Clothing</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop3.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_3.png);"></div>
+                            <div class="text">
+                                <div class="eng">Old Neighbourhood Jade and Jewellery</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="object_popup" data-id="shoe_stretcher">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://lumalabs.ai/embed/CD0085FE-445A-4E06-8920-136132D56DD8?mode=sparkles" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="A 1997 shoe stretching machine from Italy is capable of stretching a pair of shoes by nearly half a foot for clients whose shoes do not fit properly. Mr. Luo says that over the past 27 years, by stretching one pair of shoes per week, this shoe stretching machine has stretched shoes for over a thousand customers whose shoes were too tight."></a>
+        </div>
+
+        <div class="object_popup" data-id="key">
+            <a class="popup_link" href="#coming_soon" data-fancybox ></a>
+        </div>
+
+        <div class="object_popup" data-id="boots">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/5barkf5nkptfe4tw?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="Although the receipt states that the client needs to retrieve the repaired item in two months, even eight years later, Brain still carefully wraps up the boots and places them in a corner of the shop, waiting for the client to come and collect them at any time."></a>
+        </div>
+        
+        <div class="object_popup" data-id="boots_with_bag">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/2kpt4wpq7smvgfr5?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="Although the receipt states that the client needs to retrieve the repaired item in two months, even eight years later, Brain still carefully wraps up the boots and places them in a corner of the shop, waiting for the client to come and collect them at any time."></a>
+        </div>
+
+        <div class="object_popup" data-id="handdraw_shoes">
+            <a class="popup_link" href="#coming_soon" data-fancybox ></a>
+        </div>
+
+        <div class="object_popup" data-id="handdraw_key">
+            <a class="popup_link" href="#coming_soon" data-fancybox data-caption="Even in the digital age, as the use of physical keys has gradually declined, the shop owner has insisted on providing this unique service. Relying on their years of rich experience, they are able to quickly complete high-quality key duplication. This logo embodies their persistence and passion for traditional craftsmanship."></a>
+        </div>
+
+        <div style="display:none">
+            <div id="coming_soon">Coming Soon</div>
+        </div>
+	</body>
+</html>

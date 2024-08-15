@@ -541,7 +541,7 @@ function init() {
             // obj.userData.map = thumbnailImg01;
             // you can find the thumbnail here 'c_images/objects/', but need to add the object name and shadow
             // obj.userData.map = new THREE.TextureLoader().load('c_images/objects/'+objArray[showSeq[i]].id+".png");
-            textureLoader.load('c_images/objects/'+objArray[showSeq[i]].id+".png",
+            textureLoader.load('../c_images/objects/'+objArray[showSeq[i]].id+".png",
                 (texture) => {
                     texture.colorSpace = THREE.SRGBColorSpace;
                     obj.userData.map = texture
@@ -680,21 +680,21 @@ function init() {
 
         const textureLoader = new THREE.TextureLoader(manager);
         // const texture = textureLoader.load( 'assets/uv_grid_opengl.jpg', 
-        const texture = textureLoader.load('assets/pink.png',
+        const texture = textureLoader.load('../assets/pink.png',
             () => {
                 console.log("texture")
                 render()
             });
         texture.colorSpace = THREE.SRGBColorSpace;
 
-        const texture2 = textureLoader.load('assets/pastel.png',
+        const texture2 = textureLoader.load('../assets/pastel.png',
             () => {
                 console.log("texture")
                 render()
             });
         texture2.colorSpace = THREE.SRGBColorSpace;
 
-        const texture3 = textureLoader.load('assets/jade.jpg',
+        const texture3 = textureLoader.load('../assets/jade.jpg',
             () => {
                 console.log("texture")
                 render()
@@ -720,11 +720,11 @@ function init() {
         })
     } else {
         const textureLoader = new THREE.TextureLoader(manager);
-        thumbnailImg01 = textureLoader.load('assets/thumbnail-01.png')
+        thumbnailImg01 = textureLoader.load('../assets/thumbnail-01.png')
         thumbnailImg01.colorSpace = THREE.SRGBColorSpace;
-        thumbnailImg02 = textureLoader.load('assets/thumbnail-02.png')
+        thumbnailImg02 = textureLoader.load('../assets/thumbnail-02.png')
         thumbnailImg02.colorSpace = THREE.SRGBColorSpace;
-        thumbnailImg03 = textureLoader.load('assets/thumbnail-03.png')
+        thumbnailImg03 = textureLoader.load('../assets/thumbnail-03.png')
         thumbnailImg03.colorSpace = THREE.SRGBColorSpace;
 
         // pMat = new THREE.MeshBasicMaterial({color: new THREE.Color(0x7abbb8)})
@@ -758,7 +758,7 @@ function init() {
     const objectsNamesArr = []
     for (var i = 0; i < showSeq.length; i++) {
         objectsNamesArr[i] = objArray[showSeq[i]].name
-        loader.load('assets/obj/'+ objArray[showSeq[i]].path, function (obj) {   // assets/ElectricityBox_20240628.obj
+        loader.load('../assets/obj/'+ objArray[showSeq[i]].path, function (obj) {   // assets/ElectricityBox_20240628.obj
 
             // console.log(obj)
             // object = obj;
@@ -771,7 +771,7 @@ function init() {
 
     const fontLoader = new FontLoader(manager);
 
-    fontLoader.load( 'c_css/fonts/Palatino_Italic.json', ( font ) => {
+    fontLoader.load( '../c_css/fonts/Palatino_Italic.json', ( font ) => {
         fontPalatinoItalic = font
     } );
 

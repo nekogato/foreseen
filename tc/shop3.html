@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Foreseen</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="../c_css/fonts/stylesheet.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/main.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/module.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/color.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="../c_script/lib/gsap.min.js"></script>
+        <script src="../c_script/lib/jquery.mousewheel.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../c_script/lib/fancybox/jquery.fancybox.min.css">
+        <script src="../c_script/lib/fancybox/jquery.fancybox.min.js"></script>
+        <script src="../c_script/lib/jquery.ba-hashchange.min.js"></script>
+        
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+        <script src="../c_script/common.js"></script>
+        <script src="../c_script/script.js"></script>
+        <script src="../c_script/shophash.js"></script>
+
+        
+    <!--------------------------- css & script end here ------------------------->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "../c_script/three.module.js",
+                "three/addons/": "../jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="../js/script.js"></script>
+    <script type="module">
+        window.openObject = openIFrame
+        
+        //// rewrite your iframe here?
+        function openIFrame( index ) {
+            console.log("openIFrame", index)
+        }
+    </script>
+    </head>
+	<body class="body_shopdetail body_shopdetail_color_1">
+        <a href="index.html"><img src="../c_images/top_left_logo1.svg" class="top_left_logo1">
+        <img src="../c_images/top_left_logo2.svg" class="top_left_logo2">
+        <img src="../c_images/top_right_logo1.svg" class="top_right_logo1">
+        <img src="../c_images/top_right_logo2.svg" class="top_right_logo2"></a>
+
+
+		<div class="right_menu mobile_hide">
+
+		</div>
+
+		<div class="lang_menu scrollin scrollin1 mobile_hide">
+			<a class="lang_en">EN</a>
+			<a class="lang_tc">中</a>
+		</div>
+
+		<a class="menu_line_wrapper dropdown_btn">
+            <div class="menu_line ">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </a>
+
+        <div class="dropdown_wrapper">
+            <div class="dropdown text3">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div>主頁</div>
+                            <div><i>(Home)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <div>簡介</div>
+                            <div><i>(About)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="timeline.html">
+                            <div>時間軸</div>
+                            <div><i>(Timeline)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="objects.html">
+                            <div>所有物品</div>
+                            <div><i>(All Objects)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="team.html">
+                            <div>項目團隊</div>
+                            <div><i>(Team)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="mobile_lang_menu scrollin scrollin1 mobile_show">
+							<a class="lang_en">EN</a>
+							<a class="lang_tc">中</a>
+						</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="wrapper-fold-2" data-shop="3">
+            <div class="fold-2 fold-2-left">
+                <div id="threejs-canvas">
+                    <div class="debug">
+                        <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
+                        <br><br>
+                        <div>
+                            <label>
+                                <input type="radio" id="debug-center" name="placement_radiobtn" value="center">center
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-series" name="placement_radiobtn" value="series">series
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-shifted" name="placement_radiobtn" value="shifted" checked>shifted
+                            </label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fold-2 fold-2-right mobile_hide">
+                <div class="inside-menu">
+                    <div class="inside-menu-item-wrapper">
+                        <div class="inside-menu-item selected" data-detail="article">Article</div>
+                        <div class="inside-menu-item" data-detail="shop">Shop</div>
+                        <!-- <div class="inside-menu-item" data-detail="video">Video</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="sketch">Sketch</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="archive">Archive</div> -->
+                    </div>
+                </div>
+
+                <!-- SHOP 3 -->
+
+                <!-- ARTICLE -->
+                <div class="content for-article active" id="article">
+
+                    <div class="content-heading scrollin scrollin1">老街坊首飾.玉器工作坊</div>
+                    
+                    <div class="content-article article-tc scrollin scrollin1">
+                        <p>你好！歡迎光臨老街坊玉石。</p>
+                        <p>在荃灣眾安街街市的繁華中，我們猶如一顆閃爍的寶石。到今天，隨著玉石的稀缺，我們是你的一個玉石收容所和修補店，為那些破損的玉石提供一個新的生命。在玉石的光影下，這裡是街坊每日過來放下煩憂，欣賞玉石工藝。一個在街市的玉石博物館，除了展示玉石工藝和行業的變化，亦把寄存玉石的客人的故事讓大家細味，每個都是最少五代的故事。</p>
+                        <p>猶記得第一次見面，陳小姐和媽媽把翠綠玉石交到區先生手上，說要為下個月的婚禮訂造一隻手鈪。轉眼，陳小姐變成了張太太，帶著手抱嬰孩過來，一邊抽著兩斤菜心，一邊把手鈪再放到工藝師手上，說要改造幾女兒的禮物。由一分二，變了親子玉石首飾。下次再見，眨眼應有20年，沒有見到張太太，由女兒把媽媽的耳環帶過來，希望變成一雙婚介。上星期，有位年輕女仕把婚介帶過來，問到有沒有辦法把介指改造成為襟針。原來爸爸早兩年過身了，媽媽下月登六，希望為媽媽做一份獨一禮物。</p>
+                        <p>玉石，無限變化，修改，串連幾代人，成為家的一個記憶。</p>
+                        <p>由玉石看家庭歷史和生活變遷，讓我們這顆在眾安街街市的寶石為你把家的故事寄存吧。</p>
+                    </div>
+
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name text-tc scrollin scrollin1">梅詩華</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
+                            <p class="text-tc">梅詩華<span class="text-en"> (Sarah)</span>，香港中文大學和倫敦大學學院建築系畢業，現為香港註冊建築師，「一口設計工作室」和「一口舍群」的共同創辦人。Sarah 相信設計能夠發起行動、創造改變，因而致力把以人為本的設計思維融入協力創作當中，連繫大眾與社區空間、建立社區的凝聚力。</p>
+                        </div>
+                    </div>
+
+                    <div class="content-heading scrollin scrollin1">Old Neighbourhood Jade and Jewellery</div>
+
+                    <div class="content-article article-en scrollin scrollin1">
+                        <p>Hello! Welcome to the Old Neighbourhood Jade.</p>
+                        <p>In this bustling Tsuen Wan Chung On Street Market, we are like a sparkling gem. Today, with the scarcity of jade, we are your jade shelter and repair shop, providing a new life for those damaged jades. Under the light and shadow of jade, this is where the neighbours come every day to put down their worries and appreciate jade craftsmanship. A jade living museum in the market, in addition to displaying the changes in jade craftsmanship and industry, also savours the stories of the guests who deposit their jades with us, each of which is at least five generations of family stories.</p>
+                        <p>I can still  remember the first meeting, Miss Chan and her mother handed the emerald jade to Mr. Au, saying that they wanted to order a bracelet for next month’s wedding. In the blink of an eye, Miss Chan became Mrs. Cheung, carrying a baby in her arms, pulling a bag of choy sum on one side, and putting the bracelet back into the hands of our craftsman, saying that she wanted to transform the bracelet into a gift for her baby daughter. From one to two, it became a parent-child jade jewellery. The next time we meet again, it should be a good  20 years. I haven’t seen Mrs. Cheung this time. The daughter brought her mother’s earrings and hoped to become a pair of wedding rings. Last week, a young lady brought the wedding ring pair and asked if there was any way to transform the rings into a brooch. It turned out that her father had passed away two years ago, and her mother was going to have her 60th birthday next month, hoping to make a lasting gift for her mother.</p>
+                        <p>One piece of jade, infinite changes, modifications, connecting several generations, becoming a memory of home. </p>
+                        <p>From jade to see family history and life changes, let our jade shop, this forever sparkling gem in the Chung On Street Market, keep your family story for you.</p>
+                    </div>
+
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name scrollin scrollin1">Sarah</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
+                            <p>Sarah is a catalytic architect. She brings collaborative creations that are grounded in human-design thinking, to connect people to the space in their community and strengthen the social fabric. Sarah received her Bachelor of Architectural Studies degree from the Chinese University of Hong Kong, and the Master of Architecture from University College London in the UK. She is a registered architect in Hong Kong and the co-founders of One Bite Design Studio & One Bite Social, a charitable organisation promoting social creative collaborations in Hong Kong.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- SHOP -->
+                <div class="content for-shop" id="shop">
+                    <div class="content-heading scrollin scrollin1">老街坊首飾.玉器工作坊
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td class="td-title">年份：</td><td>2023年至現今</td></tr>
+                                    <tr><td class="td-title">地址：</td><td>新界 荃灣 眾安街 25號 2005鋪</td></tr>
+                                    <tr><td class="td-title">受訪者：</td><td>區錫坤先生</td></tr>
+                                    <tr><td class="td-title">業務性質：</td><td>首飾玉器</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="content-article article-tc scrollin scrollin1">
+                        <p>老街坊玉石是位於香港荃灣眾安街街市內的一家玉石店。隨著時間的流逝,這家店逐漸成為街坊們的玉石收容所和修補店,為破損的玉石提供新生。在這裡,客人不僅能欣賞到精美的玉石工藝品,還能聽到每件玉石背後的動人故事。無論是婚禮、生日,還是其他重要時刻,老街坊玉石都能根據客人的需求,為他們打造獨一無二的玉石禮品。</p>
+                    </div>
+
+                    <div class="content-heading scrollin scrollin1">Old Neighbourhood Jade and Jewellery
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td class="td-title">Year:</td><td>2023 to present</td></tr>
+                                    <tr><td class="td-title">Address:</td><td>Shop2005, 5 Chung On St, Tsuen Wan</td></tr>
+                                    <tr><td class="td-title">Interviewee:</td><td>Mr. Au Shek Kwan</td></tr>
+                                    <tr><td class="td-title">Business:</td><td>Jewelry and Jade</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-article article-en scrollin scrollin1">
+                        <p>Old Neighbourhood Jade is a jade shop located in the Tsuen Wan Chung On Street Market in Hong Kong. Over time, this shop has gradually become a jade stone refuge and repair shop for the neighbourhood, providing new life for damaged jade stones. Here, customers can not only appreciate exquisite jade crafts, but also hear the touching stories behind each jade piece. Whether it's for a wedding, birthday or other important occasion, Old Neighbourhood Jade can create unique jade gifts tailored to the customer's needs.</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="mobile_show">
+                <div class="mobile_inside-menu_wrapper">
+                    <div class="inside-menu">
+                        <div class="inside-menu-item-wrapper">
+                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">Article</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">Shop</a>
+                            <!-- <a class="inside-menu-item" href="#video" data-fancybox data-detail="video">Video</a> -->
+                            <!-- <a class="inside-menu-item" href="#sketch" data-fancybox data-detail="sketch">Sketch</a> -->
+                            <!-- <a class="inside-menu-item" href="#archive" data-fancybox data-detail="archive">Archive</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="objects-drawer">
+            <div class="objects-drawer-backdrop"></div>
+            <div class="objects-drawer-slip">Other Shops</div>
+            <div class="objects-drawer-content">
+                <div class="objects-drawer-item-wrapper">
+                    <div class="objects-drawer-item">
+                        <a href="shop6.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_6.png);"></div>
+                            <div class="text">
+                                <div class="eng">Fong Man Engineering Company</div>
+                                <div class="chi">方文工程公司</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop1.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_1.png);"></div>
+                            <div class="text">
+                                <div class="eng">Leung Kee Pai Dong</div>
+                                <div class="chi">良記排檔百貨</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop2.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_2.png);"></div>
+                            <div class="text">
+                                <div class="eng">Shing Shun Shoes and Keys</div>
+                                <div class="chi">誠信補鞋配匙</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop4.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_4.png);"></div>
+                            <div class="text">
+                                <div class="eng">Baby Professional Tailor and<br>Curtain Shop</div>
+                                <div class="chi">寶貝改衣專門店</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop5.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_5.png);"></div>
+                            <div class="text">
+                                <div class="eng">Adaptive Clothing</div>
+                                <div class="chi">縫補寶</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop3.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_3.png);"></div>
+                            <div class="text">
+                                <div class="eng">Old Neighbourhood Jade and Jewellery</div>
+                                <div class="chi">老街坊首飾.玉器工作坊</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="object_popup" data-id="working_desk">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/dla54tuqjqzwjcg6?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="這張工作枱行內稱為&quot;功夫枱&quot;。頭頂戴着放大鏡的坤哥在這張&quot;功夫枱&quot;上面花盡功夫，每天為荃灣無數老街坊修復修復的除了是首飾和珠寶玉石，亦同時為老街坊修復了過去的回憶。&lt;br /&gt;This work table is referred to in the industry as the &quot;kung fu table&quot;. Mr Au diligently play Kung Fu with magnifying glass on his head, repairing not only jewelry and jade pieces for old neighbourhood in Tsuen Wan, but also restoring their past memories."></a>
+        </div>
+        
+        <div class="object_popup" data-id="pearl_tools">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/ouygrkw5qf5fw4wu?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="區先生日常用到的工具包括索頭、泥盒和波座。索頭是鑲鑽石的時候必須會用的工具 ; 泥盒用來暫存鑽石和其他細小的金器; 用廁所泵自製的波座能讓區先生360度調校角度進行修理。&lt;br /&gt;The tools used by Mr. Au on a daily basis include the Tweezer, the Clay Box, and the Ball Base. The Tweezer is a necessary tool when setting diamonds; the Clay Box is used to temporarily store diamonds and other small jewelry items; the Ball Base, which is self-made using a toilet pump, allows Mr. Au to adjust the angle 360 degrees when repairing."></a>
+        </div>
+
+        <div class="object_popup" data-id="jar_of_jade">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/5z4n6pxpdlkxdwlx?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="這個樽內儲存的是區先生一直以來自行忽發其想練習的的玉石。區先生提到用水&quot;養&quot;着玉石能夠讓它們時刻保持最佳狀態。&lt;br /&gt;The bottle stores the jade stones that Mr. Au has been practicing with on his own initiative. Mr. Au mentioned that &quot;nourishing&quot; the jade stones with water can keep them in the best condition at all times."></a>
+        </div>
+
+        <div class="object_popup" data-id="handdraw_goldfish_jewelry">
+            <a class="popup_link" href="#coming_soon" data-fancybox data-caption="這件金魚首飾對客人來說意義非凡,因為這是多年前已故媽媽送予她的禮物。店主意識到這件金魚首飾的深厚寓意,店主以精湛的玉石和珠寶工藝精心修復了這件作品,成功將精緻的金魚圖案煥發出全新的生機,讓客戶得以再次佩戴這份無可替代的寶貴紀念品。喜悅地將心愛的金魚首飾取回,客戶感到與逝去的媽媽的聯繫重新建立。&lt;br /&gt;This goldfish jewellery piece was immensely meaningful to the customer, as it was a gift from her mother who passed away many years ago. The shop owner recognized the deep significance of this goldfish jewellery, and used his exquisite expertise in jade and jewellery craftsmanship to carefully restore the piece, successfully reviving the intricate goldfish design with new life, allowing the customer to once again wear this irreplaceable precious memento. Overjoyed to have her beloved goldfish jewellery back, the customer felt a renewed connection to her departed mother."></a>
+        </div>
+
+        <div style="display:none">
+            <div id="coming_soon">Coming Soon</div>
+        </div>
+	</body>
+</html>
+	</body>
+</html>

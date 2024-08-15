@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Foreseen</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="../c_css/fonts/stylesheet.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/main.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/module.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/color.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="../c_script/lib/gsap.min.js"></script>
+        <script src="../c_script/lib/jquery.mousewheel.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../c_script/lib/fancybox/jquery.fancybox.min.css">
+        <script src="../c_script/lib/fancybox/jquery.fancybox.min.js"></script>
+        <script src="../c_script/lib/jquery.ba-hashchange.min.js"></script>
+        
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+        <script src="../c_script/common.js"></script>
+        <script src="../c_script/script.js"></script>
+        <script src="../c_script/shophash.js"></script>
+
+
+    <!--------------------------- css & script end here ------------------------->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "../c_script/three.module.js",
+                "three/addons/": "../jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="../js/script.js"></script>
+    <script type="module">
+        window.openObject = openIFrame
+        
+        //// rewrite your iframe here?
+        function openIFrame( index ) {
+            console.log("openIFrame", index)
+        }
+    </script>
+    </head>
+	<body class="body_shopdetail body_shopdetail_color_1">
+        <a href="index.html"><img src="../c_images/top_left_logo1.svg" class="top_left_logo1">
+        <img src="../c_images/top_left_logo2.svg" class="top_left_logo2">
+        <img src="../c_images/top_right_logo1.svg" class="top_right_logo1">
+        <img src="../c_images/top_right_logo2.svg" class="top_right_logo2"></a>
+
+
+		<div class="right_menu mobile_hide">
+
+		</div>
+
+		<div class="lang_menu scrollin scrollin1 mobile_hide">
+			<a class="lang_en">EN</a>
+			<a class="lang_tc">中</a>
+		</div>
+
+		<a class="menu_line_wrapper dropdown_btn">
+            <div class="menu_line ">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </a>
+
+        <div class="dropdown_wrapper">
+            <div class="dropdown text3">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div>主頁</div>
+                            <div><i>(Home)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <div>簡介</div>
+                            <div><i>(About)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="timeline.html">
+                            <div>時間軸</div>
+                            <div><i>(Timeline)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="objects.html">
+                            <div>所有物品</div>
+                            <div><i>(All Objects)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="team.html">
+                            <div>項目團隊</div>
+                            <div><i>(Team)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="mobile_lang_menu scrollin scrollin1 mobile_show">
+							<a class="lang_en">EN</a>
+							<a class="lang_tc">中</a>
+						</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="wrapper-fold-2" data-shop="5">
+            <div class="fold-2 fold-2-left">
+                <div id="threejs-canvas">
+                    <div class="debug">
+                        <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
+                        <br><br>
+                        <div>
+                            <label>
+                                <input type="radio" id="debug-center" name="placement_radiobtn" value="center">center
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-series" name="placement_radiobtn" value="series">series
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-shifted" name="placement_radiobtn" value="shifted" checked>shifted
+                            </label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fold-2 fold-2-right mobile_hide">
+                <div class="inside-menu">
+                    <div class="inside-menu-item-wrapper">
+                        <div class="inside-menu-item selected" data-detail="article">Article</div>
+                        <div class="inside-menu-item" data-detail="shop">Shop</div>
+                        <!-- <div class="inside-menu-item" data-detail="video">Video</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="sketch">Sketch</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="archive">Archive</div> -->
+                    </div>
+                </div>
+
+                <!-- SHOP 5 -->
+
+                <!-- ARTICLE -->
+                <div class="content for-article active" id="article">
+                    <div class="content-heading scrollin scrollin1">縫補寶</div>
+                    
+                    <div class="content-article article-tc scrollin scrollin1">
+                        <p>WILL UPDATE SOON</p>
+                    </div>
+
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name text-tc scrollin scrollin1">嚴瑞芳</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
+                            <p class="text-tc">嚴瑞芳，跨媒介藝術家, 香港中文大學藝術系助理教授，天台塾聯合創辦人。</p>
+                        </div>
+                    </div>
+
+                    <div class="content-heading scrollin scrollin1">Adaptive Clothing</div>
+
+                    <div class="content-article article-en scrollin scrollin1">
+                        <p>WILL UPDATE SOON</p>
+                    </div>
+
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name scrollin scrollin1">Yim Siu Fong</div>
+                        <div class="article-ppl-desc scrollin scrollin1">
+                            <p>YIM Sui Fong is an artist who specializes in video, sound and social practice art. She is a co-founder of Rooftop Institute and an assistant professor in the Fine Arts Department at The Chinese University of Hong Kong.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ARTICLE -->
+                <div class="content for-shop" id="shop">
+                    <div class="content-heading scrollin scrollin1">縫補寶
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td class="td-title">年份：</td><td>2018年至現今</td></tr>
+                                    <tr><td class="td-title">地址：</td><td>新蒲崗 六合街 23號 萬昌中心 1樓 106室</td></tr>
+                                    <tr><td class="td-title">受訪者：</td><td>劉先穎女士</td></tr>
+                                    <tr><td class="td-title">業務性質：</td><td>復康人士服裝</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="content-article article-tc scrollin scrollin1">
+                        <p>縫補寶康健服裝有限公司是一家香港本地的社會企業,專注於設計、生產和銷售針對長者及其照顧者的康健用品。它聘請本地婦女和退休人士,為他們提供車縫康健服裝和週邊商品的工作機會。通過提供就業機會和提升照護意識,縫補寶康健服裝有限公司成為了一個兼顧社會公益和商業發展的初創企業。</p>
+                    </div>
+
+                    <div class="content-heading scrollin scrollin1">Adaptive Clothing
+                        <div class="content-shop-info scrollin scrollin1">
+                            <table>
+                                <tbody>
+                                    <tr><td class="td-title">Year:</td><td>2018 to present</td></tr>
+                                    <tr><td class="td-title">Address:</td><td>Room 106, Max Trade Centre, 23 Luk Hop St, San Po Kong</td></tr>
+                                    <tr><td class="td-title">Interviewee: </td><td>Ms. Lau Sin Wing</td></tr>
+                                    <tr><td class="td-title">Business:</td><td>Rehabilitation clothing</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-article article-en scrollin scrollin1">
+                        <p>Adaptive Clothing Limited is a social enterprise in Hong Kong, focusing on the design, production and sale of healthcare products for the elderly and their caregivers. It employs local women and retirees, providing them with job opportunities to sew healthcare clothing and related products. By providing employment opportunities and raising care awareness, Adaptive Clothing Limited has become a startup that balances social welfare and business development.</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="mobile_show">
+                <div class="mobile_inside-menu_wrapper">
+                    <div class="inside-menu">
+                        <div class="inside-menu-item-wrapper">
+                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">文章</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">店舖</a>
+                            <!-- <a class="inside-menu-item" href="#video" data-fancybox data-detail="video">Video</a> -->
+                            <!-- <a class="inside-menu-item" href="#sketch" data-fancybox data-detail="sketch">Sketch</a> -->
+                            <!-- <a class="inside-menu-item" href="#archive" data-fancybox data-detail="archive">Archive</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="objects-drawer">
+            <div class="objects-drawer-backdrop"></div>
+            <div class="objects-drawer-slip">Other Shops</div>
+            <div class="objects-drawer-content">
+                <div class="objects-drawer-item-wrapper">
+                    <div class="objects-drawer-item">
+                        <a href="shop6.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_6.png);"></div>
+                            <div class="text">
+                                <div class="eng">Fong Man Engineering Company</div>
+                                <div class="chi">方文工程公司</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop1.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_1.png);"></div>
+                            <div class="text">
+                                <div class="eng">Leung Kee Pai Dong</div>
+                                <div class="chi">良記排檔百貨</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop2.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_2.png);"></div>
+                            <div class="text">
+                                <div class="eng">Shing Shun Shoes and Keys</div>
+                                <div class="chi">誠信補鞋配匙</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop4.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_4.png);"></div>
+                            <div class="text">
+                                <div class="eng">Baby Professional Tailor and<br>Curtain Shop</div>
+                                <div class="chi">寶貝改衣專門店</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop5.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_5.png);"></div>
+                            <div class="text">
+                                <div class="eng">Adaptive Clothing</div>
+                                <div class="chi">縫補寶</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop3.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_3.png);"></div>
+                            <div class="text">
+                                <div class="eng">Old Neighbourhood Jade and Jewellery</div>
+                                <div class="chi">老街坊首飾.玉器工作坊</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="object_popup" data-id="needle_pad">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://lumalabs.ai/embed/ab5aae2f-2a05-4c72-8eb3-d953fbf542f7?mode=sparkles" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="這個屬於一群家庭主婦和退休婦女的針包，為著殘疾人仕和康復者製作特別功能的日常服裝，讓他們穿起能夠更方便和自信地過日常生活。&lt;br /&gt;This needle pack belongs to a group of housewives and retired women who create specialized yet functional everyday clothing for people with disabilities and those in rehabilitation, allowing them to dress more conveniently and confidently in their daily lives."></a>
+        </div>
+
+        <div class="object_popup" data-id="sewing_machine">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/rfth3ot4bnnb3azk?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="縫補寶的創辦人 Swing 保存了她用來學習裁縫的第一部衣車。我們邀請她使用這部舊衣車完成當年未完成的裁縫功課。當被問到除了員工之外最重要的是什麼時,Swing 表示是毅力。雖然公司經歷了金融和環境的不穩定,她有時需要兼職維持公司運營,但她認為為員工提供好的工作環境是值得的。&lt;br /&gt;The founder of Adaptive Clothing, Swing, has preserved the first sewing machine she used to learn sewing. We have invited her to use this old sewing machine to complete the unfinished sewing assignments from her training days.When asked what is most important besides the employees, Swing said it is perseverance. Although the company has experienced financial and environmental instability, and she sometimes needs to take on side jobs to maintain the company's operations, she believes it is worthwhile to provide a good work environment for her employees."></a>
+        </div>
+
+        <div style="display:none">
+            <div id="coming_soon">Coming Soon</div>
+        </div>
+	</body>
+</html>
