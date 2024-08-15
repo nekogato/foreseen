@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Foreseen</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="../c_css/fonts/stylesheet.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/main.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/module.css">
+		<link type="text/css" rel="stylesheet" href="../c_css/color.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="../c_script/lib/gsap.min.js"></script>
+        <script src="../c_script/lib/jquery.mousewheel.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../c_script/lib/fancybox/jquery.fancybox.min.css">
+        <script src="../c_script/lib/fancybox/jquery.fancybox.min.js"></script>
+        <script src="../c_script/lib/jquery.ba-hashchange.min.js"></script>
+        
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+        <script src="../c_script/common.js"></script>
+        <script src="../c_script/script.js"></script>
+        <script src="../c_script/shophash.js"></script>
+
+
+    <!--------------------------- css & script end here ------------------------->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "../c_script/three.module.js",
+                "three/addons/": "../jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="../js/script.js"></script>
+    <script type="module">
+        window.openObject = openIFrame
+        
+        //// rewrite your iframe here?
+        function openIFrame( index ) {
+            console.log("openIFrame", index)
+        }
+    </script>
+    </head>
+	<body class="body_shopdetail body_shopdetail_color_1">
+        <a href="index.html"><img src="../c_images/top_left_logo1.svg" class="top_left_logo1">
+        <img src="../c_images/top_left_logo2.svg" class="top_left_logo2">
+        <img src="../c_images/top_right_logo1.svg" class="top_right_logo1">
+        <img src="../c_images/top_right_logo2.svg" class="top_right_logo2"></a>
+
+
+		<div class="right_menu mobile_hide">
+
+		</div>
+
+		<div class="lang_menu scrollin scrollin1 mobile_hide">
+			<a class="lang_en">EN</a>
+			<a class="lang_tc">中</a>
+		</div>
+
+		<a class="menu_line_wrapper dropdown_btn">
+            <div class="menu_line ">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </a>
+
+        <div class="dropdown_wrapper">
+            <div class="dropdown text3">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div>主頁</div>
+                            <div><i>(Home)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <div>簡介</div>
+                            <div><i>(About)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="timeline.html">
+                            <div>時間軸</div>
+                            <div><i>(Timeline)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="objects.html">
+                            <div>所有物品</div>
+                            <div><i>(All Objects)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="team.html">
+                            <div>項目團隊</div>
+                            <div><i>(Team)</i></div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="mobile_lang_menu scrollin scrollin1 mobile_show">
+							<a class="lang_en">EN</a>
+							<a class="lang_tc">中</a>
+						</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="wrapper-fold-2" data-shop="1">
+            <div class="fold-2 fold-2-left">
+                <div id="threejs-canvas">
+                    <div class="debug">
+                        <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
+                        <br><br>
+                        <div>
+                            <label>
+                                <input type="radio" id="debug-center" name="placement_radiobtn" value="center">center
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-series" name="placement_radiobtn" value="series">series
+                            </label><br>
+                            <label>
+                                <input type="radio" id="debug-shifted" name="placement_radiobtn" value="shifted" checked>shifted
+                            </label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fold-2 fold-2-right mobile_hide">
+                <div class="inside-menu">
+                    <div class="inside-menu-item-wrapper">
+                        <div class="inside-menu-item selected" data-detail="article">Article</div>
+                        <div class="inside-menu-item" data-detail="shop">Shop</div>
+                        <!-- <div class="inside-menu-item" data-detail="video">Video</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="sketch">Sketch</div> -->
+                        <!-- <div class="inside-menu-item" data-detail="archive">Archive</div> -->
+                    </div>
+                </div>
+
+                <!-- SHOP 1 -->
+
+                <!-- ARTICLE -->
+                <div class="content for-article active" id="article">
+
+                    <div class="content-heading scrollin scrollin1">Leung Kee Pai Dong</div>
+
+                    <div class="content-article article-en scrollin scrollin1">
+                        <p>Leung Kee Pai Dong Store: Fan Bo's store is a one-stop shop, with tortoise food, paintings, and birds. He also does shoe repair and sells jewelry. He strongly emphasizes that everything he knows is self-taught - he used to even be able to make a whole pair of shoes. Whenever you go to see him, he's always quietly repairing shoes, seemingly never stopping. He says that in his younger days he used to go to Macau with a group to sketch, but pursuing art requires financial means, so in the end he could only treat painting as a hobby, being self-taught. Just like shoemaking, he feels that if you don't know how to do something, you have to learn.</p>
+                        <p>The first time I met him, he gave me a painting of his store that someone else had done. The second time, he gave me a collection of his own sketches that he had compiled. Liang Sheng says that he only started doing shoe repair after retiring, and has been at it for over 20 years now. In his free time, he most enjoys decorating the store, painting, and doing design work. He exercises every week, playing ping pong and swimming with old friends. He said he could tell I was an artist just by looking at my fingers, because they're long and slim, just like his. As I was leaving, I politely wished him good health and prosperous business. Liang Sheng immediately said, "You don't need to wish for prosperous business, just don't let there be too much business." Indeed, living a peaceful life is enough.</p>
+                    </div>
+
+                    <div class="content-block scrollin scrollin1">
+                        <div class="article-ppl-name scrollin scrollin1"><span class="text-tc"></span> Brown White</div>
+                        <div class="article-ppl-desc scrollin scrollin1"></div>
+                    </div>
+
+                </div>
+
+                <!-- SHOP -->
+                 <div class="content for-shop" id="shop">
+                    <div class="content-heading scrollin scrollin1">Leung Kee Pai Dong</div>
+                    <div class="content-shop-info scrollin scrollin1">
+                        <table>
+                            <tbody>
+                                <tr><td class="td-title">Year:</td><td>1982 to present</td></tr>
+                                <tr><td class="td-title">Address:</td><td>60 Yin Hing St, San Po Kong</td></tr>
+                                <tr><td class="td-title">Interviewee:</td><td>Mr. Fan kwai Wing</td></tr>
+                                <tr><td class="td-title">Business:</td><td>Groceries, Shoe Repair, Repair</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="content-article scrollin scrollin1 article-en">
+                        <p>Leung Kee Pai Dong is a unique small shop in Hong Kong that has been committed to providing various services and goods to the local community for many years. This store is operated by Mr. Fan Po, who can be described as a multi-talented elderly person who engages in shoe repair, merchandise sales, and artistic creation. Mr. Fan Po is also an amateur painter who loves artistic creation and has participated in painting outings to Macau. Although he does not have a formal art training background, he has created many works through self-learning and interest.</p>
+                        <p>Unfortunately, the operating license for Leung Kee Pai Dong will soon expire, which means this unique small shop may have to close down in the near future. Many local people feel reluctant to see the end of this warm and personable small shop and the story of its founder, Mr. Fan.</p>
+                    </div>
+                 </div>
+
+            </div>
+            <div class="mobile_show">
+                <div class="mobile_inside-menu_wrapper">
+                    <div class="inside-menu">
+                        <div class="inside-menu-item-wrapper">
+                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">Article</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">Shop</a>
+                            <!-- <a class="inside-menu-item" href="#video" data-fancybox data-detail="video">Video</a> -->
+                            <!-- <a class="inside-menu-item" href="#sketch" data-fancybox data-detail="sketch">Sketch</a> -->
+                            <!-- <a class="inside-menu-item" href="#archive" data-fancybox data-detail="archive">Archive</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="objects-drawer">
+            <div class="objects-drawer-backdrop"></div>
+            <div class="objects-drawer-slip">Other Shops</div>
+            <div class="objects-drawer-content">
+                <div class="objects-drawer-item-wrapper">
+                    <div class="objects-drawer-item">
+                        <a href="shop6.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_6.png);"></div>
+                            <div class="text">
+                                <div class="eng">Fong Man Engineering Company</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop1.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_1.png);"></div>
+                            <div class="text">
+                                <div class="eng">Leung Kee Pai Dong</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop2.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_2.png);"></div>
+                            <div class="text">
+                                <div class="eng">Shing Shun Shoes and Keys</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop4.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_4.png);"></div>
+                            <div class="text">
+                                <div class="eng">Baby Professional Tailor and<br>Curtain Shop</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop5.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_5.png);"></div>
+                            <div class="text">
+                                <div class="eng">Adaptive Clothing</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="objects-drawer-item">
+                        <a href="shop3.html">
+                            <div class="thumb" style="background-image: url(../c_images/model_3.png);"></div>
+                            <div class="text">
+                                <div class="eng">Old Neighbourhood Jade and Jewellery</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="object_popup" data-id="wooden_tool_box_open">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/ttetwzgaziu66em6?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="Inside the wooden toolbox is contained Mr Fung’s tool, but when customers come to visit and have their shoes repaired, the toolbox transforms into a small stool so that the customers can sit and wait while Mr. Fan repairs their shoes on his self-made shoe repair rack, and they can chat together at the same time."></a>
+        </div>
+        
+        <div class="object_popup" data-id="wooden_tool_box">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/zctnx7vvbfzu74b6?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="Inside the wooden toolbox is contained Mr Fung’s tool, but when customers come to visit and have their shoes repaired, the toolbox transforms into a small stool so that the customers can sit and wait while Mr. Fan repairs their shoes on his self-made shoe repair rack, and they can chat together at the same time."></a>
+        </div>
+        
+        <div class="object_popup" data-id="shoe_rack">
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/lfzmz6syep2vwrtb?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="Inside the wooden toolbox is contained Mr Fung’s tool, but when customers come to visit and have their shoes repaired, the toolbox transforms into a small stool so that the customers can sit and wait while Mr. Fan repairs their shoes on his self-made shoe repair rack, and they can chat together at the same time."></a>
+        </div>
+
+        <div class="object_popup" data-id="jewelery_box">
+            <a class="popup_link" href="#coming_soon" data-fancybox ></a>
+        </div>
+
+        <div class="object_popup" data-id="handdraw_first_pair_of_shoes">
+            <a class="popup_link" href="#coming_soon" data-fancybox ></a>
+        </div>
+
+        <div style="display:none">
+            <div id="coming_soon">Coming Soon</div>
+        </div>
+
+
+        <!-- <div class="object_popup" id="object1_shoe_rack">
+            <div class="object_popup_content">
+                object1_shoe_rack
+            </div>
+            <a class="object_popup_close"></a>
+        </div>
+
+        <div class="object_popup" id="object1_wooden_tool_box">
+            <div class="object_popup_content">
+                object1_wooden_tool_box
+            </div>
+            <a class="object_popup_close"></a>
+        </div> -->
+	</body>
+</html>

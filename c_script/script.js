@@ -539,7 +539,15 @@ function floatanim(){
 
 
 function init_function(){
-
+	var myurl = window.location.href;
+	if(myurl.includes("/en/")){
+		$(".lang_en").hide();
+		$(".lang_tc").attr("href",myurl.replace("/en/","/tc/"))
+	}
+	if(myurl.includes("/tc/")){
+		$(".lang_tc").hide();
+		$(".lang_en").attr("href",myurl.replace("/tc/","/en/"))
+	}
 }
 
 function dosize(){
