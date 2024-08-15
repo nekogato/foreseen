@@ -25,24 +25,16 @@
         <script src="../c_script/shophash.js"></script>
 
 
-    <!--------------------------- css & script end here ------------------------->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "../c_script/three.module.js",
-                "three/addons/": "../jsm/"
+        <!--------------------------- css & script end here ------------------------->
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "../c_script/three.module.js",
+                    "three/addons/": "../jsm/"
+                }
             }
-        }
-    </script>
-    <script type="module" src="../js/script.js"></script>
-    <script type="module">
-        window.openObject = openIFrame
-        
-        //// rewrite your iframe here?
-        function openIFrame( index ) {
-            console.log("openIFrame", index)
-        }
-    </script>
+        </script>
+        <script type="module" src="../js/script.js"></script>
     </head>
 	<body class="body_shopdetail body_shopdetail_color_1">
         <a href="index.html"><img src="../c_images/top_left_logo1.svg" class="top_left_logo1">
@@ -112,30 +104,14 @@
         
         <div class="wrapper-fold-2" data-shop="2">
             <div class="fold-2 fold-2-left">
-                <div id="threejs-canvas">
-                    <div class="debug">
-                        <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
-                        <br><br>
-                        <div>
-                            <label>
-                                <input type="radio" id="debug-center" name="placement_radiobtn" value="center">center
-                            </label><br>
-                            <label>
-                                <input type="radio" id="debug-series" name="placement_radiobtn" value="series">series
-                            </label><br>
-                            <label>
-                                <input type="radio" id="debug-shifted" name="placement_radiobtn" value="shifted" checked>shifted
-                            </label><br>
-                        </div>
-                    </div>
-                </div>
+                <div id="threejs-canvas"></div>
             </div>
             <div class="fold-2 fold-2-right mobile_hide">
                 <div class="inside-menu">
                     <div class="inside-menu-item-wrapper">
                         <div class="inside-menu-item selected" data-detail="article">文章</div>
                         <div class="inside-menu-item" data-detail="shop">店舖</div>
-                        <!-- <div class="inside-menu-item" data-detail="video">Video</div> -->
+                        <div class="inside-menu-item" data-detail="video">影片</div>
                         <!-- <div class="inside-menu-item" data-detail="sketch">Sketch</div> -->
                         <!-- <div class="inside-menu-item" data-detail="archive">Archive</div> -->
                     </div>
@@ -185,6 +161,13 @@
                    
                  </div>
 
+                  <!-- VIDEO -->
+                  <div class="content for-video" id="video">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/qsZP4P1mkAM?rel=0&enablejsapi=1" title="誠信補鞋配匙 Shing Shun Shoes and Keys _ Foreseen 寓延" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+
             </div>
             <div class="mobile_show">
                 <div class="mobile_inside-menu_wrapper">
@@ -192,7 +175,7 @@
                         <div class="inside-menu-item-wrapper">
                             <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">文章</a>
                             <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">店舖</a>
-                            <!-- <a class="inside-menu-item" href="#video" data-fancybox data-detail="video">Video</a> -->
+                            <a class="inside-menu-item" href="https://youtu.be/qsZP4P1mkAM" data-fancybox data-detail="video">影片</a>
                             <!-- <a class="inside-menu-item" href="#sketch" data-fancybox data-detail="sketch">Sketch</a> -->
                             <!-- <a class="inside-menu-item" href="#archive" data-fancybox data-detail="archive">Archive</a> -->
                         </div>

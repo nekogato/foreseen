@@ -4,7 +4,6 @@ import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import ProjectedMaterial from '../js/ProjectedMaterial.js';
 
 let camera, scene, renderer;
 let targetDom;
@@ -20,45 +19,16 @@ const colorWhite = new THREE.Color(0xFFFFFF)
 let textMaterial, lineMaterial;
 let fontPalatinoItalic
 let curPointerIndex = undefined
-let rAFhideThumbnail
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-let setIndex = Math.floor(Number(urlParams.get("set")))
-// console.log(setIndex)
+let isPointerType
 
-if (setIndex == 0) {
-    console.log(document.querySelector(".wrapper-fold-2").dataset.shop)
-    setIndex = document.querySelector(".wrapper-fold-2").dataset.shop
-}
-
-// setIndex = 4
-
-// if (window.seqIndex !== undefined && setIndex == 0) setIndex = window.seqIndex
-// console.log(window.seqIndex, setIndex) 
-
+let setIndex = document.querySelector(".wrapper-fold-2").dataset.shop
 if (setIndex == undefined || setIndex > 6 || setIndex < 1) setIndex = 1
-
-let isShadeSet = urlParams.get("isShaded") == "false" ? false : true
-// console.log(isShadeSet)
 
 const colorArrayIndex = setIndex-1
 const showSeqIndex = setIndex-1
 const posArrayIndex = setIndex-1
 
-// const objArray = [
-//     {path: "ElectricityBox_20240628.obj",       size: 10},              // 0
-//     {path: "Iron_20240628.obj",                 size: 0.5},             // 1
-//     {path: "JwelleryBox_20240628.obj",          size: 0.15},               // 2
-//     {path: "Keys_Main_20240628.obj",            size: 0.4},               // 3
-//     {path: "NeedlePad_20240628.obj",            size: 3},               // 4
-//     {path: "PearlTools_20240628.obj",           size: 0.3},               // 5
-//     {path: "Pin_20240628.obj",                  size: 0.05},            // 6
-//     {path: "PressureCooker_Top_20240628.obj",   size: 0.9},               // 7
-//     {path: "Scissors_20240628.obj",             size: 0.5},               // 8
-//     {path: "ShoeStand_20240628.obj",            size: 0.7},               // 9
-//     {path: "WorkingDesk_20240628.obj",          size: 0.4},               // 10
-// ]
 const objArray = [
     {path: "ElectricityBox_20240628.obj",           id:"electricity_box",               name:"ElectricityBox",        size: 10,           shop: "A"},               // 0
     {path: "PressureCooker_Top_20240628.obj",       id:"rice_cooker",                   name:"PressureCooker_Top",        size: 0.9,          shop: "A"},               // 1
@@ -112,31 +82,17 @@ const showSeqArray = [
     [0,1],                 //             A
 ]
 
-// const colorArraySet = colorArray[colorArray.length-1]
-// const colorArraySet = colorArray[Math.floor(Math.random()*colorArray.length)]
 const colorArraySet = colorArray[colorArrayIndex]
-
-// const posArraySet = posArray[posArray.length-1]
 const posArraySet = posArray[posArrayIndex]
-
-// const showSeq = [0, 1, 6]
-// const showSeq = [3, 10, 9]
 const showSeq = showSeqArray[showSeqIndex]
 
-let object, object2, object3;
-let pMat, pMat2, pMat3;
-
 let thumbnail, thumbnailLine
-let thumbnailImg01, thumbnailImg02, thumbnailImg03;
 
 let hemisphereLight
 
 let controls;
 
-let placementState = 0;
-
-const isProjectedMaterialUsed = false
-const isShadeEnabled = isShadeSet
+const isShadeEnabled = true
 
 document.addEventListener("DOMContentLoaded", DOMContentLoaded)
 
@@ -188,7 +144,18 @@ function changeDetailView( e ) {
         // behavior:"smooth"
     })
 
+    pauseVideo()
+
     doscroll()
+}
+function pauseVideo() {
+    const iframeVideo = document.querySelector(".for-video iframe");
+    if (iframeVideo !== null) {
+        iframeVideo.contentWindow.postMessage(
+            '{"event":"command", "func": "pauseVideo", "args":""}',
+            "*"
+        );
+    }
 }
 function resetInsideMenuButton() {
     const selectedMenuItems = document.querySelectorAll(".fold-2-right .inside-menu-item.selected")
@@ -198,10 +165,10 @@ function resetInsideMenuButton() {
 }
 
 function fancyboxBinding() {
-    // console.log("fbBinding")
-    // console.log($.fancybox)
 
     $.fancybox.defaults.afterLoad = function() {
+        
+        pointer.isActive = false
 
         const scrollins = document.querySelectorAll(".fancybox-content .scrollin")
         
@@ -211,33 +178,20 @@ function fancyboxBinding() {
             obj.classList.add("leavescreen")
         })
 
-        // $(".fancybox-content").css( {
-        //     height: "",
-        //     overflow:"auto"
-        // })
-        // console.log($(".fancybox-content").height())
-        // $(".fancybox-content").css( {
-        //     height: $(".fancybox-content").height()+40+"px",
-        //     overflow: "hidden"
-        // })
-
         $(".fancybox-slide, .fancybox-content").on('scroll', function() {
             doscroll();
         })
         doscroll()
     }
-    // console.log($.fancybox.defaults)
+    
     $.fancybox.defaults.beforeClose = function() {
+        pointer.isActive = true
         resetMobileInsideMenuButton()
         console.log("resetclose")
     }
 
-    
-     // $.fancybox.defaults.iframe.css = {overflow: hidden}
      $.fancybox.defaults.afterClose = function() {
         window.location.hash="";
-        // $(".fancybox-slide .content").height("auto")
-        // $(".wrapper-fold-2 .content").height("auto")
     }
 }
 
@@ -271,8 +225,6 @@ function mobileChangeDetailView( e ) {
     if (activeContent !== undefined) {
         activeContent.classList.add("active")
     }
-
-    // fancyboxBinding()
     doscroll()
 }
 
@@ -293,18 +245,9 @@ function rotateObjects() {
         objects[i].rotation.z += 0.01 * 1;
     }
 
-    // if (object) object.rotation.z += 0.01 * 1;
-    // if (object2) object2.rotation.z += -0.01 * 1;
-    // if (object3) {
-    //     if (placementState == 0) object3.rotation.y += -0.01 * 1;
-    //     if (placementState == 1) object3.rotation.z += -0.01 * 1;
-    //     if (placementState == 2) object3.rotation.z += -0.01 * 1;
-    // }
 }
 
 function changePlacement() {
-
-    console.log("changePlacement")
 
     for (var i=0; i < objects.length; i++) {
         if (i<posArraySet.length) {
@@ -314,30 +257,18 @@ function changePlacement() {
         }
     }
 
-    // camera.position.x = -1;
-    // camera.position.y = 2;
-    // camera.position.z = 10;
-
-    // gsap.fromTo( camera.position, 2, {x:-1, y:2, z:2}, {x:-1, y:2, z:1, onUpdate: ()=> { controls.update();}} )
-
     gsap.fromTo( camera.position, 4, {x:2,y:4,z:0}, {x:-1, y:4, z:4, onUpdate: ()=> { controls.update();}} )
-    // gsap.fromTo( camera.position, 2, {x:0,y:10,z:0}, {x:-1, y:2, z:1, onUpdate: ()=> { controls.update();}} )
-    // gsap.fromTo( camera.zoom, 10, {zoom: 1000}, {zoom: 750, onUpdate: ()=> { controls.update();}} )
 }
 
 function pickColor( i ) {
     const color1 = colorArraySet[0]
     const color2 = colorArraySet[colorArraySet.length-1]
 
-    //console.log(color1, color2)
-
     const newColor = new THREE.Color(
         color1.r * (1-i) + color2.r * i,
         color1.g * (1-i) + color2.g * i,
         color1.b * (1-i) + color2.b * i,
     )
-
-    // console.log(i, newColor)
 
     return  newColor
 }
@@ -449,8 +380,6 @@ function init() {
     camera.position.z = 1;
     camera.updateProjectionMatrix()
 
-    window.camera = camera
-
     // scene
 
     scene = new THREE.Scene();
@@ -481,8 +410,8 @@ function init() {
 
     function loadModel() {
 
-        console.log("loadModel")
-        console.log(objects.length)
+        // console.log("loadModel")
+        // console.log(objects.length)
 
         const textureLoader = new THREE.TextureLoader();
 
@@ -499,48 +428,23 @@ function init() {
             const obj = objects[i]
             obj.traverse(function (child) {
                 if (child.isMesh) {
-                    // console.log(child.name)
-                    // console.log(child.material.side)
-                    // child.material = pMat.clone()
                     child.material = new THREE.MeshStandardMaterial()
-                    // child.material.color = colorArraySet[i]
                     child.material.color = pickColor( i / showSeq.length )
                     child.material.side = THREE.DoubleSide
-                    if (i == 4) {
-                        // child.material.color = new THREE.Color(0xCCCCCC)
-                        // console.log(child.position)
-                        // window.obj = child
-                    }
-                    // if (i == 1) child.rotation.x = Math.PI / -2
 
                     if (objArray[showSeq[i]].xRot !== undefined) child.rotation.x = objArray[showSeq[i]].xRot
                     if (objArray[showSeq[i]].yRot !== undefined) child.rotation.y = objArray[showSeq[i]].yRot
                     if (objArray[showSeq[i]].zPos !== undefined) child.position.z = objArray[showSeq[i]].zPos
 
-                } else {
-                    // console.log(child)
                 }
             });
             obj.rotation.x = Math.PI / 2
             obj.scale.setScalar( objArray[showSeq[i]].size );
             
-            // obj.updateMatrix()
-            // obj.children[0].updateMatrix()
-            // obj.children[0].geometry.computeBoundingBox()
-            // console.log( obj.scale.y )
-            // console.log( obj.children[0].geometry.boundingBox )
-            // console.log( obj.children[0].geometry.boundingBox.min, obj.children[0].geometry.boundingBox.max)
-            // console.log( obj.children[0].geometry.boundingBox.max.y - obj.children[0].geometry.boundingBox.min.y )
-            // obj.userData.height = (obj.children[0].geometry.boundingBox.max.y - obj.children[0].geometry.boundingBox.min.y) * obj.scale.y
-            // console.log( obj.userData.height )
-
             const aabb = new THREE.Box3();
             aabb.setFromObject( obj );
             obj.userData.height = aabb.max.y - aabb.min.y
 
-            // obj.userData.map = thumbnailImg01;
-            // you can find the thumbnail here 'c_images/objects/', but need to add the object name and shadow
-            // obj.userData.map = new THREE.TextureLoader().load('c_images/objects/'+objArray[showSeq[i]].id+".png");
             textureLoader.load('../c_images/objects/'+objArray[showSeq[i]].id+".png",
                 (texture) => {
                     texture.colorSpace = THREE.SRGBColorSpace;
@@ -548,7 +452,6 @@ function init() {
                 }
             );
 
-            // const geometry = new TextGeometry( "(" + objArray[showSeq[i]].id + ")", {
             const geometry = new TextGeometry( "( " + substituteText( objArray[showSeq[i]].id ) + " )", {
                 font: fontPalatinoItalic,
                 size: 6,
@@ -570,7 +473,6 @@ function init() {
             obj.userData.textObj = text
 
             objGroup.add(obj);
-            // scene.add(obj);    
         }
 
         function substituteText( text ) {
@@ -583,87 +485,8 @@ function init() {
             return words.join(" ")
         }
 
-        // object.traverse(function (child) {
-        //     console.log(child)
-        //     if (child.isMesh) {
-        //         // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
-        //         // child.material.map = texture;
-
-        //         child.material = pMat
-        //     }
-
-        // });
-
-        // // object.position.y = - 0.95;
-        // // object.scale.setScalar( 0.01 );
-        // object.rotation.x = Math.PI / 2
-        // // object.scale.setScalar(10);
-        // object.scale.setScalar( objArray[showSeq[0]].size );
-        // object.userData.map = thumbnailImg01
-        // scene.add(object);
-
-
-        // object2.traverse(function (child) {
-        //     console.log(child)
-        //     if (child.isMesh) {
-        //         // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
-        //         // child.material.map = texture;
-
-        //         child.material = pMat2
-        //     }
-
-        // });
-
-        // // object.position.y = - 0.95;
-        // // object.scale.setScalar( 0.01 );
-        // object2.rotation.x = Math.PI / 2
-        // // object2.scale.setScalar(0.5);
-        // object2.scale.setScalar( objArray[showSeq[1]].size );
-        // // object2.position.x= -0.5;
-        // object2.userData.map = thumbnailImg02
-        // scene.add(object2);
-
-
-        // object3.traverse(function (child) {
-        //     console.log(child)
-        //     if (child.isMesh) {
-        //         // child.material = new THREE.MeshBasicMaterial({color: new THREE.Color("#FF0000")});
-        //         // child.material.map = texture;
-
-        //         child.material = pMat3
-        //     }
-
-        // });
-
-        // // object.position.y = - 0.95;
-        // // object.scale.setScalar( 0.01 );
-        // object3.rotation.x = Math.PI / 2
-        // object3.scale.setScalar(0.05);
-        // console.log(objArray[showSeq[2]].size)
-        // object3.scale.setScalar( objArray[showSeq[2]].size );
-        // // object2.position.x= -0.5;
-        // // object3.position.y = 0.065;
-        // object3.userData.map = thumbnailImg03
-        // scene.add(object3);
-
-
-
-        // const cube = new THREE.Mesh(
-        //     new THREE.BoxGeometry(),
-        //     new THREE.MeshBasicMaterial({
-        //         map: texture
-        //     })
-        // )
-
-        // cube.position.x = -1
-        // scene.add( cube )
-
-
         initThumbnail()
-
-        placementState = 2 -1
         changePlacement()
-
         initObjectsDrawer()
 
         render();
@@ -672,69 +495,6 @@ function init() {
     }
 
     const manager = new THREE.LoadingManager(loadModel);
-
-
-    
-    // texture
-    if (isProjectedMaterialUsed) {
-
-        const textureLoader = new THREE.TextureLoader(manager);
-        // const texture = textureLoader.load( 'assets/uv_grid_opengl.jpg', 
-        const texture = textureLoader.load('../assets/pink.png',
-            () => {
-                console.log("texture")
-                render()
-            });
-        texture.colorSpace = THREE.SRGBColorSpace;
-
-        const texture2 = textureLoader.load('../assets/pastel.png',
-            () => {
-                console.log("texture")
-                render()
-            });
-        texture2.colorSpace = THREE.SRGBColorSpace;
-
-        const texture3 = textureLoader.load('../assets/jade.jpg',
-            () => {
-                console.log("texture")
-                render()
-            });
-        texture3.colorSpace = THREE.SRGBColorSpace;
-
-        pMat = new ProjectedMaterial({
-            camera,
-            texture2: texture,
-            color: '#37E140',
-        })
-
-        pMat2 = new ProjectedMaterial({
-            camera,
-            texture2: texture2,
-            color: '#37E140',
-        })
-
-        pMat3 = new ProjectedMaterial({
-            camera,
-            texture2: texture3,
-            color: '#37E140',
-        })
-    } else {
-        const textureLoader = new THREE.TextureLoader(manager);
-        thumbnailImg01 = textureLoader.load('../assets/thumbnail-01.png')
-        thumbnailImg01.colorSpace = THREE.SRGBColorSpace;
-        thumbnailImg02 = textureLoader.load('../assets/thumbnail-02.png')
-        thumbnailImg02.colorSpace = THREE.SRGBColorSpace;
-        thumbnailImg03 = textureLoader.load('../assets/thumbnail-03.png')
-        thumbnailImg03.colorSpace = THREE.SRGBColorSpace;
-
-        // pMat = new THREE.MeshBasicMaterial({color: new THREE.Color(0x7abbb8)})
-        // pMat2 = new THREE.MeshBasicMaterial({color: new THREE.Color(0x5e9391)})
-        // pMat3 = new THREE.MeshBasicMaterial({color: new THREE.Color(0x84cfcd)})
-
-        pMat = new THREE.MeshStandardMaterial({color: colorArraySet[0]})
-        pMat2 = new THREE.MeshStandardMaterial({color: colorArraySet[1]})
-        pMat3 = new THREE.MeshStandardMaterial({color: colorArraySet[0]})
-    }
 
     // model
 
@@ -805,10 +565,6 @@ function init() {
 
     window.addEventListener('resize', onWindowResize);
     // document.addEventListener( 'dblclick', changePlacement );
-    document.getElementById("debug-autoRotate").addEventListener("change", inputChange)
-    document.getElementById("debug-center").addEventListener("change", inputChange)
-    document.getElementById("debug-series").addEventListener("change", inputChange)
-    document.getElementById("debug-shifted").addEventListener("change", inputChange)
 
     document.addEventListener("pointermove", checkPointerType)
     document.addEventListener("pointermove", onPointerMove)
@@ -846,7 +602,6 @@ function trackPointerEvent(e) {
     }
 }
 
-let isPointerType
 function checkPointerType( event ) {
     console.log( event.pointerType )
     if ( event.pointerType == "touch" || event.pointerType == "pen") {
@@ -859,7 +614,7 @@ function checkPointerType( event ) {
     document.removeEventListener("pointermove", checkPointerType)
     document.removeEventListener("pointerdown", checkPointerType)
 
-    console.log(isPointerType)
+    // console.log(isPointerType)
     
 }
 
@@ -924,8 +679,8 @@ function raycast() {
 
     raycaster.setFromCamera( pointer, camera );
 
-        // calculate objects intersecting the picking ray
-        const intersects = raycaster.intersectObjects( objects );
+    // calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects( objects );
 
     if (intersects.length > 0) {
         // console.log(intersects.length)
@@ -1008,17 +763,7 @@ function RoundedRectangleGeometry( w, h, r, s ) { // width, height, radius corne
 }
 
 function initThumbnail() {
-    console.log("initThumbnail")
-    // const spriteMaterial = new THREE.SpriteMaterial({
-    //     map: thumbnailImg01,
-    //     depthTest: false,
-    //     opacity: 0,
-    // });
-    // // spriteMaterial.sizeAttenuation = false;
-
-    // thumbnail = new THREE.Sprite( spriteMaterial )
-    // thumbnail.center.set(0.5,-0.5)
-    // thumbnail.scale.setScalar(0.25)
+    // console.log("initThumbnail")
 
     themeColor = pickColor(0.5)
 
@@ -1058,14 +803,10 @@ function updateThumbnail() {
 function showThumbnail( target ) {
     // console.log("showThumbnail")
 
-    cancelAnimationFrame(rAFhideThumbnail)
-
     targetDom.style.cursor = "pointer"
 
     const index = objects.indexOf(target)
     curPointerIndex = index
-    // console.log( index )
-    // console.log("showThumbnail")
 
     if (thumbnail) {
         gsap.to(thumbnail.material, 0, {opacity: 1, overwrite: true})
@@ -1085,22 +826,14 @@ function showThumbnail( target ) {
 
     gsap.to(textMaterial, 0, {opacity: 1, overwrite: true})
     gsap.to(lineMaterial, 0, {opacity: 1, overwrite: true})
-    // textMaterial.opacity = 1
-    // lineMaterial.opacity = 1
-
-    // console.log(target.userData.height)
-    // const scale = 1
-    // const scale = 1 - (target.userData.height / 0.3)
-    // const scale = (target.userData.height ) / 0.3
+    
     const scale = (0.1 + 0.05) /0.3
     
-    // thumbnail.position.y = 0.5
     thumbnail.position.y = target.userData.height + 0.1 + 0.1
     thumbnailLine.position.y = target.userData.height - 0.05
-    // thumbnailLine.position.y = target.userData.height + 0.1
+    
     gsap.from( thumbnail.position, 0.5, {y: thumbnail.position.y - 0.05})
     gsap.fromTo( thumbnailLine.scale, 0.5, {y: scale * 0.8},{y: scale } )
-    // thumbnail.position.y = pointer.y
 }
 function hideThumbnail() {
     // console.log("hideThumbnail", curPointerIndex)
@@ -1114,42 +847,16 @@ function hideThumbnail() {
         gsap.to(textMaterial, dur, {opacity: 0, delay: 0.25})
         gsap.to(lineMaterial, dur, {opacity: 0, delay: 0.25})
     }
-    // if (thumbnail !== undefined && thumbnail.material.opacity > 0) {
-    //     thumbnail.material.opacity -= 0.05
-    //     textMaterial.opacity -= 0.05
-    //     lineMaterial.opacity -= 0.05
-
-    //     // console.log(thumbnail.material.opacity)
-    //     if (thumbnail.material.opacity > 0) {
-    //         rAFhideThumbnail = requestAnimationFrame(hideThumbnail)
-    //     } else {
-    //         thumbnail.material.opacity = 0
-    //         textMaterial.opacity = 0
-    //     }
-    // }
-}
-
-function inputChange(e) {
-    console.log(e)
-    console.log(e.target.checked, e.target.name, e.target.value)
-
-    switch (e.target.name) {
-        case "autoRotate_chkbox":
-            controls.autoRotate = e.target.checked
-            break
-        case "placement_radiobtn":
-            if (e.target.value == "center") placementState = 0 - 1
-            if (e.target.value == "series") placementState = 1 - 1
-            if (e.target.value == "shifted") placementState = 2 - 1
-            changePlacement()
-            break
-    }
 }
 
 function onWindowResize() {
     let ratio = 1
     if (window.innerWidth < 480) {
         ratio = 1
+    }
+
+    if (window.innerWidth < 1024) {
+        pauseVideo()
     }
 
     if (camera.isOrthographicCamera) {
@@ -1183,23 +890,4 @@ function cameraChange() {
 function render() {
     raycast()
     renderer.render(scene, camera);
-    if (isProjectedMaterialUsed) updatePMatCamera()
-
 }
-function updatePMatCamera() {
-    pMat.uniforms.viewMatrixCamera.value = camera.matrixWorldInverse.clone()
-    pMat.uniforms.projectionMatrixCamera.value = camera.projectionMatrix.clone()
-    pMat.uniforms.modelMatrixCamera.value = camera.matrixWorld.clone()
-    pMat.uniforms.projPosition.value = camera.position.clone()
-
-    pMat2.uniforms.viewMatrixCamera.value = camera.matrixWorldInverse.clone()
-    pMat2.uniforms.projectionMatrixCamera.value = camera.projectionMatrix.clone()
-    pMat2.uniforms.modelMatrixCamera.value = camera.matrixWorld.clone()
-    pMat2.uniforms.projPosition.value = camera.position.clone()
-
-    pMat3.uniforms.viewMatrixCamera.value = camera.matrixWorldInverse.clone()
-    pMat3.uniforms.projectionMatrixCamera.value = camera.projectionMatrix.clone()
-    pMat3.uniforms.modelMatrixCamera.value = camera.matrixWorld.clone()
-    pMat3.uniforms.projPosition.value = camera.position.clone()
-}
-

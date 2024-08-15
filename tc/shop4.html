@@ -25,24 +25,16 @@
         <script src="../c_script/shophash.js"></script>
 
 
-    <!--------------------------- css & script end here ------------------------->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "../c_script/three.module.js",
-                "three/addons/": "../jsm/"
+        <!--------------------------- css & script end here ------------------------->
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "../c_script/three.module.js",
+                    "three/addons/": "../jsm/"
+                }
             }
-        }
-    </script>
-    <script type="module" src="../js/script.js"></script>
-    <script type="module">
-        window.openObject = openIFrame
-        
-        //// rewrite your iframe here?
-        function openIFrame( index ) {
-            console.log("openIFrame", index)
-        }
-    </script>
+        </script>
+        <script type="module" src="../js/script.js"></script>
     </head>
 	<body class="body_shopdetail body_shopdetail_color_1">
         <a href="index.html"><img src="../c_images/top_left_logo1.svg" class="top_left_logo1">
@@ -112,30 +104,14 @@
         
         <div class="wrapper-fold-2" data-shop="4">
             <div class="fold-2 fold-2-left">
-                <div id="threejs-canvas">
-                    <div class="debug">
-                        <label id="debug-autoRotate">autoRotate<input type="checkbox" name="autoRotate_chkbox" checked="true"></label>
-                        <br><br>
-                        <div>
-                            <label>
-                                <input type="radio" id="debug-center" name="placement_radiobtn" value="center">center
-                            </label><br>
-                            <label>
-                                <input type="radio" id="debug-series" name="placement_radiobtn" value="series">series
-                            </label><br>
-                            <label>
-                                <input type="radio" id="debug-shifted" name="placement_radiobtn" value="shifted" checked>shifted
-                            </label><br>
-                        </div>
-                    </div>
-                </div>
+                <div id="threejs-canvas"></div>
             </div>
             <div class="fold-2 fold-2-right mobile_hide">
                 <div class="inside-menu">
                     <div class="inside-menu-item-wrapper">
-                        <div class="inside-menu-item selected" data-detail="article">Article</div>
-                        <div class="inside-menu-item" data-detail="shop">Shop</div>
-                        <!-- <div class="inside-menu-item" data-detail="video">Video</div> -->
+                        <div class="inside-menu-item selected" data-detail="article">文章</div>
+                        <div class="inside-menu-item" data-detail="shop">店舖</div>
+                        <div class="inside-menu-item" data-detail="video">影片</div>
                         <!-- <div class="inside-menu-item" data-detail="sketch">Sketch</div> -->
                         <!-- <div class="inside-menu-item" data-detail="archive">Archive</div> -->
                     </div>
@@ -166,26 +142,6 @@
                         </div>
                     </div>
 
-                    <div class="content-heading scrollin scrollin1">Baby Professional Tailor and Curtain Shop</div>
-
-                    <div class="content-article article-en scrollin scrollin1">
-                        <p>Growing up, we all experience moments of not fitting in: when sizes S, M, or L don’t quite match, yet there are no other options. A broken zipper—should you buy new or have it repaired? And what about cherished clothing with sizes that no longer fit? Should they be discarded?</p>
-                        <p>On the clothing front, we may temporarily adhere to standardized “one-size-fits-all” measurements, but there’s always a period of feeling marginalized. We have unique and important clothing needs, yet often feel helpless.</p>
-                        <p>Enter the “Baby Alteration Boutique,” where a focus on uniqueness and the art of repair prevails. Store owner Gigi’s favorite task is altering wedding gowns. She believes that only a well-fitting wedding dress truly showcases beauty; otherwise, it can appear bulky. Seeing each bride glow with confidence in a perfectly fitted gown brings immense satisfaction to Gigi. It proves that even small clothing changes can have a significant “gratifying” impact.</p>
-                        <p>In a profit-driven world, this small boutique prioritizes individuality. The alteration business grants people the possibility of having clothes that truly suit them, making everyone feel like a cherished “baby.”</p>
-                        <p>Clothing isn’t just functional; it can save our present life. Consider a sprained ankle making pants difficult to put on, elderly individuals unknowingly buying non-breathable synthetic fabrics that irritate their skin, or someone needing to discreetly wear a urine bag. Yet, mainstream clothing often overlooks these specific needs.</p>
-                        <p>The “Sewing Home adaptive clothing” hires local women and retirees to mend health-conscious clothing and educate the public on proper care methods, easing burdens for seniors and caregivers. I imagine conversations in the “Sewing Home adaptive clothing” workspace: “Would this alteration suit you better? Considering your…”; “Think from the seamstress’s perspective—this way, it won’t be so uncomfortable to wear”; “This stitching hides imperfections and looks elegant—what do you think?” It’s a contest of empathy and skill, addressing others’ difficulties while challenging one’s own craftsmanship.</p>
-                        <p>This inspires me this could improve my own wardrobe with a similar mindset—to address my flaws and needs, alleviating daily self-blame. Perhaps more all-made-of-pockets-clothing for my forgetfulness, occasional reminders to straighten my posture, or a flexible fabric for a tailored parent-child coat that keeps my daughter warm and close. And is our work merely for sustenance, or an opportunity for passionate engagement? This is also a chance for consumer to buy into the belief.</p>
-                        <p>In the aesthetics and production of clothing, they genuinely care about the values cherished between people. Each participants during the process can express their voice. Just observing the “Baby Alteration Boutique” and “Sewing Home adaptive clothing” exemplifies a valuable initiative—one that envisions a diverse society through business practices.</p>
-                    </div>
-
-                    <div class="content-block scrollin scrollin1">
-                        <div class="article-ppl-name scrollin scrollin1">Yim Siu Fong</div>
-                        <div class="article-ppl-desc scrollin scrollin1">
-                            <p>YIM Sui Fong is an artist who specializes in video, sound and social practice art. She is a co-founder of Rooftop Institute and an assistant professor in the Fine Arts Department at The Chinese University of Hong Kong.</p>
-                        </div>
-                    </div>
-
                 </div>
 
                 <!-- SHOP -->
@@ -208,24 +164,13 @@
                         <p>Gigi女士擁有非常親和的性格,一見到客人就會熱情地誇讚他們的外表和能力。這樣溫馨友善的經營方式,使寶貝改衣專門店成為當地居民的一處重要聚集地。不論是常客還是初次造訪的顧客,都能在這裡感受到家的氛圍,享受一份舒適安適的服務體驗。這家小店不僅滿足了服裝修改的需求,也為社區營造了一份和諧友愛的氛圍。</p>                            
                     </div>
 
-                    <div class="content-heading scrollin scrollin1">Baby Professional Tailor and Curtain Shop
-                        <div class="content-shop-info scrollin scrollin1">
-                            <table>
-                                <tbody>
-                                    <tr><td class="td-title">Year:</td><td>2010 to present</td></tr>
-                                    <tr><td class="td-title">Address:</td><td>Shop 32-42, Heung Che Street Market and Cooked Food Centre, 8 Tso Kung St, Tsuen Wan</td></tr>
-                                    <tr><td class="td-title">Interviewee: </td><td>Master Yau (Gigi)</td></tr>
-                                    <tr><td class="td-title">Business:</td><td>Sewing and Alterations</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                </div>
 
-                    <div class="content-article article-en scrollin scrollin1">
-                        <p>Baby Professional Tailor and Curtain Shop is a cozy little store operated by Ms. Gigi, located in the Tsuen Wan community. It not only provides clothing alteration and repair services, but also serves as a joyful and friendly gathering place.</p>
-                        <p>Ms. Gigi has a very amiable personality and enthusiastically compliments her customers on their appearance and abilities. This warm and friendly business approach has made the Baby Professional Tailor Shop an important gathering place for local residents. Whether they are regular customers or first-time visitors, everyone can feel the homely atmosphere and enjoy a comfortable service experience here. This small shop not only meets the needs of clothing alterations, but also creates a harmonious and loving atmosphere for the community.</p>                            
+                <!-- VIDEO -->
+                <div class="content for-video" id="video">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/1HlQySi7Jbk?rel=0&enablejsapi=1" title="寶貝專業改衣窗簾店 Baby Professional Tailor and Curtain Shop _ Foreseen 寓延" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
-
                 </div>
 
             </div>
@@ -233,9 +178,9 @@
                 <div class="mobile_inside-menu_wrapper">
                     <div class="inside-menu">
                         <div class="inside-menu-item-wrapper">
-                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">Article</a>
-                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">Shop</a>
-                            <!-- <a class="inside-menu-item" href="#video" data-fancybox data-detail="video">Video</a> -->
+                            <a class="inside-menu-item" href="#article" data-fancybox data-detail="article">文章</a>
+                            <a class="inside-menu-item" href="#shop" data-fancybox data-detail="shop">店舖</a>
+                            <a class="inside-menu-item" href="https://youtu.be/1HlQySi7Jbk" data-fancybox data-detail="video">影片</a>
                             <!-- <a class="inside-menu-item" href="#sketch" data-fancybox data-detail="sketch">Sketch</a> -->
                             <!-- <a class="inside-menu-item" href="#archive" data-fancybox data-detail="archive">Archive</a> -->
                         </div>
@@ -246,14 +191,13 @@
 
         <div class="objects-drawer">
             <div class="objects-drawer-backdrop"></div>
-            <div class="objects-drawer-slip">Other Shops</div>
+            <div class="objects-drawer-slip">其他店舖</div>
             <div class="objects-drawer-content">
                 <div class="objects-drawer-item-wrapper">
                     <div class="objects-drawer-item">
                         <a href="shop6.html">
                             <div class="thumb" style="background-image: url(../c_images/model_6.png);"></div>
                             <div class="text">
-                                <div class="eng">Fong Man Engineering Company</div>
                                 <div class="chi">方文工程公司</div>
                             </div>
                         </a>
@@ -262,7 +206,6 @@
                         <a href="shop1.html">
                             <div class="thumb" style="background-image: url(../c_images/model_1.png);"></div>
                             <div class="text">
-                                <div class="eng">Leung Kee Pai Dong</div>
                                 <div class="chi">良記排檔百貨</div>
                             </div>
                         </a>
@@ -271,7 +214,6 @@
                         <a href="shop2.html">
                             <div class="thumb" style="background-image: url(../c_images/model_2.png);"></div>
                             <div class="text">
-                                <div class="eng">Shing Shun Shoes and Keys</div>
                                 <div class="chi">誠信補鞋配匙</div>
                             </div>
                         </a>
@@ -280,7 +222,6 @@
                         <a href="shop4.html">
                             <div class="thumb" style="background-image: url(../c_images/model_4.png);"></div>
                             <div class="text">
-                                <div class="eng">Baby Professional Tailor and<br>Curtain Shop</div>
                                 <div class="chi">寶貝改衣專門店</div>
                             </div>
                         </a>
@@ -289,7 +230,6 @@
                         <a href="shop5.html">
                             <div class="thumb" style="background-image: url(../c_images/model_5.png);"></div>
                             <div class="text">
-                                <div class="eng">Adaptive Clothing</div>
                                 <div class="chi">縫補寶</div>
                             </div>
                         </a>
@@ -298,7 +238,6 @@
                         <a href="shop3.html">
                             <div class="thumb" style="background-image: url(../c_images/model_3.png);"></div>
                             <div class="text">
-                                <div class="eng">Old Neighbourhood Jade and Jewellery</div>
                                 <div class="chi">老街坊首飾.玉器工作坊</div>
                             </div>
                         </a>
@@ -308,11 +247,11 @@
         </div>
         
         <div class="object_popup" data-id="iron">
-            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/4un56uxciyopej4s?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="將改好的衣服用慰斗燙好，然後等待客人拿取是邱師傅最期待的時刻。邱師傅會千方百計盡量嘗試說服不願試身的客人試身，原因是能夠見到客人穿起自己改好的衣服而且稱心滿意，對邱師傅來説是最滿足的事。&lt;br /&gt;Ironing the altered clothing then waiting for the client to pick up is the moment Gigi anticipates the most. Gigi will try every means to convince reluctant clients to try on the altered clothing, because seeing the client wear and be satisfied with the clothing she has altered is the most fulfilling thing for Gigi."></a>
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://scaniverse.com/scan/4un56uxciyopej4s?embed=1" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="將改好的衣服用慰斗燙好，然後等待客人拿取是邱師傅最期待的時刻。邱師傅會千方百計盡量嘗試說服不願試身的客人試身，原因是能夠見到客人穿起自己改好的衣服而且稱心滿意，對邱師傅來説是最滿足的事。"></a>
         </div>
 
         <div class="object_popup" data-id="scissors">
-            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://lumalabs.ai/embed/17811BF6-3A68-4DC6-B84E-A7BE8595219F?mode=sparkles" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="健基於舊年代的傳統思想，女性一般都是留在家中照顧小孩子處理家庭事務。而當年奶奶親手將這把絞剪送給邱師傅，(add more information)，默許和支持了邱師傅自己出來創業的決心。&lt;br /&gt;In the traditional mindset of the past, women were typically expected to remain at home, caring for children and managing household duties. However, that year, Grandma personally gifted these scissors to Gigi, silently endorsing and supporting Gigi's resolve to start her own business venture."></a>
+            <a href="javascript:;" class="popup_link" data-fancybox data-type="iframe" data-src="https://lumalabs.ai/embed/17811BF6-3A68-4DC6-B84E-A7BE8595219F?mode=sparkles" data-options='{"type" : "iframe", "iframe" : {"preload" : false}}' data-caption="健基於舊年代的傳統思想，女性一般都是留在家中照顧小孩子處理家庭事務。而當年奶奶親手將這把絞剪送給邱師傅，(add more information)，默許和支持了邱師傅自己出來創業的決心。"></a>
         </div>
 
         <div class="object_popup" data-id="pin">
@@ -324,7 +263,7 @@
         </div>
 
         <div style="display:none">
-            <div id="coming_soon">Coming Soon</div>
+            <div id="coming_soon">即將推出</div>
         </div>
 	</body>
 </html>
