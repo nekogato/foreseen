@@ -145,6 +145,7 @@ function changeDetailView( e ) {
     })
 
     pauseVideo()
+    pauseSketchFab()
 
     doscroll()
 }
@@ -156,6 +157,19 @@ function pauseVideo() {
             "*"
         );
     }
+}
+function pauseSketchFab() {
+    console.log("pauseSketchFab")
+    // const iframeSketchfab = document.querySelector(".for-space iframe");
+    // if (iframeSketchfab !== null) {
+    //     console.log(iframeSketchfab)
+    //     console.log(document.querySelector(".actions [data-action='stop']"))
+    //     const stopButton = iframeSketchfab.contentWindow.document.querySelector(".actions [data-action='stop']");
+    //     console.log( stopButton )
+    //     if (stopButton !== null) {
+    //         stopButton.click()
+    //     }
+    // }
 }
 function resetInsideMenuButton() {
     const selectedMenuItems = document.querySelectorAll(".fold-2-right .inside-menu-item.selected")
@@ -178,7 +192,7 @@ function fancyboxBinding() {
             obj.classList.add("leavescreen")
         })
 
-        $(".fancybox-slide, .fancybox-content").on('scroll', function() {
+        $(".fancybox-slide, .fancybox-content").on('scroll mousewheel', function() {
             doscroll();
         })
         doscroll()
@@ -187,7 +201,6 @@ function fancyboxBinding() {
     $.fancybox.defaults.beforeClose = function() {
         pointer.isActive = true
         resetMobileInsideMenuButton()
-        console.log("resetclose")
     }
 
      $.fancybox.defaults.afterClose = function() {
@@ -355,12 +368,15 @@ function toggleObjectsDrawer( e ) {
     //// close drawer
     if (objDC.target.classList.contains("active")) {
         $("body").removeClass("noraycaster")
+        $("body").removeClass("compensate-for-scrollbar")
+
         objDC.target.classList.remove("active")
         objDC.target.style.marginBottom = objDC.contentMarginBottom
         pointer.isActive = true
     } else {
     //// open drawer
         $("body").addClass("noraycaster")
+        $("body").addClass("compensate-for-scrollbar")
         objDC.target.classList.add("active")
         objDC.target.style.marginBottom = ""
         pointer.isActive = false
@@ -603,7 +619,7 @@ function trackPointerEvent(e) {
 }
 
 function checkPointerType( event ) {
-    console.log( event.pointerType )
+    // console.log( event.pointerType )
     if ( event.pointerType == "touch" || event.pointerType == "pen") {
         isPointerType = "touch"
     }
@@ -652,7 +668,7 @@ function onPointerClick( event ) {
             } else {
                 //console.log(intersects[0].object)
                 if (curPointerIndex == index ) {
-                    openObject( curPointerIndex, objArray[showSeq[curPointerIndex]].id )
+                    openObject( curPointerIndex )
                     hideThumbnail()
                 }
             }
@@ -661,7 +677,7 @@ function onPointerClick( event ) {
         }
     } else {
         if (curPointerIndex != undefined && !dPointer.isDragged) {
-            openObject( curPointerIndex, objArray[showSeq[curPointerIndex]].id )
+            openObject( curPointerIndex )
             hideThumbnail()
         }
     } 
@@ -696,9 +712,8 @@ function raycast() {
     }
 }
 
-function openObject( index, id ) {
-    console.log(index, id)
-    window.location.hash = id;
+function openObject( index ) {
+    window.location.hash = objArray[showSeq[index]].id;
 }
 
 function RoundedRectangleGeometry( w, h, r, s ) { // width, height, radius corner, smoothness
