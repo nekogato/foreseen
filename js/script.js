@@ -136,8 +136,6 @@ function changeDetailView( e ) {
     if (activeContent !== undefined) {
         activeContent.classList.add("active")
     }
-
-    // document.getElementsByClassName(activeContent)[0].classList.add("active")
     
     window.scrollTo({
         top: 0, 
@@ -145,7 +143,6 @@ function changeDetailView( e ) {
     })
 
     pauseVideo()
-    pauseSketchFab()
 
     doscroll()
 }
@@ -157,19 +154,6 @@ function pauseVideo() {
             "*"
         );
     }
-}
-function pauseSketchFab() {
-    console.log("pauseSketchFab")
-    // const iframeSketchfab = document.querySelector(".for-space iframe");
-    // if (iframeSketchfab !== null) {
-    //     console.log(iframeSketchfab)
-    //     console.log(document.querySelector(".actions [data-action='stop']"))
-    //     const stopButton = iframeSketchfab.contentWindow.document.querySelector(".actions [data-action='stop']");
-    //     console.log( stopButton )
-    //     if (stopButton !== null) {
-    //         stopButton.click()
-    //     }
-    // }
 }
 function resetInsideMenuButton() {
     const selectedMenuItems = document.querySelectorAll(".fold-2-right .inside-menu-item.selected")
@@ -286,7 +270,6 @@ function pickColor( i ) {
     return  newColor
 }
 
-const mouse = { init: new THREE.Vector2(), current: new THREE.Vector2() }
 const objDC = {
     force: 0,
     curX: 0,
@@ -312,55 +295,9 @@ function initObjectsDrawer() {
         }
     }
 
-    objDC.resizeMarginBottom()
-    
-    if (objDC.wrapper !== null) {
-    //    objDC.content.addEventListener("pointerdown", objDCPointerDown, {passive: false})
-    }
+    objDC.resizeMarginBottom() 
 }
-function objDCPointerDown( e ) {
-    // e.preventDefault()
-    document.addEventListener("pointermove", objDCPointerMove, {passive: false})
-    document.addEventListener("pointerup", objDCPointerUp)
 
-    mouse.init = { 
-        x: ( e.pageX / window.innerWidth - 0.5 ) * 2,
-        xA: ( e.pageX - window.innerWidth / 2 )
-    }
-}
-function objDCPointerMove( e ) {
-    e.preventDefault()
-    mouse.current.x = ( e.pageX / window.innerWidth - 0.5 ) * 2
-    mouse.current.xA = e.pageX - window.innerWidth / 2
-    // addObjDCForce( mouse.current.x - mouse.init.x )
-    addObjDCForce( mouse.current.xA - mouse.init.xA, true )
-    mouse.init.x = mouse.current.x;
-    mouse.init.xA = mouse.current.xA;
-    // console.log(mouse.current.xA)
-}
-function objDCPointerUp( e ) {
-    document.removeEventListener("pointermove", objDCPointerMove)
-    document.removeEventListener("pointerup", objDCPointerUp)
-}
-function addObjDCForce( force, multiplier ) {
-    // console.log( force )
-    if (multiplier) {
-        objDC.force += force / 4
-    } else [
-        objDC.force += force * objDC.multiplier
-    ]
-}
-function scrollObjDC() {
-    if (objDC.wrapper == null) return
-    objDC.curX += Math.max( -objDC.maxForce, Math.min( objDC.maxForce, objDC.force))
-    objDC.curX = Math.min(0, objDC.curX)
-    // console.log(window.innerWidth, objDC.wrapper.getBoundingClientRect().width, objDC.wrapper.scrollWidth)
-    const maxX = (document.querySelector("html").clientWidth - objDC.wrapper.scrollWidth) - 20
-    // console.log(maxX)
-    objDC.curX = Math.max( objDC.curX, maxX )
-    objDC.force *= objDC.dampling;
-    objDC.wrapper.style.transform = "translateX(" + objDC.curX + "px)"
-}
 
 function toggleObjectsDrawer( e ) {
     e.preventDefault()
