@@ -637,7 +637,7 @@
     float: right;
 }
 
-.left_item, .right_item{
+.left_item{
     box-sizing: border-box;
     padding: 50px;
     border-radius: 20px;
@@ -645,6 +645,21 @@
     width: 60%;
     clear: both;
     background-color: #fff;
+}
+
+.right_item{
+    box-sizing: border-box;
+    padding: 50px;
+    border-radius: 20px;
+	box-shadow: 0px 0px 20px  #ffffff;
+    width: 60%;
+    clear: both;
+    background-color: #A9E300;
+}
+
+.right_item > *{
+    color: #fff;
+    mix-blend-mode: difference;
 }
 
 .tab_section{

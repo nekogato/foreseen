@@ -31,6 +31,7 @@ body {
 	top:36px;
 	height:4%;
 	z-index: 999;
+	display: none;
 }
 
 .top_right_logo2{
@@ -41,6 +42,7 @@ body {
 	mix-blend-mode: difference;
 	transform:translateY(55%);
 	z-index: 999;
+	display: none;
 }
 
 
