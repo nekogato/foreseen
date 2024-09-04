@@ -163,7 +163,7 @@ function resetInsideMenuButton() {
 }
 
 function fancyboxBinding() {
-
+    $.fancybox.defaults.preventCaptionOverlap = true;
     $.fancybox.defaults.afterLoad = function() {
         
         pointer.isActive = false

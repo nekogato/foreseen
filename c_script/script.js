@@ -42,14 +42,15 @@ function doscroll(){
 
 		$(".tab_item").each(function(){
 			var mytop = $(this).offset().top -  scrolltop - $(".tab_top").outerHeight() - offsettop;
-			$(this).attr("data-top",$(this).offset().top -  scrolltop - $(".tab_top").outerHeight() - offsettop)
-			if(mytop < (hh/2)){
-				$(this).addClass("active")
+			$(this).attr("data-top",Math.round($(this).offset().top -  scrolltop - $(".tab_top").outerHeight() - offsettop))
+			
+			if(mytop+$(this).outerHeight() < 0){
+				$(this).next().addClass("active")
 			}else{
-				$(this).removeClass("active")
+				$(this).next().removeClass("active")
 			}
 		})
-
+		$(".tab_item:first").addClass("active")
 		var myid = $(".tab_item.active:last").attr("data-id");
 		$(".team_sub_section_menu a.active").removeClass("active");
 		$(".team_sub_section_menu a[data-target='"+myid+"']").addClass("active");
