@@ -18,11 +18,9 @@
 }
 
 .overlay_shop_name{
-    position: fixed;
-    width:100%;
-    height:100%;
-    left:0px;
-    top:0px;
+    position: fixed;  
+    right: 91px;
+    bottom: 36px;
     margin:auto;
     display:flex;
     z-index:9999;
@@ -30,11 +28,16 @@
     pointer-events:none;
     color:#fff;
 	mix-blend-mode: difference;
+    width: 50%;
 }
 
 .overlay_shop_name .shop_name{
-    margin:auto;
-    text-align:center;
+    margin-left:auto;
+    text-align:right;
+}
+
+.tc_body .overlay_shop_name .shop_name{
+    letter-spacing: 0.1em;
 }
 
 .float_circle{
