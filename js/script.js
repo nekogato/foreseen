@@ -239,7 +239,9 @@ function animate() {
 function rotateObjects() {
 
     for (var i = 0; i < objects.length; i++) {
-        objects[i].rotation.z += 0.01 * 1;
+        //if(!$("body").hasClass("hovershopitem")){
+            objects[i].rotation.z += 0.01 * 1;
+        //}
     }
 
 }
@@ -253,8 +255,8 @@ function changePlacement() {
             gsap.fromTo( objects[i].position, {y: 2},{y:0, duration: 1 + i/objects.length * 1, ease: "power1.out"})
         }
     }
-
-    gsap.fromTo( camera.position, 4, {x:2,y:4,z:0}, {x:-1, y:4, z:4, onUpdate: ()=> { controls.update();}} )
+    controls.update();
+    //gsap.fromTo( camera.position, 4, {x:2,y:4,z:0}, {x:-1, y:4, z:4, onUpdate: ()=> { controls.update();}} )
 }
 
 function pickColor( i ) {
@@ -329,8 +331,8 @@ function init() {
     camera = new THREE.OrthographicCamera(targetDom.getBoundingClientRect().width / - 2, targetDom.getBoundingClientRect().width/ 2, window.innerHeight / 2, window.innerHeight / - 2, 0.1, 20);
     camera.zoom = 750;
     camera.position.x = -1;
-    camera.position.y = 2;
-    camera.position.z = 1;
+    camera.position.y = 4;
+    camera.position.z = 4;
     camera.updateProjectionMatrix()
 
     // scene
@@ -601,11 +603,15 @@ function onPointerClick( event ) {
         if (intersects.length > 1) {
             const index = objects.indexOf(intersects[0].object.parent)
             if ( curPointerIndex == undefined || curPointerIndex !== index ) {
+                $("body").addClass("hovershopitem")
+                controls.autoRotate = false
                 showThumbnail(intersects[0].object.parent)
             } else {
                 //console.log(intersects[0].object)
                 if (curPointerIndex == index ) {
                     openObject( curPointerIndex )
+                    $("body").removeClass("hovershopitem")
+                    controls.autoRotate = true
                     hideThumbnail()
                 }
             }
@@ -615,6 +621,8 @@ function onPointerClick( event ) {
     } else {
         if (curPointerIndex != undefined && !dPointer.isDragged) {
             openObject( curPointerIndex )
+            $("body").removeClass("hovershopitem")
+            controls.autoRotate = true
             hideThumbnail()
         }
     } 
@@ -640,10 +648,14 @@ function raycast() {
    
         const index = objects.indexOf(intersects[0].object.parent)
         if ( curPointerIndex !== index ) {
+            $("body").addClass("hovershopitem")
+            controls.autoRotate = false
             showThumbnail(intersects[0].object.parent)
         }
 	} else {
         if ( curPointerIndex != undefined ) {
+            $("body").removeClass("hovershopitem")
+            controls.autoRotate = true
             hideThumbnail()
         }
     }

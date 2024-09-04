@@ -647,7 +647,7 @@
 	box-shadow: 0px 0px 20px  #ffffff;
     width: 60%;
     clear: both;
-    background-color: #fff;
+    background-color: #A9E300;
 }
 
 .right_item{
@@ -661,8 +661,8 @@
 }
 
 .right_item > *{
-    color: #fff;
-    mix-blend-mode: difference;
+    /* color: #fff;
+    mix-blend-mode: difference; */
 }
 
 .tab_section{
