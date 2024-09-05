@@ -522,6 +522,7 @@ function init() {
     // document.addEventListener( 'dblclick', changePlacement );
 
     document.addEventListener("pointermove", checkPointerType)
+    document.addEventListener("pointerdown", checkPointerType)
     document.addEventListener("pointermove", onPointerMove)
     // document.addEventListener("click", onPointerClick)
     renderer.domElement.addEventListener("pointerdown", trackPointerEvent)
