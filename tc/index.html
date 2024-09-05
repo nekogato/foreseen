@@ -153,6 +153,10 @@
 			</div>
 		</div>
 
+		<div class="popup_item">
+			<img src="../c_images/shop1.png" class="img">
+		</div>
+
 		<div class="mobile_show"></div>
 		<div class="mobile_hide"></div>
 
@@ -178,7 +182,7 @@
 				['../c_model/Asset1-v1/Asset1.gltf',0,0,0, 30,30,30, 0,0,0,"style2",0,"","model0",""],
 				['../c_model/clothes/clothes.gltf',-18,5,-5, 30,30,30, 10,0,30,"style1",5,"縫補寶","model2","shop5"],
 				['../c_model/clothes2/clothes2.gltf',-3,8,-10, 30,30,30, 120,120,20,"style1",5,"縫補寶","model1","shop5"],
-				['../c_model/hammer/hammer.gltf',0,-5,7, 30,30,30, 20,40,50,"style4",5,"寶貝改衣專門店","model3","shop4"],
+				['../c_model/hammer/hammer.gltf',0,-5,7, 30,30,30, 20,40,50,"style1",5,"寶貝改衣專門店","model3","shop4"],
 				['../c_model/hammer2/hammer2.gltf',17,-7,-10, 30,30,30, 10,0,40,"style3",5,"寶貝改衣專門店","model4","shop4"],
 				['../c_model/key/key.gltf',-17,-6,3, 30,30,30, 30,80,50,"style1",5,"方文工程公司","model5","shop6"],
 				['../c_model/key2/key2.gltf',-8,-9,13, 30,30,30, 30,0,30,"style1",5,"方文工程公司","model6","shop6"],
@@ -799,8 +803,13 @@
 							//console.log(intersects[0].object.parent,modelArr)
 							modelArr.forEach(model => {
 								if (intersects[0].object.parent === model || intersects[0].object.parent.parent === model) {
-									if(model.myid!=="model0"){
-										window.location = intersects[0].object.myshop+".html";
+									if(model.myid!=="model0"){ 
+										$(".popup_item").addClass("show");
+										$(".popup_item .img").attr("src","../c_images/"+intersects[0].object.myshop+".png")
+										setTimeout(function(){
+											window.location = intersects[0].object.myshop+".html";
+										},650)
+										
 									} 
 								}
 							});

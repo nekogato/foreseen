@@ -367,7 +367,6 @@ function doscroll2(){
 function loading_finish(){
 		
     $("body").addClass("loadfinish");
-    
     doscroll();
 }
 
@@ -563,10 +562,59 @@ function dosize(){
 
 
 $(function(){
+    $("body").addClass("loadstart");
 	
 	init_event();
 	init_function();
 
+	$(".objects-drawer-item a, .box_object_thumb a").click(function(){
+		var myhref = $(this).attr("href");
+		$(".popup_item").addClass("show");
+		$(".popup_item .img").attr("src","../c_images/"+myhref.replace(".html","")+".png")
+		setTimeout(function(){
+			window.location = myhref
+		},650)
+		return false;
+	})
+
+	$(".box_item a").click(function(){
+		var myhref = $(this).attr("href");
+		var myhref2 = myhref.split('#')[0];
+		$(".popup_item").addClass("show");
+		$(".popup_item .img").attr("src","../c_images/"+myhref2.replace(".html","")+".png")
+		setTimeout(function(){
+			window.location = myhref
+		},650)
+		return false;
+	})
+	
+
+	// Use 'pageshow' to detect when the user comes back to this page
+	window.addEventListener('pageshow', function(event) {
+		if (event.persisted) {
+			// This is triggered when navigating back to this page from the cache (back/forward navigation)
+			$(".popup_item").addClass("sharp").removeClass("show");
+			setTimeout(function(){
+				$(".popup_item").removeClass("sharp");
+			},0)
+		}
+	});
+
+	window.addEventListener('beforeunload', function(event) {
+		// Remove the 'show' class when the page is about to unload
+		const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
+		if (isFirefox) {
+		} else {
+			$(".popup_item").removeClass("show");
+		}
+	});
+	
+    $(".body_shopdetail .popup_item").addClass("fadeout")
+	setTimeout(function(){
+		$(".body_shopdetail .popup_item").removeClass("fadeout")
+	},600)
+    $(".body_shopdetail .popup_item").removeClass("show")
 
     mousearr.mousex=$(window).width()/2;
     mousearr.mousey=$(window).height()/2;

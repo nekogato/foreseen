@@ -6,6 +6,15 @@ html, body {
     height: 100%;
     /* background-color: #7abbb8; */
 }
+
+body{
+    overflow: hidden;
+}
+
+.loadfinish{
+    overflow: auto;
+}
+
 .header {
     position: fixed;
     z-index: 1;
