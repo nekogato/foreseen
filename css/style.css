@@ -6,6 +6,15 @@ html, body {
     height: 100%;
     /* background-color: #7abbb8; */
 }
+
+body{
+    overflow: hidden;
+}
+
+.loadfinish{
+    overflow: auto;
+}
+
 .header {
     position: fixed;
     z-index: 1;
@@ -137,7 +146,8 @@ html, body {
 }
 .content-heading {
     /* font-size: 24px; */
-    font-size: 1.5em;
+	font-size: calc(12px + 1vw);
+	line-height:1.4em;
     margin-bottom: 30px;
 }
 .content-heading:not(:first-of-type) {
@@ -148,10 +158,11 @@ html, body {
     border-top: 1px solid #FFF;
 }
 .content {
-    color: #FFFFFF;
+    color: #000;
     margin: 30px 120px;
-    line-height: 28px;
-    font-size: 16px;
+	font-size: calc(12px + 0.4vw);
+	line-height:1.6em;
+
     overflow: hidden;
     padding-top: 100px;
     padding-bottom: 60px;
@@ -240,6 +251,7 @@ html, body {
 
 .td-title {
     padding-right: 0.5em;
+    white-space: nowrap;
 }
 
 .content-article p:not(:last-of-type) {
@@ -423,7 +435,7 @@ html, body {
 .text-tc {
     letter-spacing: 0.05em;
 }
-a, a:visited {
+a{
     color: initial;
 }
 /* a:hover {

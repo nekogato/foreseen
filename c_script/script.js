@@ -42,14 +42,15 @@ function doscroll(){
 
 		$(".tab_item").each(function(){
 			var mytop = $(this).offset().top -  scrolltop - $(".tab_top").outerHeight() - offsettop;
-			$(this).attr("data-top",$(this).offset().top -  scrolltop - $(".tab_top").outerHeight() - offsettop)
-			if(mytop < (hh/2)){
-				$(this).addClass("active")
+			$(this).attr("data-top",Math.round($(this).offset().top -  scrolltop - $(".tab_top").outerHeight() - offsettop))
+			
+			if(mytop+$(this).outerHeight() < 0){
+				$(this).next().addClass("active")
 			}else{
-				$(this).removeClass("active")
+				$(this).next().removeClass("active")
 			}
 		})
-
+		$(".tab_item:first").addClass("active")
 		var myid = $(".tab_item.active:last").attr("data-id");
 		$(".team_sub_section_menu a.active").removeClass("active");
 		$(".team_sub_section_menu a[data-target='"+myid+"']").addClass("active");
@@ -364,9 +365,46 @@ function doscroll2(){
 }
 
 function loading_finish(){
+	if($(".map_box").length){
+		initmap();
+		function initmap() {
+
+			$(".map_box").each(function(){
+				var $this = $(this);
+				var mylng= $this.attr("data-lng");
+				var mylat= $this.attr("data-lat");
+				var mytitle= $this.attr("data-title");
+
+				// Basic options for a simple Google Map
+				// For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+				var mapOptions = {
+					// How zoomed in you want the map to start at (always required)
+					zoom: 17,
 		
+					// The latitude and longitude to center the map (always required)
+					center: new google.maps.LatLng(mylng, mylat), 
+		
+					// How you would like to style the map. 
+					// This is where you would paste any style found on Snazzy Maps.
+					styles: [{"featureType":"landscape","elementType":"geometry","stylers":[{"saturation":"-100"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.text","stylers":[{"color":"#545454"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"saturation":"-87"},{"lightness":"-40"},{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.fill","stylers":[{"color":"#f0f0f0"},{"saturation":"-22"},{"lightness":"-16"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway.controlled_access","elementType":"labels.icon","stylers":[{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"saturation":"-52"},{"hue":"#00e4ff"},{"lightness":"-16"}]}]
+		
+				};
+		
+				// Create the Google Map using our element and options defined above
+				var map = new google.maps.Map($this[0], mapOptions);
+		
+				// Let's also add a marker while we're at it
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(mylng, mylat),
+					map: map,
+					title: mytitle
+				});
+
+			})
+		}
+	}
+
     $("body").addClass("loadfinish");
-    
     doscroll();
 }
 
@@ -562,10 +600,59 @@ function dosize(){
 
 
 $(function(){
+    $("body").addClass("loadstart");
 	
 	init_event();
 	init_function();
 
+	$(".objects-drawer-item a, .box_object_thumb a").click(function(){
+		var myhref = $(this).attr("href");
+		$(".popup_item").addClass("show");
+		$(".popup_item .img").attr("src","../c_images/"+myhref.replace(".html","")+".png")
+		setTimeout(function(){
+			window.location = myhref
+		},650)
+		return false;
+	})
+
+	$(".box_item a").click(function(){
+		var myhref = $(this).attr("href");
+		var myhref2 = myhref.split('#')[0];
+		$(".popup_item").addClass("show");
+		$(".popup_item .img").attr("src","../c_images/"+myhref2.replace(".html","")+".png")
+		setTimeout(function(){
+			window.location = myhref
+		},650)
+		return false;
+	})
+	
+
+	// Use 'pageshow' to detect when the user comes back to this page
+	window.addEventListener('pageshow', function(event) {
+		if (event.persisted) {
+			// This is triggered when navigating back to this page from the cache (back/forward navigation)
+			$(".popup_item").addClass("sharp").removeClass("show");
+			setTimeout(function(){
+				$(".popup_item").removeClass("sharp");
+			},0)
+		}
+	});
+
+	window.addEventListener('beforeunload', function(event) {
+		// Remove the 'show' class when the page is about to unload
+		const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
+		if (isFirefox) {
+		} else {
+			$(".popup_item").removeClass("show");
+		}
+	});
+	
+    $(".body_shopdetail .popup_item").addClass("fadeout")
+	setTimeout(function(){
+		$(".body_shopdetail .popup_item").removeClass("fadeout")
+	},600)
+    $(".body_shopdetail .popup_item").removeClass("show")
 
     mousearr.mousex=$(window).width()/2;
     mousearr.mousey=$(window).height()/2;

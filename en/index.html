@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Foreseen</title>
+		<title>Foreseen Property 2099 寓延地產 2099</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="../c_css/fonts/stylesheet.css">
@@ -17,6 +17,24 @@
         <script src="../c_script/lib/gsap.min.js"></script>
         <script src="../c_script/script.js"></script>
         <script src="../c_script/common.js"></script>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S3LT8FRMH"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-9S3LT8FRMH');
+        </script>
+        
+        <meta property="og:title" content="Foreseen Property 2099 寓延地產 2099">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Foreseen Property 2099 寓延地產 2099">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="675">
+        <meta property="og:image" content="https://fore-seen-2099.com/c_images/fb.png">
+
 	</head>
 	<body>
         <!-- SVG Shape Definition -->
@@ -59,15 +77,15 @@
             <div class="view_btn_inwrapper">
                 <a class="view_btn view_btn1 active" data-view="view1">
                     <div class="icon"></div>
-                    <div class="view_hover_text">Home 主頁</div>
+                    <div class="view_hover_text">Home</div>
                 </a>
                 <a class="view_btn view_btn2" href="timeline.html" data-view="view2">
                     <div class="icon"></div>
-                    <div class="view_hover_text">Timeline 時間軸</div>
+                    <div class="view_hover_text">Timeline</div>
                 </a>
                 <a class="view_btn view_btn3 " href="objects.html"  data-view="view3">
                     <div class="icon"></div>
-                    <div class="view_hover_text">All Objects 所有物品</div>
+                    <div class="view_hover_text">All Objects</div>
                 </a>
             </div>
         </div>
@@ -113,6 +131,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="exhibition.html">
+                            <div>展覽及活動</div>
+                            <div><i>(Exhibition & Event)</i></div>
+                        </a>
+                    </li>
+                    <li>
                         <div class="mobile_lang_menu scrollin scrollin1 mobile_show">
 							<a class="lang_en">EN</a>
 							<a class="lang_tc">中</a>
@@ -121,6 +145,23 @@
                 </ul>
             </div>
         </div>
+
+		<div class="mobile_show">
+			<div class="mobile_view_btn_wrapper scrollin scrollin1">
+				<a class="mobile_view_btn mobile_view_btn2" href="timeline.html" data-view="view2">
+                    <div class="icon"></div>
+                    <div class="view_hover_text">Timeline</div>
+                </a>
+                <a class="mobile_view_btn mobile_view_btn3 " href="objects.html"  data-view="view3">
+                    <div class="icon"></div>
+                    <div class="view_hover_text">All Objects</div>
+                </a>
+			</div>
+		</div>
+
+		<div class="popup_item">
+			<img src="../c_images/shop1.png" class="img">
+		</div>
 
 		<div class="mobile_show"></div>
 		<div class="mobile_hide"></div>
@@ -147,7 +188,7 @@
 				['../c_model/Asset1-v1/Asset1.gltf',0,0,0, 30,30,30, 0,0,0,"style2",0,"","model0",""],
 				['../c_model/clothes/clothes.gltf',-18,5,-5, 30,30,30, 10,0,30,"style1",5,"Adaptive Clothing","model2","shop5"],
 				['../c_model/clothes2/clothes2.gltf',-3,8,-10, 30,30,30, 120,120,20,"style1",5,"Adaptive Clothing","model1","shop5"],
-				['../c_model/hammer/hammer.gltf',0,-5,7, 30,30,30, 20,40,50,"style4",5,"Baby Professional Tailor and Curtain Shop","model3","shop4"],
+				['../c_model/hammer/hammer.gltf',0,-5,7, 30,30,30, 20,40,50,"style1",5,"Baby Professional Tailor and Curtain Shop","model3","shop4"],
 				['../c_model/hammer2/hammer2.gltf',17,-7,-10, 30,30,30, 10,0,40,"style3",5,"Baby Professional Tailor and Curtain Shop","model4","shop4"],
 				['../c_model/key/key.gltf',-17,-6,3, 30,30,30, 30,80,50,"style1",5,"Fong Man Engineering Company","model5","shop6"],
 				['../c_model/key2/key2.gltf',-8,-9,13, 30,30,30, 30,0,30,"style1",5,"Fong Man Engineering Company","model6","shop6"],
@@ -211,7 +252,6 @@
 								child.myshop = shop;
 								child.mytext = text;
 								if(material=="style2"){
-									if (child.material.map){
 
 										var envMap = new THREE.CubeTextureLoader()
 											.setPath('../c_textures/') // Replace with the path to your cube texture images
@@ -235,7 +275,6 @@
 
 										
 
-									}
 								}
 
 								if(material=="style3"){
@@ -479,6 +518,9 @@
 				controls = new OrbitControls(camera, renderer.domElement);
 				controls.maxPolarAngle = Math.PI / 2;
                 controls.enablePan = false;
+				//controls.maxZoom = 0.5;
+				controls.maxDistance  = 600;
+				controls.minDistance  = 300;
 
 
 				// const geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
@@ -714,8 +756,10 @@
 							if (intersects[0].object.parent === model || intersects[0].object.parent.parent === model) {
 								gsap.to(model.targetscale, { x:35, y: 35, z: 35, duration: 0.15, onComplete: function(){
 								}, });
-								console.log(intersects[0].object.mytext)
-								$(".overlay_shop_name .shop_name").html(intersects[0].object.mytext)
+								if(intersects[0].object.mytext){
+									$("body").addClass("hovershopitem")
+									$(".overlay_shop_name .shop_name").html(intersects[0].object.mytext)
+								}
 							} else {
 								gsap.to(model.targetscale, { x:30, y: 30, z: 30, duration: 0.15, onComplete: function(){
 								}, });
@@ -727,7 +771,8 @@
 							gsap.to(model.targetscale, { x:30, y: 30, z: 30, duration: 0.15, onComplete: function(){
 							}, });
 						});
-								$(".overlay_shop_name .shop_name").html("")
+						$("body").removeClass("hovershopitem")
+						$(".overlay_shop_name .shop_name").html("")
 					}
 				}
 			}
@@ -764,8 +809,13 @@
 							//console.log(intersects[0].object.parent,modelArr)
 							modelArr.forEach(model => {
 								if (intersects[0].object.parent === model || intersects[0].object.parent.parent === model) {
-									if(model.myid!=="model0"){
-										window.location = intersects[0].object.myshop+".html";
+									if(model.myid!=="model0"){ 
+										$(".popup_item").addClass("show");
+										$(".popup_item .img").attr("src","../c_images/"+intersects[0].object.myshop+".png")
+										setTimeout(function(){
+											window.location = intersects[0].object.myshop+".html";
+										},650)
+										
 									} 
 								}
 							});
@@ -876,7 +926,10 @@
 					gridHelper2.visible = false;
 					yearlinegroup.visible=false;
 
-                	smallgroup.rotation.x -= 0.005;
+					if(!$("body").hasClass("hovershopitem")){
+						smallgroup.rotation.x -= 0.005;
+					}
+
 					
                 }
 
@@ -1152,7 +1205,7 @@
 		</script>
 
 		<div class="overlay_shop_name mobile_hide">
-			<div class="shop_name text1"></div>
+			<div class="shop_name text0"></div>
 		</div>
 
 		<div class="loading"><img src="../c_images/oval.svg"></div>
