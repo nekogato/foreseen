@@ -1033,6 +1033,8 @@ i{
 }
 
 .white_btn{
+    -webkit-transition: all 0.15s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: all 0.15s cubic-bezier(0.77, 0, 0.175, 1) 0s;
     padding: 10px;
     background-color: #fff;
     color:#000;
@@ -1041,6 +1043,11 @@ i{
     margin-top: 20px;
     display: block;
     text-align: center;
+}
+
+.white_btn:hover{
+    color:#fff;
+    background-color: #A9E300;
 }
 
 .tc_body .white_btn{
