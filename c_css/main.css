@@ -273,7 +273,7 @@ body {
 }
 
 .dropdown a:hover div{
-	margin-left:10px;
+	transform: translateX(10px);
 }
 
 .dropdown i{
