@@ -19,6 +19,7 @@
 
 .overlay_shop_name{
     position: fixed;  
+    left:50px;
     right: 91px;
     bottom: 36px;
     margin:auto;
@@ -32,8 +33,9 @@
 }
 
 .overlay_shop_name .shop_name{
-    margin-left:auto;
-    text-align:right;
+    width: 50%;
+    margin:auto;
+    text-align:center;
 }
 
 .tc_body .overlay_shop_name .shop_name{
