@@ -30,11 +30,11 @@ const showSeqIndex = setIndex-1
 const posArrayIndex = setIndex-1
 
 const objArray = [
-    {path: "ElectricityBox_20240628.obj",           id:"electricity_box",               name:"ElectricityBox",        size: 10,           shop: "A"},               // 0
+    {path: "ElectricBoxOBJ_V2_20240806.obj",           id:"electricity_box",               name:"ElectricBoxOBJ_V2_20240806",        size: 0.1, xRot: Math.PI/-2,          shop: "A"},               // 0
     {path: "PressureCooker_Top_20240628.obj",       id:"rice_cooker",                   name:"PressureCooker_Top",        size: 0.9,          shop: "A"},               // 1
-    {path: "WorkingDesk_20240628.obj",              id:"working_desk",                  name:"WorkingDesk",        size: 0.4,          shop: "B"},               // 2
+    {path: "WorkingDeskOBJ_V2_20240805.obj",        id:"working_desk",                  name:"WorkingDeskOBJ_V2_20240805",        size: 0.4,    xRot: Math.PI/-2,          shop: "B"},               // 2
     {path: "ShoeStand_20240628.obj",                id:"shoe_stretcher",                name:"ShoeStand",        size: 0.7,          shop: "C"},               // 3
-    {path: "Iron_20240628.obj",                     id:"iron",                          name:"Iron",        size: 0.6,          shop: "D"},               // 4
+    {path: "IronOBJ_V2_20240805.obj",                     id:"iron",                          name:"IronOBJ_V2_20240805",        size: 0.18,  xRot: Math.PI/-2,        shop: "D"},               // 4
     {path: "PearlTools_20240628.obj",               id:"pearl_tools",                   name:"PearlTools",        size: 0.3,     xRot: Math.PI/-4,      yRot: Math.PI/2,     zPos: -0.8, shop: "B"},               // 5
     {path: "Scissors_20240628.obj",                 id:"scissors",                      name:"Scissors",        size: 0.5,       xRot: Math.PI/-4,      zPos: -0.15,       shop: "D"},               // 6
     {path: "NeedlePad_20240628.obj",                id:"needle_pad",                    name:"NeedlePad",        size: 3,            shop: "E"},               // 7
@@ -46,13 +46,13 @@ const objArray = [
     {path: "WoodenBoxOpenOBJ_20240725.obj",         id:"wooden_tool_box_open",          name:"Group21129",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 13
     {path: "WoodenBoxClosedOBJ_20240725.obj",       id:"wooden_tool_box",               name:"Group47146",        size: 0.08,    xRot: Math.PI/-2,     shop: "F"},               // 14
     {path: "ShoeRackOBJ_20240726.obj",              id:"shoe_rack",                     name:"Group57180",        size: 0.18,    xRot: Math.PI/-2,     shop: "F"},               // 15
-    {path: "SewingMachineOBJ_20240727.obj",         id:"sewing_machine",                name:"Group7732",         size: 0.75,    xRot: Math.PI/-2,     shop: "E"},               // 16
+    {path: "SewingMachineOBJ_V2_20240805.obj",         id:"sewing_machine",                name:"SewingMachineOBJ_V2_20240805.003",         size: 1,    xRot: Math.PI/-2,     shop: "E"},               // 16
     {path: "JarOfJadeOBJ_20240727.obj",             id:"jar_of_jade",                   name:"Group17388",        size: 0.15,    xRot: Math.PI/-2,     shop: "B"},               // 17
-    {path: "HandDrawnShoes_OBJ_20240730.obj",       id:"handdraw_first_pair_of_shoes",  name:"Group34095",        size: 0.15,    xRot: Math.PI/-2,      zPos: -0.4,     shop: "F"},               // 18
-    {path: "HandDrawnShoes2_OBJ_20240730.obj",      id:"handdraw_shoes",                name:"Group50196",        size: 0.2,     xRot: Math.PI/-2,     shop: "C"},               // 19
-    {path: "HandDrawnKey_OBJ_20240730.obj",         id:"handdraw_key",                  name:"Group64819",        size: 0.18,    xRot: Math.PI/-4,     shop: "C"},               // 20
-    {path: "HandDrawnNecklace_OBJ_20240730.obj",    id:"handdraw_goldfish_jewelry",     name:"Group14082",        size: 0.2,     xRot: Math.PI/-4,     zPos: -0.5,      shop: "B"},               // 21
-    {path: "HandDrawnScissor_OBJ_20240730.obj",     id:"handDraw_scissors",             name:"Group8048",         size: 0.0055,   xRot: Math.PI*3/4,    zPos: -12,        shop: "D"},               // 22
+    {path: "HandDrawnShoe1_OBJ_V2_20240905.obj",       id:"handdraw_first_pair_of_shoes",  name:"HandDrawnShoe1_OBJ_20240905",        size: 0.15,    xRot: Math.PI/-2,      zPos: -0.8,     shop: "F"},               // 18
+    {path: "HandDrawnShoe2_OBJ_V2_20240905.obj",      id:"handdraw_shoes",                name:"HandDrawnShoe2_OBJ_V2_20240905",        size: 0.18,     xRot: Math.PI/-2,     shop: "C"},               // 19
+    {path: "HandDrawnKeyOBJ_V2_20240905.obj",         id:"handdraw_key",                  name:"HandDrawnKeyOBJ_20240905",        size: 0.15,    yRot: Math.PI/-4,  zPos: -1,   shop: "C"},               // 20
+    {path: "HandDrawnGoldFishNecklace_OBJ_20240830.obj",    id:"handdraw_goldfish_jewelry",     name:"HandDrawnGoldFishNecklace_OBJ_20240830",        size: 0.25,    xRot: Math.PI/-2, xPos:3.3, zPos: 1,      shop: "B"},               // 21
+    {path: "HandDrawnScissorOBJ_20240828.obj",     id:"handDraw_scissors",             name:"HandDrawnScissor_OBJ",         size: 0.08,   xRot: Math.PI*3/4,    zPos: -1.5,  xPos:5,      shop: "D"},               // 22
 ]
 
 const colorArray = [
@@ -65,10 +65,10 @@ const colorArray = [
 ]
 
 const posArray = [
-    [{x:-0.2, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.15}, {x:0, z:-0.1}, {x:-0.3, z:-0.2}],
-    [{x:-0.3, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.1}, {x:-0.1, z:-0.3}, {x:-0.3, z:-0.2}, {x:0, z:0.2}],
-    [{x:0.2, z:0.3}, {x:0.2, z:-0.2}, {x:-0.1, z:0.1}, {x:-0.2, z:-0.1}],
-    [{x:-0.25, z:0}, {x:0, z:-0.25}, {x:0.25, z:0.25}, {x:0, z:0}],
+    [{x:-0.2, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.15}, {x:0, z:-0.1}, {x:-0.3, z:-0.3}],
+    [{x:-0.3, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.1}, {x:-0.1, z:-0.3}, {x:-0.3, z:0}, {x:0, z:0.2}],
+    [{x:0.2, z:0.3}, {x:0.2, z:-0.2}, {x:-0.1, z:0.1}, {x:-0.2, z:-0.2}],
+    [{x:-0.25, z:0}, {x:0, z:-0.25}, {x:0.25, z:0.25}, {x:0, z:0.1}],
     [{x:0.1, z:0.2}, {x:-0.2, z:-0.1}],
     [{x:-0.2, z:0.2}, {x:0.2, z:0}],
 ]
@@ -390,6 +390,8 @@ function init() {
                     if (objArray[showSeq[i]].xRot !== undefined) child.rotation.x = objArray[showSeq[i]].xRot
                     if (objArray[showSeq[i]].yRot !== undefined) child.rotation.y = objArray[showSeq[i]].yRot
                     if (objArray[showSeq[i]].zPos !== undefined) child.position.z = objArray[showSeq[i]].zPos
+                    if (objArray[showSeq[i]].xPos !== undefined) child.position.x = objArray[showSeq[i]].xPos
+                    if (objArray[showSeq[i]].yPos !== undefined) child.position.y = objArray[showSeq[i]].yPos
 
                 }
             });
