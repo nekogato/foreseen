@@ -53,6 +53,7 @@ const objArray = [
     {path: "HandDrawnKeyOBJ_V2_20240905.obj",         id:"handdraw_key",                  name:"HandDrawnKeyOBJ_20240905",        size: 0.15,    yRot: Math.PI/-4,  zPos: -1,   shop: "C"},               // 20
     {path: "HandDrawnGoldFishNecklace_OBJ_20240830.obj",    id:"handdraw_goldfish_jewelry",     name:"HandDrawnGoldFishNecklace_OBJ_20240830",        size: 0.25,    xRot: Math.PI/-2, xPos:3.3, zPos: 1,      shop: "B"},               // 21
     {path: "HandDrawnScissorOBJ_20240828.obj",     id:"handDraw_scissors",             name:"HandDrawnScissor_OBJ",         size: 0.08,   xRot: Math.PI*3/4,    zPos: -1.5,  xPos:5,      shop: "D"},               // 22
+    {path: "HandDrawn_SewingMachineOBJ_20240806.obj",     id:"handdraw_sewing_machine",             name:"HandDrawn_SewingMachineOBJ_20240806",         size: 0.08,   xRot: Math.PI/-2,     shop: "E"},               // 23
 ]
 
 const colorArray = [
@@ -69,7 +70,7 @@ const posArray = [
     [{x:-0.3, z:0.3}, {x:0.3, z:-0.3}, {x:0.3, z:0.1}, {x:-0.1, z:-0.3}, {x:-0.3, z:0}, {x:0, z:0.2}],
     [{x:0.2, z:0.3}, {x:0.2, z:-0.2}, {x:-0.1, z:0.1}, {x:-0.2, z:-0.2}],
     [{x:-0.25, z:0}, {x:0, z:-0.25}, {x:0.25, z:0.25}, {x:0, z:0.1}],
-    [{x:0.1, z:0.2}, {x:-0.2, z:-0.1}],
+    [{x:0.2, z:0.3}, {x:0, z:-0.3}, {x:-0.1, z:0.2}],
     [{x:-0.2, z:0.2}, {x:0.2, z:0}],
 ]
 
@@ -78,7 +79,7 @@ const showSeqArray = [
     [3,9,11,12,19,20],     //             C
     [2,5,17,21],           //             B
     [4,6,10,22],           //             D
-    [7,16],                //             E
+    [7,16,23],                //             E
     [0,1],                 //             A
 ]
 
@@ -402,7 +403,7 @@ function init() {
             aabb.setFromObject( obj );
             obj.userData.height = aabb.max.y - aabb.min.y
 
-            textureLoader.load('../c_images/objects/'+objArray[showSeq[i]].id+".png",
+            textureLoader.load('../c_images/objects/'+objArray[showSeq[i]].id+".jpg",
                 (texture) => {
                     texture.colorSpace = THREE.SRGBColorSpace;
                     obj.userData.map = texture
