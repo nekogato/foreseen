@@ -120,7 +120,7 @@ function setupInsideMenu() {
 
 function changeDetailView( e ) {
     resetInsideMenuButton()
-    e.target.classList.add("selected")
+    e.currentTarget.classList.add("selected")
 
     const scrollins = document.querySelectorAll(".content .scrollin.startani")
     scrollins.forEach( obj => {
@@ -133,7 +133,7 @@ function changeDetailView( e ) {
     activeDetailContent.forEach( obj => {
         obj.classList.remove("active")
     })
-    const activeContent = document.querySelector(".content.for-" + e.target.dataset.detail)
+    const activeContent = document.querySelector(".content.for-" + e.currentTarget.dataset.detail)
     if (activeContent !== undefined) {
         activeContent.classList.add("active")
     }
@@ -202,11 +202,11 @@ function resetMobileInsideMenuButton() {
 
 function mobileChangeDetailView( e ) {
     resetInsideMenuButton()
-    const btn = document.querySelector(".fold-2-right .inside-menu-item[data-detail='"+ e.target.dataset.detail +"']")
+    const btn = document.querySelector(".fold-2-right .inside-menu-item[data-detail='"+ e.currentTarget.dataset.detail +"']")
     btn.classList.add("selected")
 
     resetMobileInsideMenuButton()
-    e.target.classList.add("selected")
+    e.currentTarget.classList.add("selected")
 
     const scrollins = document.querySelectorAll(".content .scrollin.startani")
     scrollins.forEach( obj => {
@@ -219,7 +219,7 @@ function mobileChangeDetailView( e ) {
     activeDetailContent.forEach( obj => {
         obj.classList.remove("active")
     })
-    const activeContent = document.querySelector(".content.for-" + e.target.dataset.detail)
+    const activeContent = document.querySelector(".content.for-" + e.currentTarget.dataset.detail)
     if (activeContent !== undefined) {
         activeContent.classList.add("active")
     }
