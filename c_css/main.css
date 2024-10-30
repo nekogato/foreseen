@@ -67,6 +67,11 @@ body {
 	gap:36px;
 }
 
+.bottom_left_logo a{
+	height: 100%;
+	position: relative;
+}
+
 .bottom_left_logo1{
 	height: 100%;
 }
